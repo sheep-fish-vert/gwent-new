@@ -1,0 +1,55 @@
+{
+    "logo":"images/logo-cursed.png",
+    "effects":[
+        {
+            "img":"images/effect4.png",
+            "title":"Holy weak",
+            "descript":"Weakness.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 500",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect1.png",
+            "title":"Holy spirit",
+            "descript":"Spirit down.",
+            "energy_cost":8,
+            "gold_cost":"0",
+            "silver_cost":"3 000",
+            "status":false,
+            "ending_date":"-"
+        },
+        {
+            "img":"image/effect7.png",
+            "title":"Holy fear",
+            "descript":"Fear.",
+            "energy_cost":6,
+            "gold_cost":"0",
+            "silver_cost":"500",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect10.png",
+            "title":"Holy defence",
+            "descript":"Defense down.",
+            "energy_cost":6,
+            "gold_cost":"0",
+            "silver_cost":"1 500",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect8.png",
+            "title":"Holy magic",
+            "descript":"Magic down.",
+            "energy_cost":4,
+            "gold_cost":"10",
+            "silver_cost":"6 500",
+            "status":true,
+            "ending_date":"-"
+        }
+    ]
+}

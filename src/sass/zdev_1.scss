@@ -1,0 +1,444 @@
+/* content cards */
+
+    .content-card-cards-wrap{padding:15px 15px 15px 15px;max-width: 550px;width: 100%;display: inline-block;text-align: left;
+        ul{min-height: 620px;
+            li{transition:transform 500ms ease;-webkit-transition:-webkit-transform 500ms ease;-moz-transition:transform 500ms ease;-ms-transition:transform 500ms ease;transform:rotate(0deg);-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-ms-transform:rotate(0deg);transform-origin:50% 50%;-webkit-transform-origin:50% 50%;-moz-transform-origin:50% 50%;-ms-transform-origin:50% 50%;
+                &.ui-sortable-helper{transform:rotate(15deg);-webkit-transform:rotate(15deg);-moz-transform:rotate(15deg);-ms-transform:rotate(15deg);}
+                &.ui-sortable-placeholder{position: relative;
+                    &:after{content:'';background-color: rgba(0,0,0,.5);border-radius:3px;visibility:visible!important;max-width:145px;position: absolute;width: 100%;height: 100%;left: 50%;transform:translate(-50%,0);}
+                }
+            }
+        }
+    }
+    .content-card-item-main img{box-shadow:12px 12px 25px -9px rgba(0,0,0, .96);border-radius:9px;}
+    .content-card-item{width: 30%;margin-right: 2.5%;margin-bottom: 25px;cursor: pointer;text-align: center;display: inline-block;vertical-align: top;
+    }
+    .content-card-field{height: 660px;margin-bottom: -1px;overflow: hidden;}
+    .content-card-cards{height: 660px;overflow: visible !important;
+        .jspPane{text-align: center;}
+        &:focus{outline: none;}
+        .jspVerticalBar{display: none;}
+        .jspContainer{overflow: visible;}
+    }
+
+/* /content cards */
+
+/* forms header */
+
+    .forms-header{height: 57px;position: relative;z-index: 0;background-image:url(../images/forms-footer-bg.jpg);
+        &:after{content: '';display: block;position: absolute;left: 0;bottom: 0;width:100%;height: 12px;background-image: url(../images/header_border.png);}
+    }
+    .forms-language{position: relative;z-index: 2;width: 100%;height: 47px;margin-top: -47px;text-align: right;padding-right: 15px;
+        .form-language-wrap{display: inline-block;vertical-align: middle;margin-right: 15px;border:2px solid transparent;transition:border-color 500ms ease;-webkit-transition:border-color 500ms ease;-moz-transition:border-color 500ms ease;-ms-transition:border-color 500ms ease;
+            &:last-child{margin-right: 0;}
+            &:hover, &.active{border-color: #ffb000;}
+        }
+    }
+
+/* /forms header */
+
+/* forms footer */
+
+    .forms-footer{padding:27px 15px 15px 15px;position: relative;
+        &:before{content: '';position: absolute;display: block;top: 0;height: 12px;left: 0px;width: 100%;background-image:url(../images/header_border.png)}
+        .forms-footer-blocks{display: inline-block;width: calc(33.33% - 3px);font-weight: 200;color:#adadad;font-size: 14px;
+            &.left{text-align: left;}
+            &.center{text-align: center;}
+            &.right{text-align: right;}
+        }
+    }
+    .forms-footer-link a{text-decoration: none;color:#adadad;position: relative;
+        &:after{content: '';display: block;position: absolute;top: 100%;left: 0;height: 1px;background-color: #adadad;width: 0;transition:width 300ms ease;-webkit-transition:width 300ms ease;-moz-transition:width 300ms ease;-ms-transition:width 300ms ease;}
+        &:hover:after{width: 100%;}
+    }
+
+    .companies-logo{text-align: center;
+        .companies-logo-wrap{display: inline-block;margin:0 5px;vertical-align: middle;position: relative;
+            .hover-img{opacity: 0;transition:opacity 500ms ease;-webkit-transition:opacity 500ms ease;-moz-transition:opacity 500ms ease;-ms-transition:opacity 500ms ease;position: absolute;top: 0;left: 0;z-index: 1;}
+            &:hover .hover-img{opacity: 1;}
+        }
+    }
+
+/* /forms footer */
+
+/* markets_card */
+
+    .market-cards, .market-cards-wrap{height: 660px;}
+    .market-cards-item{display: inline-block;width: calc(33.33% - 3px);text-align: center;vertical-align: top;margin-bottom: 50px;
+        .market-cards-item-main{display: inline-block;}
+        .market-cards-item-img{margin-bottom: 10px;
+            img{box-shadow: 5px 3px 12px 0 rgba(0,0,0,.96);-webkit-box-shadow: 5px 3px 12px 0 rgba(0,0,0,.96);border-radius: 9px;}
+        }
+        .market-card-item-price{font-size: 15px;color:#ffb000;text-transform: uppercase;text-shadow:1px 1px 1px rgba(113,74,17,.74);-webkit-text-shadow:1px 1px 1px rgba(113,74,17,.74);margin-bottom: 10px;}
+    }
+    .market-cards-items-wrap{padding: 50px 25px 0;display: flex;flex-wrap:wrap;justify-content:flex-start;
+        .market-card-wrap{width: 208px;padding:0 15px;text-align: center;margin-bottom: 50px;
+            .content-card-item-main{margin:0 auto 20px auto;box-shadow:5px 3px 12px 0 rgba(0, 0, 0, .96);
+                .label-power-card{padding-top: 10px;}
+                .hovered-items{
+                    .card-game-status{
+                        .card-game-status-role{
+                            span{display: block;}
+                        }
+                    }
+                }
+            }
+            .card-name{font-size: 12px;color:#ffb000;text-shadow: 1px 1px 1px rgba(113, 74, 17, .74);margin-bottom: 10px;}
+            .market-card-item-price{font-size: 15px;color:#ffb000;text-transform: uppercase;text-shadow: 1px 1px 1px rgba(113, 74, 17, 0.74);margin-bottom: 10px;
+                span{padding:0 5px;}
+            }
+        }
+    }
+    .button-buy{background-image:url(../images/header_button1.png);width: 124px;height: 53px;line-height: 53px;text-transform: uppercase;text-decoration: none;color:#ffb000;font-size: 12px;text-shadow:1px 1px 1px rgba(113,74,17,.74);-webkit-text-shadow:1px 1px 1px rgba(113,74,17,.74);display: inline-block;transition:text-shadow 500ms linear, color 300ms ease;-webkit-transition:text-shadow 500ms linear, color 300ms ease;-moz-transition:text-shadow 500ms linear, color 300ms ease;-ms-transition:text-shadow 500ms linear, color 300ms ease;
+        &:hover{text-shadow:1px 1px 2px yellow, 0 0 1em yellow;-webkit-text-shadow:1px 1px 2px yellow, 0 0 1em yellow;text-decoration: none;color:#573204;}
+    }
+
+    .market-cards-wrap{
+        &:focus{outline: none;}
+        .jspVerticalBar{width: 28px;background-color: transparent;}
+        .jspTrack{margin-left: 2px;width: 24px;margin-right: 2px;
+            background: rgb(1,1,2);background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAxMDEwMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxNDE0MTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background: -moz-linear-gradient(left, rgba(1,1,2,1) 0%, rgba(20,20,20,1) 100%);background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(1,1,2,1)), color-stop(100%,rgba(20,20,20,1)));background: -webkit-linear-gradient(left, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);background: -o-linear-gradient(left, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);background: -ms-linear-gradient(left, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);background: linear-gradient(to right, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#010102', endColorstr='#141414',GradientType=1 );}
+        .jspArrow{height: 27px;width: 28px;background-image:url(../images/scroll-arrow.png);position: relative;background-position: left bottom;
+            &:after{content: '';display: block;position: relative;width: 100%;height: 100%;background-image:url(../images/scroll-arrow-active.png);left: 0;top: 0;z-index: 1;opacity: 1;transition:opacity 500ms ease;-webkit-transition:opacity 500ms ease;-moz-transition:opacity 500ms ease;-ms-transition:opacity 500ms ease;background-position: left bottom;}
+            &.jspDisabled:after{opacity: 0;}
+            &.jspArrowUp, &.jspArrowUp:after{background-position: left top;}
+        }
+        .jspDrag{background-image:url(../images/scroll-drag.png);background-color: transparent;background-repeat: no-repeat;background-position: center top;}
+    }
+
+/* /markets_card */
+
+/* special effects shop */
+
+    .effect-market-wrap{padding: 25px 0px 0px 10px;text-align:center;font-size: 14px;color:#fff6d7;
+        .button-buy{display: none;}
+        .no-border{
+            img{max-width: 70px;}
+        }
+        table{width: 100%;
+            &.main-table{position: relative;
+                &:before{content: '';display: block;position: absolute;top:75px;right:0;width: 95%;height: 2px;background-color: rgba(66, 217, 121, .8);box-shadow:inset 1px 1px 1px 1px rgba(66, 217, 121, .44), 0 0 8px 7px rgba(53, 164, 98, .6);border-radius: 5px;}
+            }
+            tr{
+                td{vertical-align: middle;border-width: 0 1px 1px 0;border-style: solid;border-color: transparent rgba(56, 168, 82, .8) rgba(56, 168, 82, .8) transparent;
+                    &.effect-img{width: 7%;
+                        img{max-width: 80px;padding: 10px 0;}
+                    }
+                    &.effect-title{width: 12%;}
+                    &.effect-descript{text-align:left;padding-left: 2%;width: 20%;}
+                    &.energy-effect{color:#74f4ff;width: 10%;}
+                    &.gold-tableCell{color:#d6ca42;width: 7.2%;}
+                    &.silver-tableCell{width: 8.2%;}
+                    &.marker-status-wrap{}
+                    &.effect-date{border-width: 0 0 1px 0;width: 10%;}
+                    &.no-border{padding: 10px 0;width: 5%;border-width: 0 1px 0 0!important;}
+
+                }
+                &:last-child{
+                    td{border-width: 0 1px 1px 0;
+                        &:last-child{border-width: 0 0 1px 0;}
+                    }
+                }
+            }
+            th{text-transform: uppercase;vertical-align: middle;border-width: 0 1px 0 0;border-style: solid;border-color: transparent rgba(56, 168, 82, .8) transparent transparent;
+                &.no-border{border-width: 0 0 0 0!important;}
+                &:last-child{border-width: 0;}
+                &:nth-child(3){width: 20%;}
+                table{padding-bottom: 10px;
+                    th{padding: 10px 0;
+                        &:last-child{border-width: 0 0 0 0;}
+                    }
+                    tr{
+                        th{
+                            &:last-child{border-width: 0 0 1px 0;border-color: transparent transparent rgba(56, 168, 82, .8) transparent;}
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .effect-market-wrap{
+        table{
+            tr{
+                td{
+                    .market-status{overflow: hidden;height: 18px;width: 22px;position: relative;display: block;vertical-align: middle;margin: 0 auto;cursor: pointer;
+                        span{position: absolute;width: 100%;height: 100%;left: 0;top: 0;transform-origin: 50% 50%;animation-play-state: paused;animation-name: thumb;animation-duration: 150ms;animation-iteration-count: infinite;animation-timing-function: ease-in-out;pointer-events:none;
+                            &:after,&:before{background-color: #e1766a;width: 18px;height: 2px;content: '';position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%) rotate(-45deg);box-shadow:0px 0px 6px 0px #E14D43;}
+                            &:before{transform: translate(-50%, -50%) rotate(45deg);}
+                        }
+                        &.active span{
+                            &:after,&:before{background-color: #d7cf67;width: 16px;left: 70%;box-shadow:0px 0px 6px 0px #7a9246;}
+                            &:before{left: 31%;width: 10px;top: 62%;}
+                        }
+                        &.disabled span{
+                            &:after,&:before{background-color: grey;box-shadow:0px 0px 6px 0px grey;}
+                        }
+                        &.disable-anim span{animation-play-state: running;}
+                        @keyframes thumb {
+                            0% {
+                                transform: translateX(0px);
+                            }
+                            25% {
+                                transform: translateX(-2px);
+                            }
+                            50% {
+                                transform: translateX(-4px);
+                            }
+                            75% {
+                                transform: translateX(-2px);
+                            }
+                            100% {
+                                transform: translateX(0px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+/* /special effects shop */
+
+/* card markup */
+
+    .content-card-item-main{ width: 145px; height: 212px; background-image: url(../images/left-menu-img.png); background-size: 145px 212px;background-repeat: no-repeat; background-position: center center; position: relative; border-radius: 5px; overflow: hidden;
+        &:before{content:'';position: absolute;width: 100%;height: 100%;top:0;left:0;background-size:100% 100%;z-index: 1;}
+        &.cursed{
+            &:before{background-image:url(../images/card-fon-cursed.png);background-color: red;}
+            .label-power-card{background-image:url(../images/cart-open-flag-cursed.png);}
+        }
+        &.forest-masters{
+            &:before{background-image:url(../images/card-fon-forest-masters.png);background-color: green;}
+            .label-power-card{background-image:url(../images/cart-open-flag-forest-masters.png);}
+        }
+        &.highlanders{
+            &:before{background-image:url(../images/card-fon-highlanders.png);background-color: aqua;}
+            .label-power-card{background-image:url(../images/cart-open-flag-highlanders.png);}
+        }
+        &.knights{
+            &:before{background-image:url(../images/card-fon-knights.png);background-color: blue;}
+            .label-power-card{background-image:url(../images/cart-open-flag-knights.png);}
+        }
+        &.monsters{
+            &:before{background-image:url(../images/card-fon-monsters.png);background-color: gray;}
+            .label-power-card{background-image:url(../images/cart-open-flag-monsters.png);}
+        }
+        &.undead{
+            &:before{background-image:url(../images/card-fon-undead.png);background-color: yellow;}
+            .label-power-card{background-image:url(../images/cart-open-flag-undead.png);}
+        }
+        &.neutral{
+            &:before{background-color: #000;}
+            .label-power-card{background-image:url(../images/cart-open-flag-neutral.png);}
+        }
+        .hovered-items{ position: absolute; width: 100%; text-align: right; bottom: 0; transition: all 0.3s ease-out;
+            .card-game-status {height: 20px; width: 100%; margin-bottom: 5px;display: table;
+                .card-game-status-wrap{display: table-cell;width: 80%;vertical-align: middle;}
+                .card-game-status-role{display: table-cell;width: 20%;text-align: center;
+                    span{height: 30px;width: 30px;display: none;background-size:100% 100%;background-repeat: no-repeat;margin-right: 0;margin-left: 5px;
+                        &.bow{background-image:url(../images/cart-open-status-main-1.png);}
+                        &.axe{background-image:url(../images/cart-open-status-main-2.png);}
+                        &.lighting{background-image:url(../images/cart-open-status-main-3.png);}
+                        &.bow-axe{background-image:url(../images/cart-open-status-main-4.png);}
+                        &.bow-lighting{}
+                        &.axe-lighting{}
+                        &.bow-axe-lighting{background-image:url(../images/cart-open-status-main-5.png);}
+
+                    }
+                }
+                span{height: 20px; width: 20px;  display: inline-block; margin-right: 5px;background-size:100% 100%;background-repeat: no-repeat;
+                    &.hand{background-image:url(../images/cart-open-status-submain-5.png);}
+                    &.wind{background-image:url(../images/cart-open-status-submain-6.png);}
+                    &.heal{background-image:url(../images/cart-open-status-submain-3.png);}
+                    &.knife{background-image:url(../images/cart-open-status-submain-2.png);}
+                    &.ninja{background-image:url(../images/cart-open-status-submain-1.png);}
+                    &.look{background-image:url(../images/cart-open-status-submain-4.png);}
+                }
+            }
+            .card-name-property{ background-image: url(../images/plashka-for-name.png); width: 100%;height: auto; background-size: 145px 20px; text-align: center;position: relative;padding: 5px 0 7px 0;
+                &:before, &:after{content:'';display: block;position: absolute;left: 0;right:0;height: 3px;background-image:url(../images/plashka-for-name-border.png);background-repeat: repeat-x;}
+                &:before{top: 0;}
+                &:after{bottom:0;}
+                p{color: white; font-size: 12px;padding-top: 2px;}
+            }
+            .block-describe{background-image: url(../images/background-hover-describe.png); width: 100%; height: 105px; text-align: left; display: table; padding-top: 3px; overflow: hidden;display: none;
+                .block-image-describe{display: table-cell;background-position: center; width: 20%; background-repeat: no-repeat; vertical-align: middle;background-image:none;padding: 0 10px;
+                    img{box-shadow:none;border-radius: 0;max-width: 82px;}
+                }
+                .block-text-describe{ font-size: 14px; color: #642e11; padding-top: 5px; display: table-cell; vertical-align: middle;  padding-right: 8px;width: 80%;
+                    .block-text-describe-wrap{height:85px;}
+                    .block-text-describe-main{display: table;min-height: 65px;padding-right: 15px;}
+                    .block-text-describe-main-wrap{display: table-cell;vertical-align: middle;
+                        p{max-height: none;}
+                    }
+                }
+            }
+        }
+        .label-power-card{background-image: url(../images/logo-label-card.png); background-repeat: no-repeat; background-size: 35px 50px; position: absolute; top: 0; height: 50px; width: 35px; left: 10px; font-family: 'indisplay',sans-serif; font-weight: 900; font-size: 15px; color:#494949; padding-top: 12px; }
+
+    }
+
+/* /card markup */
+
+/* card open popup */
+
+    $ye:rgba(255,221,0, .6);
+
+    .fancybox-card-open{overflow: hidden !important;border-radius: 11px;
+        .fancybox-opened{
+            .fancybox-skin{box-shadow:none;}
+        }
+    }
+    #cart-open{padding: 30px 0;}
+    .cart-open{position: relative;width: 403px;height: 516px;position: relative;perspective: 1500px;
+        &:before{content:'';position: absolute;left: 0;top: 0;right: 0;bottom: 0;z-index: 1;background-image:url(../images/card-backface.png);background-size: 403px 516px;transform:rotateY(0deg);transition:transform 500ms ease 500ms, opacity 0ms ease 500ms;opacity: 1;}
+        &.cursed{
+            &:before{background-image:url(../images/card-fon-cursed.png);}
+        }
+        &.forest-masters{
+            &:before{background-image:url(../images/card-fon-forest-masters.png);}
+        }
+        &.highlanders{
+            &:before{background-image:url(../images/card-fon-highlanders.png);}
+        }
+        &.knights{
+            &:before{background-image:url(../images/card-fon-knights.png);}
+        }
+        &.monsters{
+            &:before{background-image:url(../images/card-fon-monsters.png);}
+        }
+        &.undead{
+            &:before{background-image:url(../images/card-fon-undead.png);}
+        }
+        &.open{
+            &:before{transition:transform 500ms ease 0ms, opacity 0ms ease 500ms;transform:rotateY(-90deg);opacity: 0;}
+            .content-card-item-main{transition-delay:500ms;transform:rotateY(-360deg);backface-visibility: hidden;transform-style: preserve-3d;}
+        }
+        .content-card-item-main{width: 403px;height: 516px;background-size: 403px 516px;position: relative;z-index: 0;transform:rotateY(-270deg);transition:transform 500ms ease;
+            &:before{content:'';display: block;position: absolute;left:0;top: 0;right: 0;bottom: 176px;width: auto;height: auto;background-color:transparent;}
+            &.yellow{box-shadow:inset 0 0 20px 0 rgba(255, 221, 0, 0.6), inset 0 22px 44px 0 rgba(255, 221, 0, 0.6);
+                /*.label-power-card{background-image:url(../images/cart-open-number-yellow.png);}*/
+                .hovered-items{
+                    .card-name-property{/*background-image:url(../images/cart-open-text-bg-yellow.jpg);*/box-shadow:0 -22px 44px 0 rgba(255, 221, 0, 0.6);
+                    }
+                    .card-name-property{
+                        /*p{color:#370a03;}*/
+                    }
+                }
+            }
+            .label-power-card{width: 88px; height: 121px;/*background-image:url(../images/cart-open-number-normal.png);background-size: auto auto;*/background-size: 100% auto;
+                .label-power-card-wrap{position: absolute;left: 50%;transform: translateX(-50%);top: 15px;/*border: 2px solid #eaf2f8;*/border-radius: 50%;height: 63px;width: 63px;/*box-shadow: 0px 0px 3px 0px #665523, inset 1px 1px 2px 0px rgba(102, 85, 35, 0.64);background-color: #f9efe2;*/background-size:100% 100%;z-index: 3;
+                    span{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-weight: 900;font-size: 36px;line-height: 36px;color: #494949;text-align: center;margin-left: -1px;text-shadow: 1px 4px 6px #f9efe2, 0 0 0 #2a1306, 1px 4px 6px #f9efe2;user-select: none;cursor: default;}
+                }
+            }
+            .hovered-items{
+                .card-game-status{
+                    .card-game-status-role span{display: inline-block;width: 60px;height: 60px;}
+                    span{width: 50px;height: 50px;}
+                }
+                .block-describe{display: block;}
+                .card-name-property{height:auto;padding: 7px 0 4px 0;
+                    p{font-size: 16px;color:#fff;text-transform: uppercase;}
+                }
+            }
+        }
+
+        .block-text-describe-wrap{
+            .jspVerticalBar{padding-top:3px;background-color:transparent;width: 6px;right:2px;
+                .jspArrow{display: none;height: 4px;}
+                .jspTrack{border-radius: 5px;background-color: #865C38;border:1px solid #777777;}
+                .jspDrag{left:-2px;width: 8px;border-radius: 5px;border:1px solid #7B5206;background-color: orange;}
+            }
+        }
+
+    }
+
+    .fancybox-overlay{
+        &.fog{
+            &:before, &:after{content: '';position: fixed;bottom:0;width:200%;height: 349px;background-image:url(../images/fog.png);background-position: left bottom;background-repeat: repeat-x;  animation-duration: 25s;  animation-iteration-count: infinite; animation-timing-function: linear;animation-name:fogAnim;}
+            &:after{animation-direction:reverse;opacity: .7;animation-duration: 35s;}
+        }
+    }
+
+/* /card open */
+
+/* header - buy more styles */
+
+    .buy-more{display: inline-block;width: 14px;height: 14px;position: relative;margin-right: 10px!important;backface-visibility:hidden;
+        &:before, &:after{content:'';display: block;position: absolute;border-radius:5px;transform:translateZ(0px);transition:all 300ms ease;}
+        &:before{left:0;top:calc(50% - 1px);height:2px;width: 14px;}
+        &:after{left:calc(50% - 1px);top:0;width: 2px;height: 14px;}
+        &:hover{
+            &:before, &:after{transform:scale(1.25) translateZ(0px);}
+        }
+        &.buy-more-gold{
+            &:before, &:after{background-color: #fef502;}
+            &:hover{
+                &:before, &:after{box-shadow:0 0 5px 0 rgba(241, 175, 16, .85);}
+            }
+        }
+        &.buy-more-silver{
+            &:before, &:after{background-color:#d1dee7;}
+            &:hover{
+                &:before, &:after{box-shadow:0 0 5px 0 rgba(209, 222, 231, .85);}
+            }
+        }
+        &.buy-more-energy{
+            &:before, &:after{background-color: #048ecf;}
+            &:hover{
+                &:before, &:after{box-shadow:0 0 5px rgba(4, 142, 207, .85);}
+            }
+        }
+    }
+
+    .fancybox-buy-more{background-color:#fff;
+        .buy-popup{padding: 10px 10px 10px 10px;
+            .buy-more-title{font-size: 26px;margin-bottom: 20px;text-align: center;font-weight: 500;}
+            .form-row{display: flex;justify-content:space-around;align-items:center;
+                .wrap-img{margin:0 10px;}
+                .input-wrap{padding:0 10px;
+                    input{max-width: 150px;width: 100%;}
+                }
+            }
+
+            .exchange-row{display: flex;justify-content:space-around;align-items:center;
+                .exchange-row-right{
+                    .exchange-row-small{display: flex;align-items:center;justify-content:center;}
+                }
+            }
+
+        }
+    }
+
+    .exchange-error-wrap{background-color: #fff;
+        h2{font-size: 26px;color:#000;}
+    }
+
+/* /header - buy more styles */
+
+/* animations */
+
+    @keyframes fogAnim{
+        0%{left:0%}
+        100%{left:-100%;}
+    }
+    @keyframes fogAnimReverse{
+        0%{right:0%}
+        100%{right:-100%;}
+    }
+
+/* /animations */
+
+/* button-plus */
+
+    .button-plus{width: 36px;height: 36px;display: inline-block;background-image:url(../images/button-plus.png);background-repeat: no-repeat;position: relative;
+        &:before, &:after{content:'';display: block;position: absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+        &:before{z-index: 1;background-image:url(../images/button-plus-img.png);width: 36px;height: 36px;}
+        &:after{z-index: 0;width: 36px;height: 36px;background-image:url(../images/button-plus-hover.png);opacity: 0;transition:opacity 300ms ease;}
+        &:hover{
+            &:after{opacity: 1;}
+        }
+    }
+
+/* /button-plus */

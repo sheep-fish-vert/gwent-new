@@ -1,0 +1,42 @@
+{
+    "logo":"images/logo-highlanders.png",
+    "cards":[
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"highlanders",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-highlanders.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":1
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "cardFraction":"highlanders",
+            "cardPower":12,
+            "cardRole":"axe",
+            "cardAbilities":[
+                "knife",
+                "ninja",
+                "look"
+            ],
+            "cardName":"Садзуай Киперчиф Али Самах де Фрол Гомер Аляпех Апчхуй",
+            "cardRace":"images/logo-highlanders.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой посидят, випьют, упрекнут и уйдут на поиски приключений оставив тебя в прострации и недоумении о происходящем. Хотя вскоре ты узнаеш что на самом деле ты лежиш в коме и пока представляеш из себе не более чем овощь. Возможно даже картофель.",
+            "cardPrice":{
+                "gold":50
+            },
+            "cardId":2
+        }
+    ]
+}

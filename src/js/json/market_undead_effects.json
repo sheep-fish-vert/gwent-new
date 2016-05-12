@@ -1,0 +1,25 @@
+{
+    "logo":"images/logo-undead.png",
+    "effects":[
+        {
+            "img":"images/effect9.png",
+            "title":"Holy spirit",
+            "descript":"Spirit up.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 000",
+            "status":true,
+            "ending_date":"11.01.2016 16:00"
+        },
+        {
+            "img":"images/effect2.png",
+            "title":"Holy reset",
+            "descript":"Reset skils.",
+            "energy_cost":2,
+            "gold_cost":"20",
+            "silver_cost":"2 500",
+            "status":false,
+            "ending_date":"-"
+        }
+    ]
+}

@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
     <title></title>
-
-    <meta id="viewport" name="viewport" content="width=1280,user-scalable=yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="MobileOptimized" content="1280"/>
-    <meta name="HandheldFriendly" content="false"/>
-
-    <meta name="format-detection" content="telephone=no">
 
     <!-- build:css -->
 
-    <link rel="stylesheet" href="css/fancybox.css">
-    <link rel="stylesheet" href="css/formstyler.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/jquery.fancybox.css">
+    <link rel="stylesheet" href="css/jquery.formstyler.css">
+    <link rel="stylesheet" href="css/jquery.ui.css">
+    <link rel="stylesheet" href="css/jquery.ui.datepicker.css">
+    <link rel="stylesheet" href="css/0_reset.css">
     <link rel="stylesheet" href="css/slick-theme.css">
     <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/jquery.jscrollpane.css">
+
     <!-- add new file here -->
 
     <link rel="stylesheet" href="css/zdev_0_basic.css">
@@ -33,6 +32,37 @@
     <link rel="stylesheet" href="css/zdev_6_adapt.css">
     <!-- endbuild -->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- SCRIPTS -->
+
+    <script>
+        //var ajaxurl =  "http://gwent.sheep.fish/wp-admin/admin-ajax.php";
+        var ajaxurl = "actions.php";
+        var language = 'ru';
+    </script>
+
+    <!-- build:js -->
+    <script type="text/javascript" src="js/plagins/device.js" ></script>
+    <script type="text/javascript" src="js/plagins/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="js/plagins/jquery.formstyler.min.js"></script>
+    <script type="text/javascript" src="js/plagins/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/plagins/maskInput.js"></script>
+    <script type="text/javascript" src="js/plagins/slick.js"></script>
+    <script type="text/javascript" src="js/plagins/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="js/plagins/jquery.jscrollpane.min.js"></script>
+
+
+    <script type="text/javascript" src="js/develop/develop_2.js"></script>
+    <script type="text/javascript" src="js/develop/develop_4.js"></script>
+    <script type="text/javascript" src="js/develop/cards.js"></script>
+    <script type="text/javascript" src="js/develop/scr.js"></script>
+    <!-- endbuild -->
+
+    <script src="js/validate_script.js"></script>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <!--[if lt IE 10]>
     <link rel="stylesheet" href="https://rawgit.com/codefucker/finalReject/master/reject/reject.css" media="all" />
     <script type="text/javascript" src="https://rawgit.com/codefucker/finalReject/master/reject/reject.min.js"></script>
@@ -40,5 +70,6 @@
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
 </head>
 <body>

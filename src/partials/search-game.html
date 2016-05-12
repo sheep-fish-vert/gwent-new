@@ -1,0 +1,49 @@
+  <div id="look-for-oponent">
+        <div class="look-wrap">
+            <div class="head-text">
+                <p>Поиск Боя</p>
+            </div>
+            <div class="progress-bar">
+                <svg width="456px" height='14px'>
+                    <g>
+                        <line id="line-go-go2" x1="0" y1="0" x2="456" y2="0" style="stroke:#D56938;stroke-width:6;" />
+                    </g>
+                    <g>
+                        <line id="line-go-go" x1="0" y1="1" x2="456" y2="1" style="stroke:rgb(255,0,0);stroke-width:4;stroke-dasharray: 228px;stroke-dashoffset: 296px;" />
+                    </g>
+                    
+                    <animate
+                        xlink:href="#line-go-go"
+                        attributeName="stroke-dashoffset"
+                        from="456"
+                        to="0"
+                        dur="2s"
+                        begin="0s"
+                        repeatCount="indefinite"
+                        fill="freeze" />
+                </svg>
+            </div>
+            <div class="time-block timer-pass-time">
+                <div class="named-field">Прошло времени</div>
+                <div class="timer-go">
+                    <span class="timer-m-search">00</span>
+                    <span>:</span>
+                    <span class="timer-s-search">23</span>
+                </div>
+            </div>
+            <div class="time-block timer-fake">
+                <div class="named-field">Среднее время ожидания</div>
+                <div class="timer-go">
+                    <span>00</span>
+                    <span>:</span>
+                    <span>23</span>
+                </div>
+            </div>
+            <div class=" button-leave">
+                <a href="#" class="form-button">
+                    <span class="form-button-hover"></span>
+                    <span class="form-button-text">ПАС</span>
+                </a>
+            </div>
+        </div>
+    </div>

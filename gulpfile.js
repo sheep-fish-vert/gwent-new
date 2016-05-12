@@ -155,11 +155,11 @@ gulp.task('prod_css',['clean_css'],function() {
 });
 
 gulp.task('clean_js',['prod_js'], function () {
-  return gulp.src(['./build/js/plagins/', './build/js/basic_scripts.js', './build/js/develop/'], {read: false})
+  return gulp.src(['./build/js/plagins/', './build/js/develop/'], {read: false})
     .pipe(clean());
 });
 gulp.task('prod_js', function() {
-    return gulp.src(['./build/js/plagins/*.js', './build/js/basic_scripts.js', './build/js/develop/*.js'])
+    return gulp.src(['./build/js/plagins/*.js', './build/js/develop/*.js'])
     .pipe(concat('main.js'))
     .pipe(gulp.dest(path.build.js));
 });

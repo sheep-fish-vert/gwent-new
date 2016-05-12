@@ -1,0 +1,45 @@
+//= partials/head-zag.html
+//= partials/head.html
+
+//= partials/header.html
+//= partials/hidden-block.html
+    <div class="main">
+        <div class="mbox">
+            <div class="content-top-wrap">
+                <div class="dragon-image cfix">
+                    <div class="dragon-middle-wrap">
+                        <div class="dragon-middle">
+                            <img src="images/dragon_glaz.png" alt=""  class="glaz" />
+                            <img src="images/header_dragon_gold.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tabulate-image"></div>
+            </div>
+            <div class="left-menu-wrap">
+                //= partials/left_menu.html
+            </div>
+            <div class="content-wrap buy-gold-page">
+                <div class="buy-gold-page-wrap">
+                    <div class="buy-gold-page-item">
+                        <div class="buy-gold-page-item-title">Пополнение</div>
+                        <div class="buy-gold-page-item-subtitle">Пополнение баланса золота, золото <br>зачисляеться автоматически после оплаты.</div>
+                        <div class="buy-gold-page-item-counter num-only " data-min="0" data-max="10000">
+                            <!-- buyGoldInput() -->
+                            <input type="text" value="20" autocomplete = "off" required = "required" autofocus name="buy-gold-input" data-coef="0.2" class="">
+                            <div class="buy-gold-page-item-counter-more">
+                                <img src="images/header_logo_gold.png" alt="">
+                                <span> = </span>
+                                <b id="gold-page-price">0</b>
+                                <span> $ </span>
+                            </div>
+                            <a href="#" class="gold-page-pay">
+                                <span>Оплатить</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+//= partials/footer.html

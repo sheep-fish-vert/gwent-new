@@ -1,0 +1,99 @@
+//= partials/head-zag.html
+//= partials/head.html
+
+//= partials/header.html
+//= partials/hidden-block.html
+    <div class="main">
+        <div class="mbox">
+            <div class="content-top-wrap">
+                <div class="dragon-image cfix">
+                    <div class="dragon-middle-wrap">
+                        <div class="dragon-middle">
+                            <img src="images/dragon_glaz.png" alt=""  class="glaz" />
+                            <img src="images/header_dragon_gold.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tabulate-image"></div>
+            </div>
+
+            <div class="left-menu-wrap">
+                //= partials/left_menu.html
+            </div>
+
+            <div class="content-wrap settings-page">
+                <div class="form-wrap">
+                    <div class="form-wrap-main">
+                        <div class="form-title">ЛИЧНЫЕ ДАННЫЕ</div>
+                        <div class="form-description">
+                            <div class="form-description-settings-img">
+                                <div class="form-description-settings-img-wrap">
+                                    <img id="avatarImg" src="images/settings_logo.png" alt="">
+                                </div>
+                                <div class="form-description-settings-inp">
+                                    <div class="form-description-settings-inp-wrap">
+                                        <input type="file" id="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-wrap-item">
+                            <form class="settings_form" autocomplete="off">
+                                <input type="hidden" name="settings" value= "user_settings" class="typesubmit" />
+                                <div class="form-title">СУПЕРГЕРОЙ ИВАНОВИЧ</div>
+                                <div class="form-wrap-for-rows">
+                                    <div class="form-wrap-row form_row">
+                                        <div class="form-wrap-key">Email</div>
+                                        <div class="form-wrap-value">
+                                            <div class="form-wrap-input form_input">
+                                                <input value="" type="email" name="settings_email"  required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-wrap-row form_row">
+                                        <div class="form-wrap-key">Текущий пароль</div>
+                                        <div class="form-wrap-value">
+                                            <div class="form-wrap-input form_input">
+                                                <input value="" type="password" name="current_password"  required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-wrap-row form_row">
+                                        <div class="form-wrap-key">Новый пароль</div>
+                                        <div class="form-wrap-value">
+                                            <div class="form-wrap-input form_input">
+                                                <input value="" type="password" name="settings_pass"  required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-wrap-row form_row">
+                                        <div class="form-wrap-key">Подтверждение</div>
+                                        <div class="form-wrap-value">
+                                            <div class="form-wrap-input form_input">
+                                                <input value="" type="password" name="settings_pass_confirm"  required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-wrap-row error-text">Неправильно заполнено поле</div>
+                                    <div class="form-wrap-row submit">
+                                        <div class="form-wrap-value">
+                                            <div class="form-wrap-input">
+                                                <button class="form-button" type="submit">
+                                                    <span class="form-button-hover"></span>
+                                                    <span class="form-button-text">СОХРАНИТЬ</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+//= partials/footer.html

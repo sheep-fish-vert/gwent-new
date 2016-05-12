@@ -1,0 +1,138 @@
+{
+    "logo":"none",
+    "cards":[
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"undead",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-undead.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":1
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"neutral",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"none",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":2
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"monsters",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-monsters.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":3
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"knights",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-knights.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":4
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"highlanders",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-highlanders.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":5
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"forest-masters",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-forest-masters.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":6
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"cursed",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-cursed.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":7
+        }
+    ]
+}

@@ -1,0 +1,155 @@
+{
+    "logo":"images/logo-forest-masters.png",
+    "effects":[
+        {
+            "img":"images/effect6.png",
+            "title":"Holy confuse",
+            "descript":"Confuse.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 750",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect11.png",
+            "title":"Holy healing",
+            "descript":"Healing.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 150",
+            "status":false,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect5.png",
+            "title":"Holy blind",
+            "descript":"Blind.",
+            "energy_cost":1,
+            "gold_cost":"0",
+            "silver_cost":"1 950",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect6.png",
+            "title":"Holy confuse",
+            "descript":"Confuse.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 750",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect11.png",
+            "title":"Holy healing",
+            "descript":"Healing.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 150",
+            "status":false,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect5.png",
+            "title":"Holy blind",
+            "descript":"Blind.",
+            "energy_cost":1,
+            "gold_cost":"0",
+            "silver_cost":"1 950",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect6.png",
+            "title":"Holy confuse",
+            "descript":"Confuse.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 750",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect11.png",
+            "title":"Holy healing",
+            "descript":"Healing.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 150",
+            "status":false,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect5.png",
+            "title":"Holy blind",
+            "descript":"Blind.",
+            "energy_cost":1,
+            "gold_cost":"0",
+            "silver_cost":"1 950",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect6.png",
+            "title":"Holy confuse",
+            "descript":"Confuse.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 750",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect11.png",
+            "title":"Holy healing",
+            "descript":"Healing.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 150",
+            "status":false,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect5.png",
+            "title":"Holy blind",
+            "descript":"Blind.",
+            "energy_cost":1,
+            "gold_cost":"0",
+            "silver_cost":"1 950",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect6.png",
+            "title":"Holy confuse",
+            "descript":"Confuse.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 750",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect11.png",
+            "title":"Holy healing",
+            "descript":"Healing.",
+            "energy_cost":3,
+            "gold_cost":"0",
+            "silver_cost":"1 150",
+            "status":false,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect5.png",
+            "title":"Holy blind",
+            "descript":"Blind.",
+            "energy_cost":1,
+            "gold_cost":"0",
+            "silver_cost":"1 950",
+            "status":true,
+            "ending_date":"-"
+        }
+    ]
+}

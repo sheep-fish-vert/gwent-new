@@ -1,0 +1,25 @@
+{
+    "logo":"images/logo-highlanders.png",
+    "effects":[
+        {
+            "img":"images/effect4.png",
+            "title":"Holy weak",
+            "descript":"Weakness.",
+            "energy_cost":5,
+            "gold_cost":"0",
+            "silver_cost":"1 000",
+            "status":true,
+            "ending_date":"-"
+        },
+        {
+            "img":"images/effect5.png",
+            "title":"Holy blind",
+            "descript":"Blind.",
+            "energy_cost":5,
+            "gold_cost":"0",
+            "silver_cost":"3 000",
+            "status":true,
+            "ending_date":"-"
+        }
+    ]
+}

@@ -1,0 +1,81 @@
+{
+    "logo":"images/logo-monsters.png",
+    "cards":[
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"monsters",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-monsters.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":1
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "cardFraction":"monsters",
+            "cardPower":12,
+            "cardRole":"axe",
+            "cardAbilities":[
+                "knife",
+                "ninja",
+                "look"
+            ],
+            "cardName":"Садзуай Киперчиф Али Самах де Фрол Гомер Аляпех Апчхуй",
+            "cardRace":"images/logo-monsters.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой посидят, випьют, упрекнут и уйдут на поиски приключений оставив тебя в прострации и недоумении о происходящем. Хотя вскоре ты узнаеш что на самом деле ты лежиш в коме и пока представляеш из себе не более чем овощь. Возможно даже картофель.",
+            "cardPrice":{
+                "gold":50
+            },
+            "cardId":2
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"monsters",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-monsters.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50,
+                "gold":25
+            },
+            "cardId":3
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"monsters",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-monsters.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cardPrice":{
+                "silver":50
+            },
+            "cardId":4
+        }
+    ]
+}
