@@ -132,9 +132,38 @@ function showFormOnMain(){
         if ($(this).hasClass('show-form-please') ){
             event.preventDefault();
             $('.form-wrap-for-rows').slideDown(500);
-            $(this).removeClass('show-form-please');
-        }
+            $(this).removeClass('show-form-please'); 
+        }        
+       
+    });    
+}
 
+function showWindowAboutOnMain() {
+    $('.drop-menu-open').click(function(){
+        
+        event.preventDefault();
+        
+        $(this).css('pointer-events', 'none');
+        var that = $(this); 
+        if( !$(this).hasClass('drop-menu-hide') ) {
+            
+            $('.convert-about').slideDown(500, function(){
+                $('.button-dropdown').css('top', $('.convert-about').height() + 20 );
+                that.css('pointer-events', 'auto');
+            });            
+            
+            that.addClass('drop-menu-hide');
+            
+        } else {
+           
+            $('.convert-about').slideUp(300, function(){
+                that.css('pointer-events', 'auto');
+            });
+            
+            $('.button-dropdown').css('top', 93 );
+            
+            $(this).removeClass('drop-menu-hide');
+        }
     });
 }
 
@@ -146,11 +175,11 @@ $(document).ready(function () {
     });
 
     $('.register-form input[name="reg_email"] , .register-form input[name="reg_login"]  ').on('focus', function () {
-        if ($(this).hasClass("false-field")) { $(this).removeClass('false-field');}
+        if ($(this).hasClass("false-field")) { $(this).removeClass('false-field');}   
     });
-
+    
     $('.swicher-maker').click(function(){
-        console.log($(this).closest('div'));
+        console.log($(this).closest('div'));       
         if ( $(this).closest('div').find('input').is(':checked') ){
             $('.swicher-maker').closest('div').find('input').prop('checked', true);
             $('.swicher-maker').addClass('turn-on');
@@ -168,13 +197,15 @@ $(document).ready(function () {
 
     selectStyled();
 
-    //oneHeightItems();
+    oneHeightItems();
 
     marketScrollInit();
-
+    
     fancyboxForm();
-
+    
     showFormOnMain();
+    
+    showWindowAboutOnMain();
 
 });
 
