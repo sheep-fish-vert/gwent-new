@@ -954,7 +954,7 @@ body{min-width: 1170px;}
 
     /* button on login */
 
-        .button-buy-next{ display: flex; align-items: center; justify-content: center; position: relative; background-image: url(/images/button-new-temple.png); background-size: cover; width: 214px; height: 53px; border: none; margin: 0 auto; cursor: pointer; text-decoration: none;
+        .button-buy-next{ display: flex; align-items: center; justify-content: center; position: relative; background-image: url(../images/button-new-temple.png); background-size: cover; width: 214px; height: 53px; border: none; margin: 0 auto; cursor: pointer; text-decoration: none;
             .form-button-text{ display: block;  text-align: center; text-transform: uppercase; font-size: 14px; font-weight: 700; font-family: 'indisplay', sans-serif; padding-top: 5px; color: #571f02; margin: 0 auto; position: relative; z-index: 3; }
 
             .form-button-hover{ position: absolute; width: 80%; left: 10%; height: 0px; top: 50%; box-shadow: 0px 0px 30px 1px rgba(253,203,6,1); z-index: 2; transition: all 0.5s; }
