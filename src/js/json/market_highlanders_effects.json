@@ -9,6 +9,7 @@
             "gold_cost":"0",
             "silver_cost":"1 000",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -19,6 +20,7 @@
             "gold_cost":"0",
             "silver_cost":"3 000",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         }
     ]

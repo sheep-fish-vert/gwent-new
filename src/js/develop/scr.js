@@ -533,7 +533,7 @@ function cardMoving(){
                                                 unactive = "done";
                                             }
 
-                                            mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus"></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap'+unactive+'"><div class="market-status"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
+                                            mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus" data-count='+item.buy_value+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap'+unactive+'"><div class="market-status"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
 
                                             if(index == (marketDataLength - 1)){
 
@@ -714,6 +714,22 @@ function cardMoving(){
             chekedStatus();
 
         /* /special effects shop */
+
+        /* buy effect */
+
+            $(document).on('click', '.effect-buy', function(){
+
+                var count = $(this).data('count');
+
+                $.fancybox.open('#buy_effect',{
+                    fitToView:true,
+                    autoSize:true,
+                    padding:0
+                });
+
+            });
+
+        /* /buy effect */
 
     }
 
