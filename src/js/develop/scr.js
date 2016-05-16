@@ -717,16 +717,17 @@ function cardMoving(){
 
         /* buy effect */
 
-            $(document).on('click', '.effect-buy', function(){
+            $(document).on('click', '.effect-buy .button-plus', function(){
 
                 var count = $(this).data('count');
+                console.log(count);
 
                 $.fancybox.open('#buy_effect',{
                     fitToView:true,
                     autoSize:true,
                     padding:0,
                     beforeLoad:function(){
-                        $(this).find('.title-small').text(count);
+                        $('#buy_effect .title-small').text(count);
                     }
                 });
 
