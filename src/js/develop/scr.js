@@ -724,7 +724,10 @@ function cardMoving(){
                 $.fancybox.open('#buy_effect',{
                     fitToView:true,
                     autoSize:true,
-                    padding:0
+                    padding:0,
+                    beforeLoad:function(){
+                        $(this).find('.title-small').text(count);
+                    }
                 });
 
             });
