@@ -943,8 +943,8 @@ body{min-width: 1170px;}
       .row-with-rase{ width: 100%;
           .conteiner{max-width: 1170px; margin: 0 auto;  height: 180px; display: flex; align-items: center; justify-content: space-between; 
               .item-rise{ width: calc(100%/6); display: block;text-align: center; 
-              .rase-ric{text-decoration: none;}
-                span{display: block; text-align: center; text-transform: uppercase; color: #f1b621; font-family: "Arial", sans-serif; font-size: 16px; font-weight: 700; text-shadow: 2.121px 2.121px 29.44px rgba(0, 0, 0, 0.76);  }
+              .rase-ric{text-decoration: none; display: block;}
+                span{display: block; text-align: center; text-transform: uppercase; color: #f1b621; font-family: "Arial", sans-serif; font-size: 16px; font-weight: 700;     text-shadow: 2.121px 2.121px 23px rgba(0, 0, 0, 1);  }
               }
           }
       }
@@ -960,7 +960,7 @@ body{min-width: 1170px;}
             .form-button-hover{ position: absolute; width: 80%; left: 10%; height: 0px; top: 50%; box-shadow: 0px 0px 30px 1px rgba(253,203,6,1); z-index: 2; transition: all 0.5s; }
 
             &:hover{
-            .form-button-hover{  box-shadow: 0px 0px 30px 15px rgba(253,203,6,1); z-index: 2; }
+                .form-button-hover{  box-shadow: 0px 0px 30px 15px rgba(253,203,6,1); z-index: 2; }
             }
 
         }
