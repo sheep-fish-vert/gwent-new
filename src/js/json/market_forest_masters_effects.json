@@ -9,6 +9,7 @@
             "gold_cost":"0",
             "silver_cost":"1 750",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -19,6 +20,7 @@
             "gold_cost":"0",
             "silver_cost":"1 150",
             "status":false,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -29,6 +31,7 @@
             "gold_cost":"0",
             "silver_cost":"1 950",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -39,6 +42,7 @@
             "gold_cost":"0",
             "silver_cost":"1 750",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -49,6 +53,7 @@
             "gold_cost":"0",
             "silver_cost":"1 150",
             "status":false,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -59,6 +64,7 @@
             "gold_cost":"0",
             "silver_cost":"1 950",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -69,6 +75,7 @@
             "gold_cost":"0",
             "silver_cost":"1 750",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -79,6 +86,7 @@
             "gold_cost":"0",
             "silver_cost":"1 150",
             "status":false,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -89,6 +97,7 @@
             "gold_cost":"0",
             "silver_cost":"1 950",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -99,6 +108,7 @@
             "gold_cost":"0",
             "silver_cost":"1 750",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -109,6 +119,7 @@
             "gold_cost":"0",
             "silver_cost":"1 150",
             "status":false,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -119,6 +130,7 @@
             "gold_cost":"0",
             "silver_cost":"1 950",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -129,6 +141,7 @@
             "gold_cost":"0",
             "silver_cost":"1 750",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -139,6 +152,7 @@
             "gold_cost":"0",
             "silver_cost":"1 150",
             "status":false,
+            "buy_value":100,
             "ending_date":"-"
         },
         {
@@ -149,6 +163,7 @@
             "gold_cost":"0",
             "silver_cost":"1 950",
             "status":true,
+            "buy_value":100,
             "ending_date":"-"
         }
     ]
