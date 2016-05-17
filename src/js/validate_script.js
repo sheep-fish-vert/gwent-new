@@ -183,7 +183,7 @@ function exitGvent() {
         action : "exit"
     };
     $.ajax({
-        url: 'in_html_ajax.php',
+        url: ajaxurl,
         data: user_logout,
         method: 'POST',
         success: function (data) {
@@ -202,21 +202,24 @@ function logIn(form) {
     var formSur = thisForm.serialize();
     var replacement;
 
-   // ajaxurl = 'js/json/login_false.json';
+    //ajaxurl = 'js/json/login_false.json';
    // ajaxurl = 'js/json/login_true.json';
     $.ajax({
         url: ajaxurl,
         data: formSur,
         method: 'POST',
         success: function (data) {
-            var res = JSON.parse(data) ;
+            
+            var res = JSON.parse(data);
+            
+            //var res = data;
 
             if ( parseInt(res.answer) === 0 ) {
 
                 $('form').trigger("reset");
                 $(form).find('.error-text').removeClass('hide-it');
                 $(form).find('.error-text').addClass('show');
-                $('.error-text').text(res.message);
+                //$('.error-text').text(res.message);
 
             }
             else if ( parseInt(res.answer) == 1 ) {
@@ -270,12 +273,15 @@ function reset_pass(form) {
 // реєстрація
 
 function registerForm(form) {
+    
     if(grecaptcha.getResponse().length === 0){
         $(form).find('.reCaptcha-wrap>div>div>div').addClass('error-recapture');
     } else if(!$('#linka-check').is( ":checked" )){
         console.log('not check');
         // open menu width
     } else{
+        
+        console.log('try send');
 
         var thisForm = $(form);
         var formSur = thisForm.serialize();
@@ -289,32 +295,39 @@ function registerForm(form) {
             data: formSur,
             method: 'POST',
             success: function (data) {
-                var res = JSON.parse(data);
-
+                console.log(data);
+                 var res = JSON.parse(data);
+                
+               // var res = data;
+                
                 if ( parseInt(res.answer) === 0) {
                     if (res.error_email){
-                        $(form).find('input[type="email"]').closest('.form_row').addClass('error');
-                        $(form).find('input[type="email"]').closest('.form_row').removeClass('valid');
-                        $(form).find('input[type="email"]').addClass('false-field');
+                        thisForm.find('input[type="email"]').closest('.form_row').addClass('error');
+                        thisForm.find('input[type="email"]').closest('.form_row').removeClass('valid');
+                        thisForm.find('input[type="email"]').addClass('false-field');
                     }
                     if (res.error_login){
-                        $(form).find('input[name="reg_login"]').closest('.form_row').addClass('error');
-                        $(form).find('input[name="reg_login"]').closest('.form_row').removeClass('valid');
-                        $(form).find('input[name="reg_login"]').addClass('false-field');
+                        thisForm.find('input[name="reg_login"]').closest('.form_row').addClass('error');
+                        thisForm.find('input[name="reg_login"]').closest('.form_row').removeClass('valid');
+                        thisForm.find('input[name="reg_login"]').addClass('false-field');
                     }
                 // $('form').trigger("reset");
-                    $(form).find('.error-text').removeClass('hide-it');
-                    $(form).find('.error-text').addClass('show');
+                    thisForm.find('.error-text').removeClass('hide-it');
+                    thisForm.find('.error-text').addClass('show');
                     $('.error-text').text(res.message);
 
                 }
                 else if (res.answer == 1) {
                     var url = res.location;
-                    document.location.replace(url);
+                   // document.location.replace(url);
                 }
             }
         });
+        
+
     }
+
+
 }
 
 
@@ -352,6 +365,7 @@ function settingsForm(form) {
                 loadingStartDogFB();
 
                 if (res.imageUrl != '') {
+                    userAvatar = res.imageUrl;
                     $('#avatarImg').attr('src', res.imageUrl);
                     $('.user-image img').attr('src', res.imageUrl);
                 };
@@ -859,29 +873,6 @@ var interval_update = 5000;
 
 // /buy more scripts
 
-// how much resurses script
-
-    function howMuchResursesAjax(){
-
-        $.ajax({
-            url:'js/json/how_much_resurses_by_page_load.json',//'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
-            data:{action:'how_much_resurses_by_page_load'},
-            method:'POST',
-            success:function(data){
-
-                $('.header-box .resurses .gold').text(data.gold);
-                $('.header-box .resurses .silver').text(data.silver);
-                $('.header-box .resurses .lighting').text(data.energy);
-
-            }
-        });
-
-    }
-
-// / how much resourses scripts
-
-
-
 /*buy-gold-page*/
 
     function buyGoldInput(item){
@@ -1017,8 +1008,6 @@ $(document).ready(function () {
     });
 
     buyGoldAjax();
-
-    howMuchResursesAjax();
 
     buyingSilver($('.buy-silver-form input'));
     inputNumber('.num-only-silver',{blurFunc:buyingSilver});
