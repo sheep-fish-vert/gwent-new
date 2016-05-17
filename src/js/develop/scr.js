@@ -392,348 +392,351 @@ function cardMoving(){
 
     function marketScripts(){
 
-        /* change fraction in market */
+        if($('.market-page').length){
 
-            function marketChangeFraction(){
+            /* change fraction in market */
 
-                /* ajax function by changing fraction */
+                function marketChangeFraction(){
 
-                    function marketAjax(marketFractionValue){
+                    /* ajax function by changing fraction */
 
-                        $('.market-page').addClass('loading');
+                        function marketAjax(marketFractionValue){
 
-                        /* in what we market (cards or effects) */
+                            $('.market-page').addClass('loading');
 
-                        var effects = false;
+                            /* in what we market (cards or effects) */
 
-                        if($('.effect-market-wrap').length){
-                            marketFractionValue = marketFractionValue + '_effects';
-                            effects = true;
-                        }
+                            var effects = false;
 
-                        /* /in what we market (cards or effer) */
-
-                        $.ajax({
-                            url:'js/json/market_'+marketFractionValue+'.json', //'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
-                            data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
-                            success:function(data){
-
-                                if(typeof data == 'object'){
-                                    var marketData = data;
-                                }else{
-                                    var marketData = JSON.parse(data);
-                                }
-
-                                /* removing cards from market */
-
-                                    $('.market-card-wrap').remove();
-
-                                /* /removing cards from market */
-
-                                /* removing market_effect items */
-
-                                    $('.main-table tr').remove();
-
-                                /* /removing market_effect items */
-
-                                var marketDataLength = 0;
-
-                                if(!effects){
-                                    marketDataLength = marketData.cards.length;
-                                }else{
-                                    marketDataLength = marketData.effects.length;
-                                }
-
-                                var marketDataLogo = marketData.logo;
-
-                                if(marketDataLogo != 'none'){
-                                    $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
-                                }else{
-                                   $('.market-selection .select-rase-img').removeClass('active');
-                                }
-
-                                if(effects == false){
-
-                                    /* if we in cards market change rase */
-
-                                        marketData.cards.forEach(function(item, index){
-
-                                            var lider = '';
-                                            if(typeof item.lider != 'undefined'){
-                                                lider = item.lider;
-                                            }
-
-                                            var abilitiesRow = '';
-                                            item.cardAbilities.forEach(function(itemTwo, indexTwo){
-                                                abilitiesRow = abilitiesRow + '<span class="' + itemTwo + '"></span>';
-                                            });
-
-                                            var cardPriceText = '';
-                                            if(typeof item.cardPrice.silver != 'undefined'){
-                                                cardPriceText = '<span class="card-silver-price"><img src="images/header_logo_silver.png" alt=""><span class="card-price-value">'+item.cardPrice.silver+'</span></span>';
-                                            }
-                                            if(typeof item.cardPrice.gold != 'undefined'){
-                                                cardPriceText = cardPriceText + '<span class="card-gold-price"><img src="images/header_logo_gold.png" alt=""><span class="card-price-value">'+item.cardPrice.gold+'</span></span>';
-                                            }
-
-                                            var cardRaceImg = '<img src='+$('.user img').attr('src')+' alt="" />';
-                                            if(item.cardRace != 'none'){
-                                                cardRaceImg = '<img src='+item.cardRace+' alt="" />';
-                                            }
-
-                                            $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+lider+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRow+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImg+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
-
-                                            /* card name one height */
-
-                                                if(index == (marketDataLength - 1)){
-
-                                                    var cardNameHeight = 0;
-                                                    var cardNameLength = $('.card-name').length;
-                                                    var cardNameIndex = 0;
-
-                                                    $('.card-name').each(function(){
-
-                                                        if($(this).height() > cardNameHeight){
-                                                            cardNameHeight = $(this).height();
-                                                        }
-
-                                                        if(cardNameIndex == (cardNameLength-1)){
-                                                            $('.card-name').height(cardNameHeight);
-
-                                                            /* remove class loading if all items added & their title height calced */
-
-                                                            $('.market-page').removeClass('loading');
-
-                                                            /* /remove class loading if all items added & their title height calced */
-                                                        }
-
-                                                        cardNameIndex++;
-
-                                                    });
-                                                }
-
-                                            /* /card name one height */
-
-                                        });
-
-                                    /* /if we in cards market change rase */
-
-                                }else{
-
-                                    /* if we in effects market change rase */
-
-                                        var mainTable = $('.main-table');
-
-                                        mainTable.append('<tr><th class="no-border"></th><th></th><th>Название</th><th>Описание</th><th>затраты энергии</th><th colspan="2"><table><tr><th colspan="2">Цена</th></tr><tr><th>Золото</th><th>Серебро</th></tr></table></th><th>Статус</th><th>Дата  окончания</th></tr>');
-
-                                        marketData.effects.forEach(function(item, index){
-
-                                            var unactive = '';
-                                            if(!item.status == "false"){
-                                                unactive = "done";
-                                            }
-
-                                            mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus" data-count='+item.buy_value+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap'+unactive+'"><div class="market-status"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
-
-                                            if(index == (marketDataLength - 1)){
-
-                                                $('.loading').removeClass('loading');
-
-                                            }
-
-                                        });
-
-                                    /* /if we in effects market change rase */
-
-                                }
-
+                            if($('.effect-market-wrap').length){
+                                marketFractionValue = marketFractionValue + '_effects';
+                                effects = true;
                             }
-                        });
 
-                    }
-
-                /* /ajax function by changing fraction */
-
-                var marketSelection = $('.market-selection');
-
-                marketSelection.find('.selection-rase select').change(function(){
-
-                    marketAjax(marketSelection.find('.selection-rase select').val());
-
-                });
-
-                marketAjax(marketSelection.find('.selection-rase select').val());
-
-            };
-
-            marketChangeFraction();
-
-        /* /change fraction in market */
-
-        /* market buy card script */
-
-            function marketBuyCard(){
-
-                var cardId = null;
-
-                /* buying card fancy opening */
-
-                    $(document).on('click', '.market-card-item-buy .button-buy', function(e){
-
-                        e.preventDefault();
-
-                        cardId = $(this).data('card-id');
-
-                        $.fancybox.open("#call_success",{
-                            padding: 0,
-                            fitToView: false,
-                            wrapCSS: "call-popup",
-                            autoSize: true,
-                            'helpers': {
-                                'overlay': { 'closeClick': false }
-                            },
-                            afterClose:function(){
-                                $('#call_success').removeClass('done');
-                                $('#call_success .call-title-message').text('');
-                            }
-                        });
-
-                    });
-
-                /* /buying card fancy opening */
-
-                /* ajax calling if you want buy card */
-
-                    $(document).on('click', '.call-subtitle a', function(e){
-
-                        e.preventDefault();
-
-                        if($(this).is('.button-accept')){
-
-                            $('#call_success').addClass('loading');
+                            /* /in what we market (cards or effer) */
 
                             $.ajax({
-                                url:'js/json/market_card_buying_true.json', //'js/json/market_card_buying_false.json' //'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
-                                data:{action:'market_cards_buying', cardId:cardId},
+                                url:'js/json/market_'+marketFractionValue+'.json', //'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
+                                data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
                                 success:function(data){
 
                                     if(typeof data == 'object'){
-                                        var buyingData = data;
+                                        var marketData = data;
                                     }else{
-                                        var buyingData = JSON.parse(data);
+                                        var marketData = JSON.parse(data);
                                     }
 
-                                    if(buyingData.buy){
+                                    /* removing cards from market */
 
-                                        /* successfuly card buying and calling func to remath resurces */
+                                        $('.market-card-wrap').remove();
 
-                                        howMuchResursesAjax();
+                                    /* /removing cards from market */
 
-                                        $('#call_success').addClass('done').find('.call-title-message').text('Спасибо за покупку!');
-                                        $('#call_success').removeClass('loading');
+                                    /* removing market_effect items */
 
-                                        /* /successfuly card buying and calling func to remath resurces */
+                                        $('.main-table tr').remove();
 
-                                    }else if(!buyingData.buy){
+                                    /* /removing market_effect items */
 
-                                        /* error card buying */
+                                    var marketDataLength = 0;
 
-                                        $('#call_success').addClass('done').find('.call-title-message').text(buyingData.error);
-
-                                        /* /error card buying */
-
+                                    if(!effects){
+                                        marketDataLength = marketData.cards.length;
+                                    }else{
+                                        marketDataLength = marketData.effects.length;
                                     }
 
-                                    setTimeout(function(){
+                                    var marketDataLogo = marketData.logo;
 
-                                        $.fancybox.close();
+                                    if(marketDataLogo != 'none'){
+                                        $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
+                                    }else{
+                                       $('.market-selection .select-rase-img').removeClass('active');
+                                    }
 
-                                    }, 1000);
+                                    if(effects == false){
 
-                                    // checkpoint
+                                        /* if we in cards market change rase */
+
+                                            marketData.cards.forEach(function(item, index){
+
+                                                var lider = '';
+                                                if(typeof item.lider != 'undefined'){
+                                                    lider = item.lider;
+                                                }
+
+                                                var abilitiesRow = '';
+                                                item.cardAbilities.forEach(function(itemTwo, indexTwo){
+                                                    abilitiesRow = abilitiesRow + '<span class="' + itemTwo + '"></span>';
+                                                });
+
+                                                var cardPriceText = '';
+                                                if(typeof item.cardPrice.silver != 'undefined'){
+                                                    cardPriceText = '<span class="card-silver-price"><img src="images/header_logo_silver.png" alt=""><span class="card-price-value">'+item.cardPrice.silver+'</span></span>';
+                                                }
+                                                if(typeof item.cardPrice.gold != 'undefined'){
+                                                    cardPriceText = cardPriceText + '<span class="card-gold-price"><img src="images/header_logo_gold.png" alt=""><span class="card-price-value">'+item.cardPrice.gold+'</span></span>';
+                                                }
+
+                                                var cardRaceImg = '<img src='+$('.user img').attr('src')+' alt="" />';
+                                                if(item.cardRace != 'none'){
+                                                    cardRaceImg = '<img src='+item.cardRace+' alt="" />';
+                                                }
+
+                                                $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+lider+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRow+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImg+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
+
+                                                /* card name one height */
+
+                                                    if(index == (marketDataLength - 1)){
+
+                                                        var cardNameHeight = 0;
+                                                        var cardNameLength = $('.card-name').length;
+                                                        var cardNameIndex = 0;
+
+                                                        $('.card-name').each(function(){
+
+                                                            if($(this).height() > cardNameHeight){
+                                                                cardNameHeight = $(this).height();
+                                                            }
+
+                                                            if(cardNameIndex == (cardNameLength-1)){
+                                                                $('.card-name').height(cardNameHeight);
+
+                                                                /* remove class loading if all items added & their title height calced */
+
+                                                                $('.market-page').removeClass('loading');
+
+                                                                /* /remove class loading if all items added & their title height calced */
+                                                            }
+
+                                                            cardNameIndex++;
+
+                                                        });
+                                                    }
+
+                                                /* /card name one height */
+
+                                            });
+
+                                        /* /if we in cards market change rase */
+
+                                    }else{
+
+                                        /* if we in effects market change rase */
+
+                                            var mainTable = $('.main-table');
+
+                                            mainTable.append('<tr><th class="no-border"></th><th></th><th>Название</th><th>Описание</th><th>затраты энергии</th><th colspan="2"><table><tr><th colspan="2">Цена</th></tr><tr><th>Золото</th><th>Серебро</th></tr></table></th><th>Статус</th><th>Дата  окончания</th></tr>');
+
+                                            marketData.effects.forEach(function(item, index){
+
+                                                var unactive = '';
+                                                if(!item.status == "false"){
+                                                    unactive = "done";
+                                                }
+
+                                                mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus" data-count='+item.buy_value+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap'+unactive+'"><div class="market-status"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
+
+                                                if(index == (marketDataLength - 1)){
+
+                                                    $('.loading').removeClass('loading');
+
+                                                }
+
+                                            });
+
+                                        /* /if we in effects market change rase */
+
+                                    }
 
                                 }
                             });
-                        }else{
-
-                            $.fancybox.close();
 
                         }
 
+                    /* /ajax function by changing fraction */
+
+                    var marketSelection = $('.market-selection');
+
+                    marketSelection.find('.selection-rase select').change(function(){
+
+                        marketAjax(marketSelection.find('.selection-rase select').val());
+
                     });
 
-                /* /ajax calling if you want buy card */
+                    marketAjax(marketSelection.find('.selection-rase select').val());
 
-            }
+                };
 
-            marketBuyCard();
+                marketChangeFraction();
 
-        /* /market buy card script */
+            /* /change fraction in market */
 
-        /* market jscrollpane init */
+            /* market buy card script */
 
-            $('.market-cards-wrap').jScrollPane({
-                contentWidth: '0px',
-                autoReinitialise:true,
-                autoReinitialiseDelay:0,
-                verticalDragMaxHeight:65,
-                verticalDragMinHeight:65,
-                showArrows:true
-            });
+                function marketBuyCard(){
 
-        /* /market jscrollpane init */
+                    var cardId = null;
 
-        /* special effects shop */
+                    /* buying card fancy opening */
 
-            var timer=null;
+                        $(document).on('click', '.market-card-item-buy .button-buy', function(e){
 
-            function closeAnim(item){
-                clearTimeout(timer);
-                item.addClass('disable-anim');
-                timer = setTimeout(function(){
-                    $('.market-status').removeClass('disable-anim');
-                },500);
-            }
+                            e.preventDefault();
 
-            $(document).on('click', '.market-status.disabled', function(event) {
-                closeAnim($(this));
-            });
+                            cardId = $(this).data('card-id');
 
-            function chekedStatus(){
-                $('.market-status:not(.disabled)').click(function(event) {
-                    if($('.market-status.active').length!==3 && !$(this).is('.active') ){
-                        $(this).addClass('active');
-                    }else if($(this).is('.active')){
-                        $(this).removeClass('active');
-                    }else{
-                        closeAnim($(this));
-                    }
+                            $.fancybox.open("#call_success",{
+                                padding: 0,
+                                fitToView: false,
+                                wrapCSS: "call-popup",
+                                autoSize: true,
+                                'helpers': {
+                                    'overlay': { 'closeClick': false }
+                                },
+                                afterClose:function(){
+                                    $('#call_success').removeClass('done');
+                                    $('#call_success .call-title-message').text('');
+                                }
+                            });
+
+                        });
+
+                    /* /buying card fancy opening */
+
+                    /* ajax calling if you want buy card */
+
+                        $(document).on('click', '.call-subtitle a', function(e){
+
+                            e.preventDefault();
+
+                            if($(this).is('.button-accept')){
+
+                                $('#call_success').addClass('loading');
+
+                                $.ajax({
+                                    url:'js/json/market_card_buying_true.json', //'js/json/market_card_buying_false.json' //'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
+                                    data:{action:'market_cards_buying', cardId:cardId},
+                                    success:function(data){
+
+                                        if(typeof data == 'object'){
+                                            var buyingData = data;
+                                        }else{
+                                            var buyingData = JSON.parse(data);
+                                        }
+
+                                        if(buyingData.buy){
+
+                                            /* successfuly card buying and calling func to remath resurces */
+
+                                            howMuchResursesAjax();
+
+                                            $('#call_success').addClass('done').find('.call-title-message').text('Спасибо за покупку!');
+                                            $('#call_success').removeClass('loading');
+
+                                            /* /successfuly card buying and calling func to remath resurces */
+
+                                        }else if(!buyingData.buy){
+
+                                            /* error card buying */
+
+                                            $('#call_success').addClass('done').find('.call-title-message').text(buyingData.error);
+
+                                            /* /error card buying */
+
+                                        }
+
+                                        setTimeout(function(){
+
+                                            $.fancybox.close();
+
+                                        }, 1000);
+
+                                        // checkpoint
+
+                                    }
+                                });
+                            }else{
+
+                                $.fancybox.close();
+
+                            }
+
+                        });
+
+                    /* /ajax calling if you want buy card */
+
+                }
+
+                marketBuyCard();
+
+            /* /market buy card script */
+
+            /* market jscrollpane init */
+
+                $('.market-cards-wrap').jScrollPane({
+                    contentWidth: '0px',
+                    autoReinitialise:true,
+                    autoReinitialiseDelay:0,
+                    verticalDragMaxHeight:65,
+                    verticalDragMinHeight:65,
+                    showArrows:true
                 });
-            }
 
-            chekedStatus();
+            /* /market jscrollpane init */
 
-        /* /special effects shop */
+            /* special effects shop */
 
-        /* buy effect */
+                var timer=null;
 
-            $(document).on('click', '.effect-buy .button-plus', function(){
+                function closeAnim(item){
+                    clearTimeout(timer);
+                    item.addClass('disable-anim');
+                    timer = setTimeout(function(){
+                        $('.market-status').removeClass('disable-anim');
+                    },500);
+                }
 
-                var count = $(this).data('count');
-                console.log(count);
-
-                $.fancybox.open('#buy_effect',{
-                    fitToView:true,
-                    autoSize:true,
-                    padding:0,
-                    beforeLoad:function(){
-                        $('#buy_effect .title-small').text(count);
-                    }
+                $(document).on('click', '.market-status.disabled', function(event) {
+                    closeAnim($(this));
                 });
 
-            });
+                function chekedStatus(){
+                    $('.market-status:not(.disabled)').click(function(event) {
+                        if($('.market-status.active').length!==3 && !$(this).is('.active') ){
+                            $(this).addClass('active');
+                        }else if($(this).is('.active')){
+                            $(this).removeClass('active');
+                        }else{
+                            closeAnim($(this));
+                        }
+                    });
+                }
 
-        /* /buy effect */
+                chekedStatus();
+
+            /* /special effects shop */
+
+            /* buy effect */
+
+                $(document).on('click', '.effect-buy .button-plus', function(){
+
+                    var count = $(this).data('count');
+                    console.log(count);
+
+                    $.fancybox.open('#buy_effect',{
+                        fitToView:true,
+                        autoSize:true,
+                        padding:0,
+                        beforeLoad:function(){
+                            $('#buy_effect .title-small').text(count);
+                        }
+                    });
+
+                });
+
+            /* /buy effect */
+        }
 
     }
 
