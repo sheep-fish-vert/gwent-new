@@ -238,7 +238,7 @@ function reset_pass(form) {
     var thisForm = $(form);
     var formSur = thisForm.serialize();
 
-   // ajaxurl = 'js/json/reset_pass_true.json';
+   // ajaxurl = 'js/json/reset_pass_false.json';
    // ajaxurl = 'js/json/reset_pass_true.json';
 
     $.ajax({
@@ -246,8 +246,11 @@ function reset_pass(form) {
         data: formSur,
         method: 'POST',
         success: function (data) {
-            var res = JSON.parse(data);
-
+            var res = JSON.parse(data);    
+            
+            //var res = data;
+            
+             console.log(res);
             if ( parseInt(res.answer) === 0 ) {
                 $('form').trigger("reset");
                 $(form).find('.error-text').removeClass('hide-it');
@@ -402,6 +405,101 @@ function settingsForm(form) {
 
 }
 
+// техническая поддержка
+function supportForm(form) {
+     if(grecaptcha.getResponse().length != 0){
+         
+        var thisForm = $(form);
+        var formSur = thisForm.serialize();
+    // popNext();
+
+    // ajaxurl = 'js/json/support_true.json';
+    // ajaxurl = 'js/json/support_false.json';
+
+        $.ajax({
+            url: ajaxurl,
+            data: formSur,
+            processData: false,
+            method: 'POST',
+            success: function (data) {
+                
+              var res = JSON.parse(data);
+             //var res = data;
+
+                if ( parseInt(res.answer) === 0) {
+                    var timer1 = null;
+
+                    timer1 = setTimeout(function () {
+                        $.fancybox.close("#call-popup");
+                    }, 500);
+
+                    //$('form').trigger("reset");
+                // $.fancybox.close("#call-popup");
+                    //$('form').trigger("reset");
+                    $(form).find('.error-text').removeClass('hide-it');
+                    $(form).find('.error-text').addClass('show');
+                    $('.error-text').text(res.message);
+                    //document.location.replace();
+                }
+                else if ( parseInt(res.answer) == 1) {
+
+                    $('form').trigger("reset");
+
+                    var url = res.location;
+                    var textMassage = res.message;
+
+                    $('.call-title').text(textMassage);
+
+                    popResult();
+
+                    var timer = null;
+
+                    timer = setTimeout(function () {
+                        document.location.replace(url);
+                        $.fancybox.close("#call_success");
+                    }, 2000);
+                    $('form').trigger("reset");
+                }
+            }
+        }).done(function () {
+            console.log("finish");
+        });
+
+     }
+    function popNext() {
+
+        $.fancybox.open("#call-popup", {
+            padding: 0,
+            fitToView: false,
+            wrapCSS: "call-popup",
+            autoSize: true,
+            'helpers': {
+                'overlay': { 'closeClick': false }
+            },
+            afterClose: function () {
+               // $('form').trigger("reset");
+            }
+        });
+
+    }
+
+    function popResult() {
+        $.fancybox.open("#call_success", {
+            padding: 0,
+            fitToView: false,
+            wrapCSS: "call-popup",
+            autoSize: true,
+            'helpers': {
+                'overlay': { 'closeClick': false }
+            },
+            afterClose: function () {
+                clearTimeout(timer);
+            }
+        });
+
+    };
+}
+
 function popNext() {
 
     $.fancybox.open("#call_success", {
@@ -438,97 +536,6 @@ function loadingStartDogFB() {
             $('form').trigger("reset");
         }
     });
-}
-
-
-function supportForm(form) {
-
-    var thisForm = $(form);
-    var formSur = thisForm.serialize();
-    popNext();
-
-    ajaxurl = 'js/json/support_true.json';
-   // ajaxurl = 'js/json/support_false.json';
-
-    $.ajax({
-        url: ajaxurl,
-        data: formSur,
-        processData: false,
-        method: 'POST',
-        success: function (data) {
-            var res = JSON.parse(data);
-
-            if ( parseInt(res.answer) === 0) {
-                var timer1 = null;
-
-                timer1 = setTimeout(function () {
-                    $.fancybox.close("#call-popup");
-                }, 500);
-
-                //$('form').trigger("reset");
-               // $.fancybox.close("#call-popup");
-                //$('form').trigger("reset");
-                $(form).find('.error-text').removeClass('hide-it');
-                $(form).find('.error-text').addClass('show');
-                $('.error-text').text(res.message);
-                //document.location.replace();
-            }
-            else if ( parseInt(res.answer) == 1) {
-
-                $('form').trigger("reset");
-
-                var url = res.location;
-                var textMassage = res.message;
-
-                $('.call-title').text(textMassage);
-
-                popResult();
-
-                var timer = null;
-
-                timer = setTimeout(function () {
-                    document.location.replace(url);
-                    $.fancybox.close("#call_success");
-                }, 2000);
-                $('form').trigger("reset");
-            }
-        }
-    }).done(function () {
-        console.log("finish");
-    });
-
-    function popNext() {
-
-        $.fancybox.open("#call-popup", {
-            padding: 0,
-            fitToView: false,
-            wrapCSS: "call-popup",
-            autoSize: true,
-            'helpers': {
-                'overlay': { 'closeClick': false }
-            },
-            afterClose: function () {
-               // $('form').trigger("reset");
-            }
-        });
-
-    }
-
-    function popResult() {
-        $.fancybox.open("#call_success", {
-            padding: 0,
-            fitToView: false,
-            wrapCSS: "call-popup",
-            autoSize: true,
-            'helpers': {
-                'overlay': { 'closeClick': false }
-            },
-            afterClose: function () {
-                clearTimeout(timer);
-            }
-        });
-
-    };
 }
 
 

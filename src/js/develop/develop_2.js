@@ -88,7 +88,7 @@ function stopSearchPlay() {
         };
 
         //ajaxUrl = 'js/json/stopSearchOponent_false.json';
-        ajaxUrl = 'js/json/stopSearchOponent_true.json';
+       // ajaxUrl = 'js/json/stopSearchOponent_true.json';
 
         $.ajax({
             url: ajaxUrl,
@@ -196,6 +196,17 @@ function showWindowAboutOnMain() {
 
 
 $(document).ready(function () {
+    
+    $('.hovered-block .description').jScrollPane({
+        showArrows: true
+    });
+    
+    $('.hovered-block .button-easy').click(function(event){
+        event.preventDefault();
+        $('.forget-pass-form .button-buy-next').click();
+        $('.forget-pass-form input[name=login]').focus();
+    });
+    
 
     $('.button-leave .form-button').click(function () {
         $(this).css('pointer-events', 'none');
@@ -265,8 +276,8 @@ $(window).load(function () {
             method: 'POST',
             success: function (data) {
 
-                //var res = JSON.parse(data);
-                var res = data;
+                var res = JSON.parse(data);
+                //var res = data;
 
                 if (res.answer == 1) {
                     userName = res.name;
