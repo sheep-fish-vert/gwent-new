@@ -49,19 +49,7 @@ function validate(form, options) {
                 } else {
                     $form.submit();
                 }
-            }/*,
-            rules: {
-                "hiddenRecaptcha": {
-                    required: function () {
-                        if (grecaptcha.getResponse() == '') {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                }
             }
-            */
         });
 
         $('[required]', $form).each(function () {
@@ -250,7 +238,7 @@ function reset_pass(form) {
             
             //var res = data;
             
-             console.log(res);
+             //console.log(res);
             if ( parseInt(res.answer) === 0 ) {
                 $('form').trigger("reset");
                 $(form).find('.error-text').removeClass('hide-it');
@@ -280,11 +268,12 @@ function registerForm(form) {
     if(grecaptcha.getResponse().length === 0){
         $(form).find('.reCaptcha-wrap>div>div>div').addClass('error-recapture');
     } else if(!$('#linka-check').is( ":checked" )){
-        console.log('not check');
+       // console.log('not check');
         // open menu width
-    } else{
         
-        console.log('try send');
+    } /*else if( $(form).find('input[name=reg_password]').val().length < 4 && $(form).find('input[name=confirm_reg_password]').val().length < 4 ){
+        $(form).find('input[type=password]').addClass('error-field');
+    } */ else{
 
         var thisForm = $(form);
         var formSur = thisForm.serialize();
@@ -298,7 +287,7 @@ function registerForm(form) {
             data: formSur,
             method: 'POST',
             success: function (data) {
-                console.log(data);
+               // console.log(data);
                  var res = JSON.parse(data);
                 
                // var res = data;
@@ -322,7 +311,17 @@ function registerForm(form) {
                 }
                 else if (res.answer == 1) {
                     var url = res.location;
-                   // document.location.replace(url);
+                    $('.call-title').text(res.message);
+                    $('.call-subtitle').text('');
+                    
+                    popNext();
+                    
+                    var timer1 = null;
+                    
+                    timer1 = setTimeout(function () {
+                        document.location.replace(url);
+                    }, 2000);
+                    
                 }
             }
         });
@@ -462,7 +461,7 @@ function supportForm(form) {
                 }
             }
         }).done(function () {
-            console.log("finish");
+            //console.log("finish");
         });
 
      }
@@ -499,6 +498,8 @@ function supportForm(form) {
 
     };
 }
+
+
 
 function popNext() {
 
@@ -561,8 +562,7 @@ function showHideErrorFieldAgain(form) {
     var errorLength = $(form).find('.form_row.error').length;
     if (errorLength !== 0) {
         $(form).find('.error-text').removeClass('hide-it');
-    }
-    else {
+    } else {
         $(form).find('.error-text').addClass('hide-it');
 
         if (language == 'ru') {
@@ -574,8 +574,8 @@ function showHideErrorFieldAgain(form) {
         if (language == 'en') {
             $('.error-text').text('The username or password you entered is incorrect');
         };
-
     }
+    
 }
 
 function onchangeTestDate() {

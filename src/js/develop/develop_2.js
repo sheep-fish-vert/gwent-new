@@ -118,7 +118,7 @@ function fancyboxForm() {
         openEffect: 'fade',
         closeEffect: 'fade',
         autoResize: true,
-        wrapCSS: 'fancybox-form',
+        wrapCSS: 'fancybox-form2',
         'closeBtn': true,
         fitToView: true,
         padding: '0'
@@ -128,28 +128,84 @@ function fancyboxForm() {
 
 /* проверка паролей */
 function checkPassInput () {
+    
+    $('.register-form input').on('keyup', function () {
         
-    $('.register-form input[type=password]').on('keyup', function () {
+        var flagShtockPass = false ;
+        var flagShtockName = false ;
+        
+        if ( ($('.register-form input[name=reg_password]').val() == $('.register-form input[name=confirm_reg_password]').val()) && $('.register-form input[name=reg_password]').val().length > 4 && $('.register-form input[name=confirm_reg_password]').val().length > 4  ) {
+                        
+            $('.register-form input[type=password]').removeClass('error-field');
+            
+            flagShtockPass = true ;            
 
-        if ($('input[name=reg_password]').val() != $('input[name=confirm_reg_password]').val()) {
-            $('input[type=password]').addClass('error-field');
-
-        } else {
-            $('input[type=password]').removeClass('error-field');
+        } else {            
+            $('.register-form input[type=password]').addClass('error-field');
+            flagShtockPass = false ;
+            
         }
+        
+        if ($('.register-form input[name=reg_login]').val().length > 4 && $('.register-form input[name=reg_login]').val().length > 4 ){
+            
+            $('.register-form input[name=reg_login]').removeClass('error-field');
+            
+            flagShtockName = true ; 
+        } else {
+            
+            $('.register-form input[name=reg_login]').addClass('error-field');
+            flagShtockName = false ;
+            
+        };
+        
+        
+        if( flagShtockPass && flagShtockName ) {
+            
+            $('.register-form button').removeAttr("disabled");
+            
+            
+        } else {
+
+            $('.register-form button').attr('disabled', 'disabled');
+            
+        }
+        
+        
     }); 
     
-    $('.settings_form input[name=settings_pass_confirm] , .settings_form input[name=settings_pass]').on('keyup', function () {
-        if ($('input[name=settings_pass_confirm]').val() != $('input[name=settings_pass]').val()) {
-            
-            $('.settings_form input[name=settings_pass_confirm]').addClass('error-field');
-            $('.settings_form input[name=settings_pass]').addClass('error-field');
-            
-
-        } else {
-            $('.settings_form input[name=settings_pass_confirm]').removeClass('error-field');
+    $('.settings_form input').on('keyup', function () {
+        
+        var flagShtockPass = false ;
+        var flagShtockName = true ;
+        
+        if ( ($('.settings_form input[name=settings_pass_confirm]').val() == $('.settings_form input[name=settings_pass]').val()) && $('.settings_form input[name=settings_pass]').val().length > 4 && $('.settings_form input[name=settings_pass_confirm]').val().length > 4  ) {
+                        
             $('.settings_form input[name=settings_pass]').removeClass('error-field');
+            $('.settings_form input[name=settings_pass_confirm]').removeClass('error-field');
+            
+            flagShtockPass = true ;            
+
+        } else {   
+                     
+            $('.settings_form input[input[name=settings_pass]').addClass('error-field');
+            $('.settings_form input[name=settings_pass_confirm]').addClass('error-field');
+            
+            flagShtockPass = false ;
+            
         }
+        
+        
+        if( flagShtockPass && flagShtockName ) {
+            
+            $('.settings_form button').removeAttr("disabled");
+            
+            
+        } else {
+
+            $('.settings_form button').attr('disabled', 'disabled');
+            
+        }
+
     }); 
 }
 
@@ -194,6 +250,38 @@ function showWindowAboutOnMain() {
     });
 }
 
+
+// відправка раси якою хоче грати користувач
+function raseWePlay(rase) {
+    $('body').css('pointer-events', 'none');
+  //  console.log(rase);
+    
+    var formSur = {
+        "action": "startSearch",
+        "rase" : rase
+    };
+
+   // ajaxurl = 'js/json/rase_we_play_true.json';
+
+    $.ajax({
+        url: ajaxurl,
+        data: formSur,
+        method: 'POST',
+        success: function (data) {
+            console.log(data);
+            var res = JSON.parse(data);    
+            
+            //var res = data;
+
+            if ( parseInt(res.answer) === 1 ) {
+                var url = res.location;
+                document.location.replace(url);
+            }
+
+        }
+    });
+    
+}
 
 $(document).ready(function () {
     
@@ -252,6 +340,16 @@ $(document).ready(function () {
     showWindowAboutOnMain();
     
     checkPassInput (); 
+    
+    $('#choose-rase-block button').click(function(){
+        
+        $('#choose-rase-block').find('button').attr('disabled', 'disabled');
+        
+        $('#choose-rase-block').find('.conteiner-rase').addClass('afterloading');
+        
+        raseWePlay($(this).closest('li').attr('data-rase'));
+        
+    })
 
 });
 
@@ -263,8 +361,17 @@ var userOnline;
 $(window).load(function () {
 
     if ( $('body').find('.header-box').length == 1) {
+        /*
+        
+        setTimeout(function(){
+            $("#status").fadeOut();
+            $("#preloader").fadeOut("slow");
+        }, 300);
+        
+        */
+
         // ajaxurl = 'js/json/current_user_false.json';
-        //ajaxurl = 'js/json/current_user_true.json';
+       // ajaxurl = 'js/json/current_user_true.json';
 
         var currentUser = {
             action: "on_load_page"
@@ -277,7 +384,7 @@ $(window).load(function () {
             success: function (data) {
 
                 var res = JSON.parse(data);
-                //var res = data;
+               // var res = data;
 
                 if (res.answer == 1) {
                     userName = res.name;
@@ -304,10 +411,32 @@ $(window).load(function () {
                     }
 
                 } else {
-                    console.log('error');
+                   // console.log('error');
                 }
+                
+                setTimeout(function(){
+                    $('.header-box .convert-header .user').removeClass('preload');
+                    
+                    $('.settings-page .form-wrap').removeClass('preloading-class');
+                    
+                    $('.rating .convert-resurses').removeClass('preload');
+                    
+                    $('.convert-stats .people-box').removeClass('preload');
+                    
+                    /*
+                    $("#status").fadeOut();
+                    $("#preloader").fadeOut("slow");
+                    */
+                }, 300);
+                
+                
             }
         });
+    } else {
+       setTimeout(function(){
+            $("#status").fadeOut();
+            $("#preloader").fadeOut("slow");
+        }, 500); 
     }
     
     

@@ -743,7 +743,7 @@ function cardMoving(){
 // /market scripts
 
 /* user race */
-
+/*
     function userRace(){
 
         $.ajax({
@@ -762,7 +762,7 @@ function cardMoving(){
         });
 
     }
-
+*/
 /* user race */
 
 /* DOCUMENT READY  */
@@ -787,7 +787,7 @@ $(document).ready(function() {
 
     marketScripts();
 
-    userRace();
+   // userRace();
 
 });
 
