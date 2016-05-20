@@ -42,7 +42,12 @@
     .forms-footer{padding:27px 15px 15px 15px;position: relative;
         &:before{content: '';position: absolute;display: block;top: 0;height: 12px;left: 0px;width: 100%;background-image:url(../images/header_border.png)}
         .forms-footer-blocks{display: inline-block;width: calc(50% - 3px);font-weight: 200;color:#adadad;font-size: 14px;
-            &.left{text-align: left;}
+            &.left{text-align: left;
+                a{display: inline-block; text-decoration: none; color:#adadad;font-size: 14px; position: relative;
+                    &:after{content: '';display: block;position: absolute;top: 100%;left: 0;height: 1px;background-color: #adadad;width: 0;transition:width 300ms ease;-webkit-transition:width 300ms ease;-moz-transition:width 300ms ease;-ms-transition:width 300ms ease;}
+                    &:hover:after{width: 100%;}
+                }
+            }
             &.center{text-align: center;}
             &.right{text-align: right;}
         }
