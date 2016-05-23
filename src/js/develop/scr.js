@@ -719,7 +719,9 @@ function cardMoving(){
 
             /* buy effect */
 
-                $(document).on('click', '.effect-buy .button-plus', function(){
+                $(document).on('click', '.effect-buy .button-plus', function(e){
+
+                    e.preventDefault();
 
                     var count = $(this).data('count');
                     console.log(count);
@@ -728,10 +730,19 @@ function cardMoving(){
                         fitToView:true,
                         autoSize:true,
                         padding:0,
+                        wrapCSS:'buy-effect-popup-main',
                         beforeLoad:function(){
-                            $('#buy_effect .title-small').text(count);
+                            $('#buy_effect .title-small span').text(count);
                         }
                     });
+
+                });
+
+                $(document).on('click', '.denie-buy a', function(){
+
+                    e.preventDefault();
+
+                    $.fancybox.close();
 
                 });
 

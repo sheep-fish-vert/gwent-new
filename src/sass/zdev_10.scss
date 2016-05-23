@@ -203,6 +203,17 @@
         }
     }
 
+    .buy-effect-popup-main{
+        &.fancybox-opened{
+            .fancybox-skin{background-color:transparent;box-shadow:none;}
+        }
+        .buy-effect{background-color: transparent;position: relative;z-index: 1;width: 400px;min-height: 250px;transition: opacity 300ms ease 300ms;border-style: solid;border-width: 38px 56px;border-image: url(../images/content-card-field-center-border.png) 38 56 fill round;
+            .buy-effect-wrap{background-image: url(../images/fon.jpg);background-position: center center;min-height: 174px;text-align: center;margin: 0 -20px;width: 327px;padding:25px 0;color:#fff;
+                .title-big{}
+            }
+        }
+    }
+
 /* /special effects shop */
 
 /* card markup */
