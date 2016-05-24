@@ -1,0 +1,63 @@
+__________________________________________________________________________________
+
+Запросы магазина
+
+    - Загрузка карт и еффектов по смене расы (поиск по функции marketAjax)
+
+        data:{action:'market_cards_by_fraction', fraction:marketFractionValue}
+
+            где: marketFractionValue - карты или еффекты какой расы нужно вигрузить. (еффекты имею окончание _effects. Например ricari_effects).
+
+        получаю:
+
+            json с списком карт или еффектов (market_gorcu.json, market_gorcu_effects.json)
+            пример:
+
+                cards->
+                    {
+                        "logo":"images/logo-highlanders.png", - путь к пути лого расы для списка
+                        "cards":[
+                            {
+                                "imageSrc":"images/cart-open-img-1.jpg", - картинка карты
+                                "lider":"yellow", - карта лидер
+                                "cardFraction":"highlanders", - фракция карты (используеться для обложки)
+                                "cardPower": 8, - сила карты
+                                "cardRole":"bow", - роль карты (имя класа)
+                                "cardAbilities":[ - способности карты (имена класов для спанчика)
+                                    "hand",
+                                    "wind",
+                                    "heal"
+                                ],
+                                "cardName":"Инокентий Бест", - тайтл карты
+                                "cardRace":"images/logo-highlanders.png", - лого карты при описании
+                                "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.", - описание карты
+                                "cardPrice":{
+                                    "silver":50 - цена карты в серебре
+                                },
+                                "cardId":1 - айди карты
+                            },
+                            ...
+                        ]
+                    }
+
+                effects->
+                    {
+                        "logo":"images/logo-highlanders.png", - картинка карты
+                        "effects":[
+                            {
+                                "img":"images/effect4.png", - имага ефекта
+                                "title":"Holy weak", - тайтл ефекта
+                                "descript":"Weakness.", - описание ефекта
+                                "energy_cost":5, - стоимость ефекта в енергии
+                                "gold_cost":"0", - стоимость ефекта в золоте
+                                "silver_cost":"1 000", - стоимость ефекта в серебре
+                                "status":true, - куплено или нет пользователем
+                                "buy_value":100, - количество использования ефектов при покупке
+                                "ending_date":"-", - дата окончания роботы ефекта
+                                "effect_id":3 - айди ефекта
+                            },
+                            ...
+                        ]
+                    }
+
+__________________________________________________________________________________

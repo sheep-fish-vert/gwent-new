@@ -1,0 +1,77 @@
+__________________________________________________________________________________
+
+Покупка ресурсов - поиск функций по коменту "buy more scripts"
+
+
+    - Покупка золота (поиск по функции validateGoldBuying)
+
+        data:{action:'buy_gold', formData:formSur}
+
+            где: formSur - данные формы (количество золота)
+
+        получаю:
+
+            json с путём на страницу (buy_gold_page_path.json).
+            пример:
+
+               {
+                   "path":"build/buy_gold.html"
+               }
+
+
+    - Покупка серебра (поиск по функции validateSilverBuying)
+
+        data:{action:'exchange_gold_to_silver', formData:formSur}
+
+            где: formSur - данные формы (количество золота за серебро)
+
+        получаю:
+
+            json подтверждения или ошибки обмена (exchange_silver_error.json, exchange_silver_success.json)
+            пример:
+
+                error->
+                    {
+                        "change":0 - прееменая ошибки
+                    }
+
+                success->
+                    {
+                        "change":1, - прееменая ошибки
+                        "silver_count":50, - количество серебра у юзера после обмена
+                        "gold_count":100 - количество золота у юзера после обмеена
+                    }
+
+
+    - Покупка енергии (поиск по коменту energy excahnge)
+
+        data:{action:'energy_exchange', valueType:type, energyCount:energyCount}
+
+            где: type - тип обмена (gold или silver)
+                 energyCount - значение обмена енергии (100 или 200)
+
+        получаю:
+
+            json подтверждения или ошибки обмена (energy_exchange_to_gold.json, energy_exchange_to_silver.json)
+
+            пример:
+
+                success->
+                    gold exchange->
+                        {
+                            "change":1,
+                            "gold":50, - количество золота у юзера после обмена
+                            "energy":100 - количество енергии у юзера после обмена
+                        }
+                    silver exchange->
+                        {
+                            "change":1,
+                            "silver":50, - количество серебра у юзера после обмена
+                            "energy":100 - количество енергии у юзера после обмена
+                        }
+                error->
+                    {
+                        "change":0 - прееменая ошибки
+                    }
+
+__________________________________________________________________________________
