@@ -204,13 +204,33 @@
     }
 
     .buy-effect-popup-main{
-        &.fancybox-opened{
-            .fancybox-skin{background-color:transparent;box-shadow:none;}
-        }
-        .buy-effect{background-color: transparent;position: relative;z-index: 1;width: 400px;min-height: 250px;transition: opacity 300ms ease 300ms;border-style: solid;border-width: 38px 56px;border-image: url(../images/content-card-field-center-border.png) 38 56 fill round;
-            .buy-effect-wrap{background-image: url(../images/fon.jpg);background-position: center center;min-height: 174px;text-align: center;margin: 0 -20px;width: 327px;padding:25px 0;color:#fff;
-                .title-big{}
+
+        .fancybox-skin{background-color:transparent;box-shadow:none;}
+
+        .buy-effect{background-color: transparent;position: relative;z-index: 1;width: 450px;min-height: 250px;transition: opacity 300ms ease 300ms;border-style: solid;border-width: 38px 56px;border-image: url(../images/content-card-field-center-border.png) 38 56 fill round;
+            &:before{content: '';display: block;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background-image: url(../images/preloader-market.gif);background-repeat: no-repeat;background-position: center center;opacity: 0;z-index: 0;transition: opacity 300ms ease 0ms;}
+            .buy-effect-wrap{background-image: url(../images/fon.jpg);background-position: center center;min-height: 174px;text-align: center;margin: 0 -20px;width: 378px;padding:25px 0;color:#fff;position:relative;z-index: 1;transition:opacity 300ms ease 300ms;
+                .title-big{font-size: 24px;color: #d8ac4a;margin-bottom: 5px;}
+                .title-small{font-size: 20px;margin-bottom: 10px;}
+                .buy-effects-buttons{display: flex;justify-content: space-around;align-items: center;
+                    a{display: inline-block;text-decoration: none;color:#573204;font-size: 20px;line-height: 50px;transition:all 300ms ease;
+                        &:hover{color:#573204;text-shadow:1px 1px 2px yellow, 0 0 1em yellow;}
+                    }
+                }
             }
+
+            &.loading{
+                &:before{opacity: 1;z-index: 2;transition:opacity 300ms ease 300ms;}
+                .buy-effect-wrap{opacity: 0;transition:opacity 300ms ease 0ms;}
+            }
+
+            &.done{
+                .buy-effect-wrap{display: flex;align-items: center;justify-content: center;
+                    .title-big{font-size: 28px;}
+                    .title-small, .buy-effects-buttons{display: none;}
+                }
+            }
+
         }
     }
 
@@ -434,6 +454,20 @@
 
 /* /header - buy more styles */
 
+/* button-plus */
+
+    .button-plus{width: 36px;height: 36px;display: inline-block;background-image:url(../images/button-plus.png);background-repeat: no-repeat;position: relative;
+        &.canot-buy{opacity: .5;}
+        &:before, &:after{content:'';display: block;position: absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
+        &:before{z-index: 1;background-image:url(../images/button-plus-img.png);width: 36px;height: 36px;}
+        &:after{z-index: 0;width: 36px;height: 36px;background-image:url(../images/button-plus-hover.png);opacity: 0;transition:opacity 300ms ease;}
+        &:hover:not(.canot-buy){
+            &:after{opacity: 1;}
+        }
+    }
+
+/* /button-plus */
+
 /* animations */
 
     @keyframes fogAnim{
@@ -447,15 +481,3 @@
 
 /* /animations */
 
-/* button-plus */
-
-    .button-plus{width: 36px;height: 36px;display: inline-block;background-image:url(../images/button-plus.png);background-repeat: no-repeat;position: relative;
-        &:before, &:after{content:'';display: block;position: absolute;top:50%;left:50%;transform:translate(-50%, -50%);}
-        &:before{z-index: 1;background-image:url(../images/button-plus-img.png);width: 36px;height: 36px;}
-        &:after{z-index: 0;width: 36px;height: 36px;background-image:url(../images/button-plus-hover.png);opacity: 0;transition:opacity 300ms ease;}
-        &:hover{
-            &:after{opacity: 1;}
-        }
-    }
-
-/* /button-plus */

@@ -128,85 +128,85 @@ function fancyboxForm() {
 
 /* проверка паролей */
 function checkPassInput () {
-    
+
     $('.register-form input').on('keyup', function () {
-        
+
         var flagShtockPass = false ;
         var flagShtockName = false ;
-        
-        if ( ($('.register-form input[name=reg_password]').val() == $('.register-form input[name=confirm_reg_password]').val()) && $('.register-form input[name=reg_password]').val().length > 4 && $('.register-form input[name=confirm_reg_password]').val().length > 4  ) {
-                        
-            $('.register-form input[type=password]').removeClass('error-field');
-            
-            flagShtockPass = true ;            
 
-        } else {            
+        if ( ($('.register-form input[name=reg_password]').val() == $('.register-form input[name=confirm_reg_password]').val()) && $('.register-form input[name=reg_password]').val().length > 4 && $('.register-form input[name=confirm_reg_password]').val().length > 4  ) {
+
+            $('.register-form input[type=password]').removeClass('error-field');
+
+            flagShtockPass = true ;
+
+        } else {
             $('.register-form input[type=password]').addClass('error-field');
             flagShtockPass = false ;
-            
+
         }
-        
+
         if ($('.register-form input[name=reg_login]').val().length > 4 && $('.register-form input[name=reg_login]').val().length > 4 ){
-            
+
             $('.register-form input[name=reg_login]').removeClass('error-field');
-            
-            flagShtockName = true ; 
+
+            flagShtockName = true ;
         } else {
-            
+
             $('.register-form input[name=reg_login]').addClass('error-field');
             flagShtockName = false ;
-            
+
         };
-        
-        
+
+
         if( flagShtockPass && flagShtockName ) {
-            
+
             $('.register-form button').removeAttr("disabled");
-            
-            
+
+
         } else {
 
             $('.register-form button').attr('disabled', 'disabled');
-            
+
         }
-        
-        
-    }); 
-    
+
+
+    });
+
     $('.settings_form input').on('keyup', function () {
-        
+
         var flagShtockPass = false ;
         var flagShtockName = true ;
-        
+
         if ( ($('.settings_form input[name=settings_pass_confirm]').val() == $('.settings_form input[name=settings_pass]').val()) && $('.settings_form input[name=settings_pass]').val().length > 4 && $('.settings_form input[name=settings_pass_confirm]').val().length > 4  ) {
-                        
+
             $('.settings_form input[name=settings_pass]').removeClass('error-field');
             $('.settings_form input[name=settings_pass_confirm]').removeClass('error-field');
-            
-            flagShtockPass = true ;            
 
-        } else {   
-                     
+            flagShtockPass = true ;
+
+        } else {
+
             $('.settings_form input[input[name=settings_pass]').addClass('error-field');
             $('.settings_form input[name=settings_pass_confirm]').addClass('error-field');
-            
+
             flagShtockPass = false ;
-            
+
         }
-        
-        
+
+
         if( flagShtockPass && flagShtockName ) {
-            
+
             $('.settings_form button').removeAttr("disabled");
-            
-            
+
+
         } else {
 
             $('.settings_form button').attr('disabled', 'disabled');
-            
+
         }
 
-    }); 
+    });
 }
 
 
@@ -255,7 +255,7 @@ function showWindowAboutOnMain() {
 function raseWePlay(rase) {
     $('body').css('pointer-events', 'none');
   //  console.log(rase);
-    
+
     var formSur = {
         "action": "startSearch",
         "rase" : rase
@@ -269,8 +269,8 @@ function raseWePlay(rase) {
         method: 'POST',
         success: function (data) {
             console.log(data);
-            var res = JSON.parse(data);    
-            
+            var res = JSON.parse(data);
+
             //var res = data;
 
             if ( parseInt(res.answer) === 1 ) {
@@ -280,21 +280,21 @@ function raseWePlay(rase) {
 
         }
     });
-    
+
 }
 
 $(document).ready(function () {
-    
+
     $('.hovered-block .description').jScrollPane({
         showArrows: true
     });
-    
+
     $('.hovered-block .button-easy').click(function(event){
         event.preventDefault();
         $('.forget-pass-form .button-buy-next').click();
         $('.forget-pass-form input[name=login]').focus();
     });
-    
+
 
     $('.button-leave .form-button').click(function () {
         $(this).css('pointer-events', 'none');
@@ -331,24 +331,24 @@ $(document).ready(function () {
 
     oneHeightItems();
 
-    marketScrollInit();
+    //marketScrollInit();
 
     fancyboxForm();
 
     showFormOnMain();
 
     showWindowAboutOnMain();
-    
-    checkPassInput (); 
-    
+
+    checkPassInput ();
+
     $('#choose-rase-block button').click(function(){
-        
+
         $('#choose-rase-block').find('button').attr('disabled', 'disabled');
-        
+
         $('#choose-rase-block').find('.conteiner-rase').addClass('afterloading');
-        
+
         raseWePlay($(this).closest('li').attr('data-rase'));
-        
+
     })
 
 });
@@ -362,12 +362,12 @@ $(window).load(function () {
 
     if ( $('body').find('.header-box').length == 1) {
         /*
-        
+
         setTimeout(function(){
             $("#status").fadeOut();
             $("#preloader").fadeOut("slow");
         }, 300);
-        
+
         */
 
         // ajaxurl = 'js/json/current_user_false.json';
@@ -391,53 +391,53 @@ $(window).load(function () {
                     userAvatar = res.imageUrl;
                     userOnline = res.onlineUsers;
                     userEmail = res.userEmail;
-                    
+
                     $('.user-name').html(userName);
-                    $('.user-image img').attr('src', userAvatar);                    
+                    $('.user-image img').attr('src', userAvatar);
                     $('.people-box .people').html(userOnline);
-                    
+
 
                     $('.header-box .convert-resurses .gold').html(res.gold);
-                    $('.header-box .convert-resurses .silver').html(res.silver);                    
+                    $('.header-box .convert-resurses .silver').html(res.silver);
                     $('.header-box .convert-resurses .lighting').html(res.energy);
-                    
+
                     if( $('body').find('#avatarImg').length == 1) {
                         $('#avatarImg').attr('src', userAvatar);
                     }
-                    
+
                     if( $('body').find('.settings-page').length == 1) {
-                        $('.settings_form input[type=email]').val(userEmail).prop("disabled", true); 
-                        $('.settings_form .form-title').html(userName); 
+                        $('.settings_form input[type=email]').val(userEmail).prop("disabled", true);
+                        $('.settings_form .form-title').html(userName);
                     }
 
                 } else {
                    // console.log('error');
                 }
-                
+
                 setTimeout(function(){
                     $('.header-box .convert-header .user').removeClass('preload');
-                    
+
                     $('.settings-page .form-wrap').removeClass('preloading-class');
-                    
+
                     $('.rating .convert-resurses').removeClass('preload');
-                    
+
                     $('.convert-stats .people-box').removeClass('preload');
-                    
+
                     /*
                     $("#status").fadeOut();
                     $("#preloader").fadeOut("slow");
                     */
                 }, 300);
-                
-                
+
+
             }
         });
     } else {
        setTimeout(function(){
             $("#status").fadeOut();
             $("#preloader").fadeOut("slow");
-        }, 500); 
+        }, 500);
     }
-    
-    
+
+
 });

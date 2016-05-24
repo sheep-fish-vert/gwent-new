@@ -10,7 +10,8 @@
             "silver_cost":"1 750",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":5
         },
         {
             "img":"images/effect11.png",
@@ -21,7 +22,8 @@
             "silver_cost":"1 150",
             "status":false,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":6
         },
         {
             "img":"images/effect5.png",
@@ -32,7 +34,8 @@
             "silver_cost":"1 950",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":7
         },
         {
             "img":"images/effect6.png",
@@ -43,7 +46,8 @@
             "silver_cost":"1 750",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":8
         },
         {
             "img":"images/effect11.png",
@@ -54,7 +58,8 @@
             "silver_cost":"1 150",
             "status":false,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":9
         },
         {
             "img":"images/effect5.png",
@@ -65,7 +70,8 @@
             "silver_cost":"1 950",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":10
         },
         {
             "img":"images/effect6.png",
@@ -76,7 +82,8 @@
             "silver_cost":"1 750",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":11
         },
         {
             "img":"images/effect11.png",
@@ -87,7 +94,8 @@
             "silver_cost":"1 150",
             "status":false,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":12
         },
         {
             "img":"images/effect5.png",
@@ -98,7 +106,8 @@
             "silver_cost":"1 950",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":13
         },
         {
             "img":"images/effect6.png",
@@ -109,7 +118,8 @@
             "silver_cost":"1 750",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":14
         },
         {
             "img":"images/effect11.png",
@@ -120,7 +130,8 @@
             "silver_cost":"1 150",
             "status":false,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":15
         },
         {
             "img":"images/effect5.png",
@@ -131,7 +142,8 @@
             "silver_cost":"1 950",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":16
         },
         {
             "img":"images/effect6.png",
@@ -142,7 +154,8 @@
             "silver_cost":"1 750",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":17
         },
         {
             "img":"images/effect11.png",
@@ -153,7 +166,8 @@
             "silver_cost":"1 150",
             "status":false,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":18
         },
         {
             "img":"images/effect5.png",
@@ -164,7 +178,8 @@
             "silver_cost":"1 950",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":19
         }
     ]
 }

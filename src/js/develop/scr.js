@@ -531,11 +531,14 @@ function cardMoving(){
                                             marketData.effects.forEach(function(item, index){
 
                                                 var unactive = '';
-                                                if(!item.status == "false"){
-                                                    unactive = "done";
+                                                var canBuy = 'canot-buy';
+
+                                                if(!item.status == "false" || !item.status){
+                                                    unactive = "disabled";
+                                                    canBuy = '';
                                                 }
 
-                                                mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus" data-count='+item.buy_value+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap'+unactive+'"><div class="market-status"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
+                                                mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus '+canBuy+'" data-count='+item.buy_value+' data-effect-id='+item.effect_id+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap"><div class="market-status '+unactive+'"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
 
                                                 if(index == (marketDataLength - 1)){
 
@@ -641,6 +644,7 @@ function cardMoving(){
                                             /* error card buying */
 
                                             $('#call_success').addClass('done').find('.call-title-message').text(buyingData.error);
+                                            $('#call_success').removeClass('loading');
 
                                             /* /error card buying */
 
@@ -648,11 +652,13 @@ function cardMoving(){
 
                                         setTimeout(function(){
 
-                                            $.fancybox.close();
+                                            $.fancybox.close({
+                                                afterClose:function(){
+                                                    $('#call_success').removeClass('done');
+                                                }
+                                            });
 
                                         }, 1000);
-
-                                        // checkpoint
 
                                     }
                                 });
@@ -674,14 +680,14 @@ function cardMoving(){
 
             /* market jscrollpane init */
 
-                $('.market-cards-wrap').jScrollPane({
+                /*$('.market-cards-wrap').jScrollPane({
                     contentWidth: '0px',
                     autoReinitialise:true,
                     autoReinitialiseDelay:0,
                     verticalDragMaxHeight:65,
                     verticalDragMinHeight:65,
                     showArrows:true
-                });
+                });*/
 
             /* /market jscrollpane init */
 
@@ -719,32 +725,116 @@ function cardMoving(){
 
             /* buy effect */
 
-                $(document).on('click', '.effect-buy .button-plus', function(e){
+                function marketBuyEffect(){
 
-                    e.preventDefault();
+                    var effectId = null;
 
-                    var count = $(this).data('count');
-                    console.log(count);
+                    $(document).on('click', '.effect-buy .button-plus:not(.canot-buy)', function(e){
 
-                    $.fancybox.open('#buy_effect',{
-                        fitToView:true,
-                        autoSize:true,
-                        padding:0,
-                        wrapCSS:'buy-effect-popup-main',
-                        beforeLoad:function(){
-                            $('#buy_effect .title-small span').text(count);
-                        }
+                        e.preventDefault();
+
+                        var count = $(this).data('count');
+                        effectId = $(this).data('effect-id');
+
+                        $.fancybox.open('#buy_effect',{
+                            fitToView:true,
+                            autoSize:true,
+                            padding:0,
+                            wrapCSS:'buy-effect-popup-main',
+                            'helpers': {
+                                'overlay': { 'closeClick': false }
+                            },
+                            beforeLoad:function(){
+                                $('#buy_effect .title-small span').text(count);
+                            },
+                            afterClose:function(){
+                                $('.buy-effect').removeClass('done');
+                                $('.buy-effect .title-big').text('Покупка');
+                            }
+                        });
+
                     });
 
-                });
+                    /* refuse buying */
 
-                $(document).on('click', '.denie-buy a', function(){
+                        $(document).on('click', '.denie-buy a', function(e){
 
-                    e.preventDefault();
+                            e.preventDefault();
 
-                    $.fancybox.close();
+                            $.fancybox.close();
 
-                });
+                        });
+
+                    /* refuse buying */
+
+                    /* confirm buying */
+
+                        $(document).on('click','.confirm-buy a',function(e){
+
+                            e.preventDefault();
+
+                            //ajaxurl
+                            //market_effect_buying_true.json
+
+                            var userId = 0; //here must be user id
+
+                            $('.buy_effect').addClass('loading');
+
+                            $.ajax({
+                                url:'js/json/market_effect_buying_true.json',
+                                data:{action:'market_effect_buing', userId:userId, itemId:effectId},
+                                method:'POST',
+                                success:function(data){
+
+                                    if(typeof data == 'object'){
+                                        var buyingEffectData = data;
+                                    }else{
+                                        var buyingEffectData = JSON.parse(data);
+                                    }
+
+                                    if(!buyingEffectData.buying || buyingEffectData.buying == "false"){
+
+                                        /* not enough resources  */
+
+                                            $('.buy-effect').addClass('done').find('.title-big').text(buyingEffectData.buying_text);
+                                            $('.buy-effect').removeClass('loading');
+
+                                        /* /not enough resources */
+
+                                    }else{
+
+                                        /* enough resourses */
+
+                                            howMuchResursesAjax();
+
+                                            var parent = $('.button-plus[data-effect-id='+effectId+']').parents('tr');
+
+                                            parent.find('.button-plus').addClass('canot-buy');
+                                            parent.find('.market-status').removeClass('disabled');
+
+                                            $('.buy-effect').addClass('done').find('.title-big').text(buyingEffectData.buying_text);
+                                            $('.buy-effect').removeClass('loading');
+
+                                        /* /enough resourses */
+
+                                    }
+
+                                    setTimeout(function(){
+
+                                        $.fancybox.close();
+
+                                    }, 1000);
+
+                                }
+                            });
+
+                        });
+
+                    /* /confirm buying */
+
+                }
+
+                marketBuyEffect();
 
             /* /buy effect */
         }
@@ -753,28 +843,37 @@ function cardMoving(){
 
 // /market scripts
 
-/* user race */
-/*
-    function userRace(){
+// how much resurses script
 
-        $.ajax({
-            url:'js/json/user_race.json',//'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
-            data:{action:'what_user_race'},
-            method:'POST',
-            success:function(data){
+    function howMuchResursesAjax(){
 
-                var userRace = data;
-                //var userRace = JSON.parse(data);
+        if($('.header-box .resurses').length){
 
-                $('body').addClass(userRace.race+'-race');
-                $('.user img').attr('src', 'images/logo-'+userRace.race+'.png');
+            $.ajax({
+                url:'js/json/how_much_resurses_user_has.json',//'ajaxurl'
+                data:{action:'how_much_resurses_user_has'},
+                method:'POST',
+                success:function(data){
 
-            }
-        });
+                    if(typeof data == 'object'){
+                        var resursesData = data;
+                    }else{
+                        var resursesData = JSON.parse(data);
+                    }
+
+                    $('.header-box .resurses .gold').text(resursesData.gold);
+                    $('.header-box .resurses .silver').text(resursesData.silver);
+                    $('.header-box .resurses .lighting').text(resursesData.energy);
+
+                }
+            });
+
+        }
 
     }
-*/
-/* user race */
+
+// / how much resourses scripts
+
 
 /* DOCUMENT READY  */
 $(document).ready(function() {

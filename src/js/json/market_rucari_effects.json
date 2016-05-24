@@ -10,7 +10,8 @@
             "silver_cost":"1 000",
             "status":true,
             "buy_value":75,
-            "ending_date":"11.01.2016 16:00"
+            "ending_date":"11.01.2016 16:00",
+            "effect_id":0
         },
         {
             "img":"images/effect11.png",
@@ -21,7 +22,8 @@
             "silver_cost":"1 000",
             "status":true,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":1
         },
         {
             "img":"images/effect2.png",
@@ -32,7 +34,8 @@
             "silver_cost":"2 500",
             "status":false,
             "buy_value":100,
-            "ending_date":"-"
+            "ending_date":"-",
+            "effect_id":2
         }
     ]
 }
