@@ -908,7 +908,7 @@ var interval_update = 5000;
                             /* /in what we market (cards or effer) */
 
                             $.ajax({
-                                url:ajaxurl, //'js/json/market_'+marketFractionValue+'.json' //'js/json/market_'+marketFractionValue+'_effects.json'
+                                url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
                                 data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
                                 success:function(data){
 
@@ -1120,7 +1120,7 @@ var interval_update = 5000;
                                             var buyingData = JSON.parse(data);
                                         }
 
-                                        if(buyingData.buy){
+                                        if(buyingData.buy || buyingData.buy == "true"){
 
                                             /* successfuly card buying and calling func to remath resurces */
 
@@ -1131,7 +1131,7 @@ var interval_update = 5000;
 
                                             /* /successfuly card buying and calling func to remath resurces */
 
-                                        }else if(!buyingData.buy){
+                                        }else{
 
                                             /* error card buying */
 
@@ -1195,7 +1195,7 @@ var interval_update = 5000;
                     },500);
                 }
 
-                $(document).on('click', '.market-status.disabled', function(event) {
+                $(document).on('click', '.market-status.disabled, .market-status.disabled-styles', function(event) {
                     closeAnim($(this));
                 });
 
@@ -1206,7 +1206,7 @@ var interval_update = 5000;
                         function checkedStatusAjax(effectId, chouseParam){
 
                             $.ajax({
-                                url:ajaxurl,
+                                url:ajaxurl, //any json for test
                                 data:{magicEffectId:effectId, chouseEffect:chouseParam},
                                 method:'POST',
                                 success:function(){
@@ -1220,19 +1220,25 @@ var interval_update = 5000;
 
                     /* click on effect status */
 
-                        $(document).on('click', '.market-status:not(.disabled, .pause)', function(event) {
+                        $(document).on('click', '.market-status:not(.disabled, .disabled-styles, .pause)', function(event) {
 
                             var parent = $(this).parents('tr');
                             var effectId = parent.find('.button-plus').attr('data-effect-id');
 
                             if($('.market-status.active').length!==3 && !$(this).is('.active') ){
                                 $(this).addClass('active');
+                                if($('.market-status.active').length == 3){
+                                    $('.market-status:not(.active)').addClass('disabled-styles');
+                                }
                                 $('.market-status').addClass('pause');
 
                                 checkedStatusAjax(effectId, 'add');
 
                             }else if($(this).is('.active')){
                                 $(this).removeClass('active');
+                                if($('.market-status.disabled-styles').length){
+                                    $('.market-status.disabled-styles').removeClass('disabled-styles');
+                                }
                                 $('.market-status').addClass('pause');
 
                                 checkedStatusAjax(effectId, 'remove');
@@ -1283,7 +1289,7 @@ var interval_update = 5000;
 
                     });
 
-                    /* refuse buying */
+                    /* refuse buying effect */
 
                         $(document).on('click', '.denie-buy a', function(e){
 
@@ -1293,21 +1299,19 @@ var interval_update = 5000;
 
                         });
 
-                    /* refuse buying */
+                    /* refuse buying effect */
 
-                    /* confirm buying */
+                    /* confirm buying effect */
 
                         $(document).on('click','.confirm-buy a',function(e){
 
                             e.preventDefault();
 
-                            var userId = 0; //here must be user id
-
                             $('.buy_effect').addClass('loading');
 
                             $.ajax({
-                                url:ajaxurl, //market_effect_buying_true.json //'js/json/market_effect_buying_false.json'
-                                data:{action:'market_effect_buing', userId:userId, itemId:effectId},
+                                url:ajaxurl, //js/json/market_effect_buying_false.json //js/json/market_effect_buying_true.json
+                                data:{action:'market_effect_buing', itemId:effectId},
                                 method:'POST',
                                 success:function(data){
 
@@ -1356,7 +1360,7 @@ var interval_update = 5000;
 
                         });
 
-                    /* /confirm buying */
+                    /* /confirm buying effect */
 
                 }
 
@@ -1406,11 +1410,9 @@ var interval_update = 5000;
 
         if($('.user').length){
 
-            var userId = 0; // here must be user Id
-
             $.ajax({
                 url:ajaxurl, //'js/json/user_race.json'
-                data:{action:'what_user_race', userId:userId},
+                data:{action:'what_user_race'},
                 method:'POST',
                 success:function(data){
 

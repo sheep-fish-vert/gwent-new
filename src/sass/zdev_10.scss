@@ -176,8 +176,10 @@
                             &:after,&:before{background-color: #d7cf67;width: 16px;left: 70%;box-shadow:0px 0px 6px 0px #7a9246;}
                             &:before{left: 31%;width: 10px;top: 62%;}
                         }
-                        &.disabled span{
-                            &:after,&:before{background-color: grey;box-shadow:0px 0px 6px 0px grey;}
+                        &.disabled, &.disabled-styles{
+                            span{
+                                &:after,&:before{background-color: grey;box-shadow:0px 0px 6px 0px grey;}
+                            }
                         }
                         &.pause{opacity: 0;}
                         &.disable-anim span{animation-play-state: running;}
