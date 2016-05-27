@@ -736,68 +736,80 @@ var interval_update = 5000;
 
         // callback on gold buying submit
 
-        function validateGoldBuying(form){
+            function validateGoldBuying(form){
 
-            var thisForm = $(form);
-            var formSur = thisForm.serialize();
+                var thisForm = $(form);
+                var formSur = thisForm.serialize();
 
-            $.ajax({
-                url:ajaxurl, //'js/json/buy_gold_page_path.json'
-                data:{action:'buy_gold', formData:formSur},
-                method:'POST',
-                success:function(data){
+                $.ajax({
+                    url:ajaxurl, //'js/json/buy_gold_page_path.json'
+                    data:{action:'buy_gold', formData:formSur},
+                    method:'POST',
+                    success:function(data){
 
-                    window.location.pathname = data.path;
+                        if(typeof data == 'object'){
+                            var goldHrefData = data;
+                        }else{
+                            var goldHrefData = JSON.parse(data);
+                        }
 
-                }
-            })
+                        window.location.pathname = goldHrefData.path;
 
-        }
+                    }
+                })
+
+            }
 
         // /callback on gold buying submit
 
         // validate on gold buying form
 
-        validate('.buy-gold-form', {submitFunction:validateGoldBuying});
+            validate('.buy-gold-form', {submitFunction:validateGoldBuying});
 
         // /validate on gold buying form
 
         // callback on silver buying form
 
-        function validateSilverBuying(form){
+            function validateSilverBuying(form){
 
-            var thisForm = $(form);
-            var formSur = thisForm.serialize();
+                var thisForm = $(form);
+                var formSur = thisForm.serialize();
 
-            $.ajax({
-                url: ajaxurl, //exchange_silver_error.json //js/json/exchange_silver_error.json
-                data:{action:'exchange_gold_to_silver', formData:formSur},
-                method:'POST',
-                success:function(data){
+                $.ajax({
+                    url: ajaxurl, //exchange_silver_error.json //js/json/exchange_silver_error.json
+                    data:{action:'exchange_gold_to_silver', formData:formSur},
+                    method:'POST',
+                    success:function(data){
 
-                    if(data.change == 0){
+                        if(typeof data == 'object'){
+                            var buyingSilverData = data;
+                        }else{
+                            var buyingSilverData = JSON.parse(data);
+                        }
 
-                        popupCalling('exchange_error_gold', "exchange-error-wrap", thisForm);
+                        if(data.change == 0){
 
-                    }else if(data.change == 1){
+                            popupCalling('exchange_error_gold', "exchange-error-wrap", thisForm);
 
-                        $('.header-box .resurses .gold').text(data.gold_count);
-                        $('.header-box .resurses .silver').text(data.silver_count);
+                        }else if(data.change == 1){
 
-                        $.fancybox.close();
+                            $('.header-box .resurses .gold').text(data.gold_count);
+                            $('.header-box .resurses .silver').text(data.silver_count);
+
+                            $.fancybox.close();
+
+                        }
 
                     }
+                });
 
-                }
-            });
-
-        }
+            }
 
         // /callback on silver buying form
 
         // validate on silver buying
 
-        validate('.buy-silver-form', {submitFunction:validateSilverBuying});
+            validate('.buy-silver-form', {submitFunction:validateSilverBuying});
 
         // /validate on silver buying
 
@@ -813,11 +825,18 @@ var interval_update = 5000;
                     data:{action:'energy_exchange', valueType:type, energyCount:energyCount},
                     method:'POST',
                     success:function(data){
-                        if(data.change == 0){
+
+                        if(typeof data == 'object'){
+                            var buyingEnergyData = data;
+                        }else{
+                            var buyingEnergyData = JSON.parse(data);
+                        }
+
+                        if(buyingEnergyData.change == 0){
 
                             popupCalling('exchange_error_'+type, "exchange-error-wrap");
 
-                        }else if(data.change == 1){
+                        }else if(buyingEnergyData.change == 1){
 
                             $('.header-box .lighting').text(data.energy);
                             $('.header-box .'+type).text(data[type]);
@@ -1433,9 +1452,10 @@ var interval_update = 5000;
 
 /* user race */
 
-/*buy-gold-page*/
+/* buy-gold-page */
 
     function buyGoldInput(item){
+
         var input = item;
         var coef = input.data('coef');
         var valueHolder = $('#gold-page-price');
@@ -1443,38 +1463,58 @@ var interval_update = 5000;
         var newVal = (value * coef).toFixed(2);
 
         valueHolder.text(newVal);
+
     }
 
     function buyGoldAjax(){
+
         $('.gold-page-pay').on('click', function(event) {
+
             event.preventDefault();
 
-            var valueHolder = +($('#gold-page-price'));
+            var valueHolder = $('.buy-gold-page-item-counter input').val();
 
             $.ajax({
-                url:'js/json/buyGoldAjax_succes.json',//'http://gwent.sheep.fish/wp-admin/admin-ajax.php'
-                data:{action:'buyGoldAjax', formData:valueHolder},
+                url:'js/json/buyGoldAjax_succes.json',  // ajaxurl  // js/json/buyGoldAjax_error.json
+                data:{action:'buyGoldAjax', goldValueBuying:valueHolder},
                 method:'POST',
                 success:function(data){
 
-                    if ( data.answer == 1 ){
-                        $.fancybox.open(data.text_succes+" "+data.gold+" золота.",{
-                            'closeBtn': false,
-                            wrapCSS: "call-popup",
-                            'showCloseButton':false,
-                            autoSize: true
-                        })
+                    if(typeof data == 'object'){
+                        var goldExcahangeData = data;
+                    }else{
+                        var goldExcahangeData = JSON.parse(data);
+                    }
 
-                    }else if( data.answer == 0 ){
+                    if(goldExcahangeData.answer == 1){
+
+                        howMuchResursesAjax();
 
                     }
 
+                    $.fancybox.open(goldExcahangeData.buy_gold_message,{
+                        'closeBtn': false,
+                        wrapCSS: "call-popup-gold",
+                        'showCloseButton':false,
+                        autoSize: true,
+                        fitToView:true,
+                        'helpers': {
+                            'overlay':{'closeClick':false}
+                        }
+                    });
+
+                    setTimeout(function(){
+                        $.fancybox.close();
+                    }, 2000);
+
                 }
-            })
+            });
+
         });
+
     }
 
-/*/buy-gold-page*/
+/* /buy-gold-page */
 
 // call scripts call scripts call scripts call scripts call scripts call scripts call scripts call scripts call scripts
 
