@@ -2,55 +2,55 @@
 
 /*header*/
 /*left-menu*/
-.left-menu-wrapping{padding-top: 20px;
-    .left-menu{background: url('../images/left-menu-bg.jpg') center center no-repeat;background-size: 100% 100%;position: relative;border-right:18px solid #4f4f51;border-image: url('../images/left-menu-border-right.png') 18 round round;-webkit-border-image: url('../images/left-menu-border-right.png') 18 round round;-moz-border-image: url('../images/left-menu-border-right.png') 18 round round;min-height: calc(100vh - 186px);
-        &:after{width: 24px;height: 22px;content: "";position: absolute;top: -19px;right: -22px;background: url('../images/left-menu-top-plachka.png') center center no-repeat;}
+    .left-menu-wrapping{padding-top: 20px;
+        .left-menu{background: url('../images/left-menu-bg.jpg') center center no-repeat;background-size: 100% 100%;position: relative;border-right:18px solid #4f4f51;border-image: url('../images/left-menu-border-right.png') 18 round round;-webkit-border-image: url('../images/left-menu-border-right.png') 18 round round;-moz-border-image: url('../images/left-menu-border-right.png') 18 round round;min-height: calc(100vh - 186px);
+            &:after{width: 24px;height: 22px;content: "";position: absolute;top: -19px;right: -22px;background: url('../images/left-menu-top-plachka.png') center center no-repeat;}
 
-        .left-menu-img{text-align: center;padding-top: 20px;
-            img{display: inline-block;}
-        }
-        .nav-item{text-align: center;background-color: rgba(0, 0, 0, 0.40);max-height: 54px;position: relative;width: 100%;z-index: 2;
-            &:hover,&.active{background-color: inherit;background-image: url(../images/left-menu-item-bg-hover.png);background-repeat: repeat-x;background-position: 100%;transition:left ease-out .3s;
-                a{color: #ecbd53;}
-                 &>.nav-item-two{left: 100%;opacity: 1;}
+            .left-menu-img{text-align: center;padding-top: 20px;
+                img{display: inline-block;}
             }
-            &.disabled{
-                &:hover{
-                    background-color: rgba(0, 0, 0, 0.40);background-image: none;
+            .nav-item{text-align: center;background-color: rgba(0, 0, 0, 0.40);max-height: 54px;position: relative;width: 100%;z-index: 2;
+                &:hover,&.active{background-color: inherit;background-image: url(../images/left-menu-item-bg-hover.png);background-repeat: repeat-x;background-position: 100%;transition:left ease-out .3s;
+                    a{color: #ecbd53;}
+                     &>.nav-item-two{left: 100%;opacity: 1;}
                 }
-                a{color: #ababab;}
-                .nav-item-wrap{background: url('../images/left-menu-item-border-bg-disabled.png') center center no-repeat;background-size: 100% 100%;}
-            }
-            a{display: block;text-decoration: none;color: #fff6d7;font-size: 14px;font-family: 'indisplay',sans-serif;}
-            .nav-item-wrap{padding: 17px 0px;display: block;background: url('../images/left-menu-item-border-bg.png') center center no-repeat;background-size: 100% 100%;
-                span{}
-            }
-            /**/
-            .nav-item-two{position: absolute;left: -110%;top: 0;z-index: 1;width: 100%;transition:left ease-out .3s;opacity: 0;transition:opacity ease-out .4s;
-                .nav-item:hover{
-                    .nav-item-three{left: 100%;z-index: 1;opacity: 1}
+                &.disabled{
+                    &:hover{
+                        background-color: rgba(0, 0, 0, 0.40);background-image: none;
+                    }
+                    a{color: #ababab;}
+                    .nav-item-wrap{background: url('../images/left-menu-item-border-bg-disabled.png') center center no-repeat;background-size: 100% 100%;}
                 }
-            }
-            .nav-item-two_wrap{padding-left: 18px;}
-            /**/
-            .nav-item-three{position: absolute;top: 0;left: -220%;max-width: 267px !important;width: 100%;transition:left ease-out .3s;z-index: -1;opacity: 0;transition:opacity ease-out .4s;
-                .nav-item{z-index: 1;}
+                a{display: block;text-decoration: none;color: #fff6d7;font-size: 14px;font-family: 'indisplay',sans-serif;}
+                .nav-item-wrap{padding: 17px 0px;display: block;background: url('../images/left-menu-item-border-bg.png') center center no-repeat;background-size: 100% 100%;
+                    span{}
+                }
+                /**/
+                .nav-item-two{position: absolute;left: -110%;top: 0;z-index: 1;width: 100%;transition:left ease-out .3s;opacity: 0;transition:opacity ease-out .4s;
+                    .nav-item:hover{
+                        .nav-item-three{left: 100%;z-index: 1;opacity: 1}
+                    }
+                }
+                .nav-item-two_wrap{padding-left: 18px;}
+                /**/
+                .nav-item-three{position: absolute;top: 0;left: -220%;max-width: 267px !important;width: 100%;transition:left ease-out .3s;z-index: -1;opacity: 0;transition:opacity ease-out .4s;
+                    .nav-item{z-index: 1;}
+                }
             }
         }
     }
-}
-.left-menu-bottom{/*padding-bottom: 77px;*/}
+    .left-menu-bottom{/*padding-bottom: 77px;*/}
 /*/left-menu*/
 
-.content-top-wrap{
-    .dragon-image{
-        .dragon-middle-wrap{float: right;width: 82%;position: relative;}
-        .dragon-middle{ position: absolute;top: -119px;left: 50%;transform: translateX(-50%);
-            img{max-width: inherit;}
+    .content-top-wrap{
+        .dragon-image{
+            .dragon-middle-wrap{float: right;width: 82%;position: relative;}
+            .dragon-middle{ position: absolute;top: -119px;left: 50%;transform: translateX(-50%);
+                img{max-width: inherit;}
+            }
         }
+        .tabulate-image{background-image:url( "../images/header_border.png");height: 12px;}
     }
-    .tabulate-image{background-image:url( "../images/header_border.png");height: 12px;}
-}
 /*content-top*/
 
 /*/content-top*/
@@ -280,7 +280,7 @@
 /*/training page*/
 
 /*buy-gold-page*/
-.buy-gold-page{height: calc(100% - 170px);border-image: url(../images/border-index.png) 12 fill round;background: url("../images/content-card-wrap-main-bg.jpg") center center;background-size: 100% 100%;border-style: solid;border-width: 12px;position: relative;
+.buy-gold-page{position:absolute;right: 1%;height: calc(100% - 170px);border-image: url(../images/border-index.png) 12 fill round;background: url("../images/content-card-wrap-main-bg.jpg") center center;background-size: 100% 100%;border-style: solid;border-width: 12px;
     .buy-gold-page-item{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);padding: 15px 20px;background-color: #fff;text-align: center;}
 
     .jq-number__field input{
