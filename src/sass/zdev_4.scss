@@ -63,9 +63,9 @@
             .content-card-description-wrap{padding: 9px 15px;}
         }
     }
-    .content-card-left{float: left;width: 42%;}
-    .content-card-right{float: left;width: 42%;}
-    .content-card-field-center{float: left;width: 16%;border-style: solid;margin-top: -37px;border-width: 38px 56px;-moz-border-image: url(../images/content-card-field-center-border.png) 38 56 round;-webkit-border-image: url(../images/content-card-field-center-border.png) 38 56 round;-o-border-image: url(../images/content-card-field-center-border.png) 38 56 round;border-image: url(../images/content-card-field-center-border.png) 38 56 fill round;}
+    .content-card-left , .content-card-right{float: left;width: calc((100% - 246px) / 2);}
+
+    .content-card-field-center{float: left;width: 246px;border-style: solid;margin-top: -37px;border-width: 38px 56px;-moz-border-image: url(../images/content-card-field-center-border.png) 38 56 round;-webkit-border-image: url(../images/content-card-field-center-border.png) 38 56 round;-o-border-image: url(../images/content-card-field-center-border.png) 38 56 round;border-image: url(../images/content-card-field-center-border.png) 38 56 fill round;}
 
     .content-card-field-center-wrap{margin: -1px -20px -11px;text-align: center;font-size: 17px;color: #d8ac4a;font-family: 'indisplay',sans-serif;min-height: 662px;background: url(../images/content-card-field-center-wrap-bg.jpg) center center no-repeat;background-size: cover;}
     .content-card-center-title{padding: 9px 4px;background: url('../images/content-card-field-center-wrap-bg-top.jpg') center center no-repeat;background-size: 100% 100%;}

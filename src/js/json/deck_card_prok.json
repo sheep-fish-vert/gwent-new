@@ -6,7 +6,7 @@
         {
             "imageSrc":"images/cart-open-img-1.jpg",
             "lider":"yellow",
-            "cardFraction":"knights",
+            "cardFraction":"cursed",
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
@@ -15,7 +15,7 @@
                 "heal"
             ],
             "cardName":"Инокентий Бест",
-            "cardRace":"images/logo-knights.png",
+            "cardRace":"images/logo-cursed.png",
             "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
             "cards_count":1,
             "cardId":4
@@ -23,7 +23,7 @@
         {
             "imageSrc":"images/cart-open-img-1.jpg",
             "lider":"yellow",
-            "cardFraction":"knights",
+            "cardFraction":"cursed",
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
@@ -32,14 +32,14 @@
                 "heal"
             ],
             "cardName":"Инокентий Бест",
-            "cardRace":"images/logo-knights.png",
+            "cardRace":"images/logo-cursed.png",
             "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
             "cards_count":2,
             "cardId":5
         },
         {
             "imageSrc":"images/cart-open-img-1.jpg",
-            "cardFraction":"knights",
+            "cardFraction":"cursed",
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
@@ -48,7 +48,7 @@
                 "heal"
             ],
             "cardName":"Инокентий Бест",
-            "cardRace":"images/logo-knights.png",
+            "cardRace":"images/logo-cursed.png",
             "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
             "cards_count":2,
             "cardId":5
