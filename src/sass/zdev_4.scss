@@ -130,8 +130,6 @@
         .left-menu{height: 100%;}
     }
     .left-menu-wrapping .left-menu:after{top: -21px;}
-
-
 }
 
 /*/main page*/
@@ -297,3 +295,79 @@
     }
 
 /*/buy-gold-page*/
+
+
+/* rating page*/
+.rating-page{
+    .content-card-wrap-main{height: 100%;min-height: 785px;background:transparent url('../images/rating-page-bg.png') center center no-repeat;background-size: cover;padding: 15px 25px;}
+
+    .rating-title{text-transform: uppercase;font-size: 21px;color: #fdcc85;margin-bottom: 30px;}
+    .rating-table-title-tab{display: flex;width: 100%;font-weight: bold;color: #868686;font-size: 14px;margin-bottom: 25px;
+        .item{width: 123px; line-height: 1.429;
+            span{cursor: pointer;
+                &::selection{display: none;}
+            }
+            &.active{color: rgba(195, 93, 6, 0.95);text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.53);}
+        }
+    }
+    .preloader{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 3;transition:opacity ease .2s;opacity: 0;
+        &.active{opacity: 1;}
+    }
+    .jspVerticalBar{width: 28px;background-color: transparent;}
+    .jspTrack{margin-left: 2px;width: 24px;margin-right: 2px;
+        background: rgb(1,1,2);background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAxMDEwMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxNDE0MTQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background: -moz-linear-gradient(left, rgba(1,1,2,1) 0%, rgba(20,20,20,1) 100%);background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(1,1,2,1)), color-stop(100%,rgba(20,20,20,1)));background: -webkit-linear-gradient(left, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);background: -o-linear-gradient(left, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);background: -ms-linear-gradient(left, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);background: linear-gradient(to right, rgba(1,1,2,1) 0%,rgba(20,20,20,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#010102', endColorstr='#141414',GradientType=1 );}
+    .jspArrow{height: 27px;width: 28px;background-image:url(../images/scroll-arrow.png);position: relative;background-position: left bottom;
+        &:after{content: '';display: block;position: relative;width: 100%;height: 100%;background-image:url(../images/scroll-arrow-active.png);left: 0;top: 0;z-index: 1;opacity: 1;transition:opacity 500ms ease;-webkit-transition:opacity 500ms ease;-moz-transition:opacity 500ms ease;-ms-transition:opacity 500ms ease;background-position: left bottom;}
+        &.jspDisabled:after{opacity: 0;}
+        &.jspArrowUp, &.jspArrowUp:after{background-position: left top;}
+    }
+    .jspDrag{background: linear-gradient(to right, #631702 0%,#913203 3%,#d67a0d 37%,#d67a0d 66%,#d65c00 89%,#d68f4f 100%);border-radius: 5px;}
+
+
+    .rating-table-wrap{height: 710px;position: relative;z-index: 2;
+
+    }
+    .rating-table-main{transition:all ease .2s;
+        &.hide{opacity: 0;}
+        .item{position: relative;border:1px solid #000000;
+            &:not(:first-child){display: none;}
+
+            .head{position: absolute;top: 0;left: 0;z-index: 100;width: calc(100% - 28px);
+                .row{border-bottom: 1px solid #000000;background-color: #030303;margin-top: 0;
+                    .number,.players{color: inherit;}
+                    .number:after{display: none;}
+                }
+            }
+            .item-wrap{position: relative;height: 663px;width: 100%;overflow: auto;}
+        }
+
+        .row{display: flex;color: #cacaca;font-size: 13px;font-weight: 200;border-bottom: 1px solid #000000;
+            &:first-child{margin-top: 50px;}
+            &:first-child,&:nth-child(2),&:nth-child(3){background-color: rgba(0,0,0, .43);
+                .number{color: #F5F502;}
+                .number:after{position: absolute;top: 2px;left: 0;background:transparent url('../images/rating-position-1.png') center center no-repeat;content: '';height: 100%;width: 100%;}
+            }
+            &:nth-child(2){
+                .number{color: #ff9535;}
+                .number:after{background:transparent url('../images/rating-position-2.png') center center no-repeat;}
+            }
+            &:nth-child(3){
+                .number{color: #ff9535;}
+                .number:after{background:transparent url('../images/rating-position-3.png') center center no-repeat;}
+            }
+            &:last-child{border-bottom: none;}
+            &>div{height: 50px;display: flex;align-items:center;padding: 0 27px;border-right: 1px solid #000000;}
+            &.current{background-color: rgba(250,147,0,0.20);}
+
+
+            .number{width: 5%;justify-content:center;padding: 0;position: relative;}
+            .players{width: 25%;font-size: 13px;color: #5abd5a;}
+            .battle_number{width: 23%;}
+            .percent_of_wins{width: 23%;}
+            .overall_rating{width: 24%;border-right: none;}
+        }
+    }
+
+}
+/* /rating page*/
+
