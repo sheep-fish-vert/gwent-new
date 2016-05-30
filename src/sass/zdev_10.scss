@@ -56,6 +56,14 @@
 
                     .label-power-card{padding-top:10px;}
 
+                    .hovered-items{
+                        .card-game-status{
+                            .card-game-status-role{
+                                span{display: inline-block;}
+                            }
+                        }
+                    }
+
                 }
                 .card-count{font-size: 14px;color:#fff;padding-top: 5px;}
             }
