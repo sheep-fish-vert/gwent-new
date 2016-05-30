@@ -932,38 +932,37 @@ var interval_update = 5000;
                             /* /in what we market (cards or effer) */
 
                             if(effects){
-                                $.ajax({
-                                    url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
-                                    data:{action:'market_effects_by_fraction', fraction:marketFractionValue},
-                                    success:function(data){
 
-                                        if(typeof data == 'object'){
-                                            var marketData = data;
-                                        }else{
-                                            var marketData = JSON.parse(data);
-                                        }
+                                /* if we in effects market change rase */
 
-                                        /* removing market_effect items */
+                                    $.ajax({
+                                        url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                                        data:{action:'market_effects_by_fraction', fraction:marketFractionValue},
+                                        success:function(data){
 
-                                            $('.main-table tr').remove();
+                                            if(typeof data == 'object'){
+                                                var marketData = data;
+                                            }else{
+                                                var marketData = JSON.parse(data);
+                                            }
 
-                                        /* /removing market_effect items */
+                                            /* removing market_effect items */
 
-                                        var marketDataLength = 0;
+                                                $('.main-table tr').remove();
 
-                                        marketDataLength = marketData.effects.length;
+                                            /* /removing market_effect items */
 
-                                        var marketDataLogo = marketData.logo;
+                                            var marketDataLength = 0;
 
-                                        if(marketDataLogo != 'none'){
-                                            $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
-                                        }else{
-                                           $('.market-selection .select-rase-img').removeClass('active');
-                                        }
+                                            marketDataLength = marketData.effects.length;
 
+                                            var marketDataLogo = marketData.logo;
 
-
-                                        /* if we in effects market change rase */
+                                            if(marketDataLogo != 'none'){
+                                                $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
+                                            }else{
+                                               $('.market-selection .select-rase-img').removeClass('active');
+                                            }
 
                                             var mainTable = $('.main-table');
 
@@ -989,41 +988,43 @@ var interval_update = 5000;
 
                                             });
 
-                                        /* /if we in effects market change rase */
+                                        }
+                                    });
 
-                                    }
-                                });
+                                /* /if we in effects market change rase */
+
                             }else{
-                                $.ajax({
-                                    url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
-                                    data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
-                                    success:function(data){
 
-                                        if(typeof data == 'object'){
-                                            var marketData = data;
-                                        }else{
-                                            var marketData = JSON.parse(data);
-                                        }
+                                /* if we in cards market change rase */
 
-                                        /* removing cards from market */
+                                    $.ajax({
+                                        url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                                        data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
+                                        success:function(data){
 
-                                            $('.market-card-wrap').remove();
+                                            if(typeof data == 'object'){
+                                                var marketData = data;
+                                            }else{
+                                                var marketData = JSON.parse(data);
+                                            }
 
-                                        /* /removing cards from market */
+                                            /* removing cards from market */
 
-                                        var marketDataLength = 0;
+                                                $('.market-card-wrap').remove();
 
-                                        marketDataLength = marketData.cards.length;
+                                            /* /removing cards from market */
 
-                                        var marketDataLogo = marketData.logo;
+                                            var marketDataLength = 0;
 
-                                        if(marketDataLogo != 'none'){
-                                            $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
-                                        }else{
-                                           $('.market-selection .select-rase-img').removeClass('active');
-                                        }
+                                            marketDataLength = marketData.cards.length;
 
-                                        /* if we in cards market change rase */
+                                            var marketDataLogo = marketData.logo;
+
+                                            if(marketDataLogo != 'none'){
+                                                $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
+                                            }else{
+                                               $('.market-selection .select-rase-img').removeClass('active');
+                                            }
 
                                             marketData.cards.forEach(function(item, index){
 
@@ -1085,10 +1086,11 @@ var interval_update = 5000;
 
                                             });
 
-                                        /* /if we in cards market change rase */
+                                        }
+                                    });
 
-                                    }
-                                });
+                                /* /if we in cards market change rase */
+
                             }
 
                         }
