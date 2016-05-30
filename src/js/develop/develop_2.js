@@ -391,10 +391,12 @@ $(window).load(function () {
                     userAvatar = res.imageUrl;
                     userOnline = res.onlineUsers;
                     userEmail = res.userEmail;
+                    userSilverCoof = res.silverCoof;
 
                     $('.user-name').html(userName);
                     $('.user-image img').attr('src', userAvatar);
                     $('.people-box .people').html(userOnline);
+                    $('.buy-silver-form .exchange-value').attr('data-exchange-koof', userSilverCoof);
 
 
                     $('.header-box .convert-resurses .gold').html(res.gold);
