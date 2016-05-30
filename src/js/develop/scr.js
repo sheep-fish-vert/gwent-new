@@ -454,6 +454,18 @@ function cardMoving(){
 
         /* /sortable ajax */
 
+        /* center column values */
+
+            function deckCenterColumn(data){
+
+                $('.deck-card-sum').text(data.column_values.column_sum);
+                $('.deck-warriors').find('.current-value').text(data.column_values.warriors_value.current).end().find('.min-value').text(data.column_values.warriors_value.min);
+
+
+            }
+
+        /* /center column values */
+
         /* change deck race ajax */
 
             function deckChangeRace(raceValue){
@@ -483,6 +495,12 @@ function cardMoving(){
                                 var leftDone = false, rightDone = false;
 
                                 $('.content-card-center-img-wrap img').attr('src', deckRaceChangeData.deck_logo);
+
+                                /* center column values load */
+
+                                    deckCenterColumn(deckRaceChangeData);
+
+                                /* /center column values load */
 
                                 /* deck cards load left */
 
