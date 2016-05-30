@@ -418,6 +418,7 @@ function cardMoving(){
         /* /sortable ui */
 
         var deckOfCards = {}; //object with cards in main deck
+        var leaguePoints = null;
 
         /* sortable ajax */
 
@@ -454,6 +455,16 @@ function cardMoving(){
 
         /* /sortable ajax */
 
+        /* center column values */
+
+            function deckCenterColumnSumValues(){
+
+
+
+            }
+
+        /* /center column values */
+
         /* change deck race ajax */
 
             function deckChangeRace(raceValue){
@@ -483,6 +494,15 @@ function cardMoving(){
                                 var leftDone = false, rightDone = false;
 
                                 $('.content-card-center-img-wrap img').attr('src', deckRaceChangeData.deck_logo);
+
+                                /* center column min values load */
+
+                                    $('.deck-warriors .min-value').text(deckRaceChangeData.centerColumnVal.warrior);
+                                    $('.deck-special .min-value').text(deckRaceChangeData.centerColumnVal.special);
+                                    $('.deck-liders .min-value').text(deckRaceChangeData.centerColumnVal.lider);
+                                    leaguePoints = deckRaceChangeData.centerColumnVal.leaguePoints;
+
+                                /* /center column min values load */
 
                                 /* deck cards load left */
 

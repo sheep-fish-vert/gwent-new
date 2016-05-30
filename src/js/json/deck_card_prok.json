@@ -2,6 +2,13 @@
 
     "deck_logo":"images/logo-cursed.png",
 
+    "centerColumnVal":{
+        "warrior":25,
+        "special":18,
+        "lider":14,
+        "leaguePoints":[50, 51, 100, 101, 130]
+    },
+
     "available_cards":[
         {
             "imageSrc":"images/cart-open-img-1.jpg",

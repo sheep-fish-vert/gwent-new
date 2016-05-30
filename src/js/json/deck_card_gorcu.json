@@ -2,6 +2,13 @@
 
     "deck_logo":"images/logo-highlanders.png",
 
+    "centerColumnVal":{
+        "warrior":20,
+        "special":25,
+        "lider":10,
+        "leaguePoints":[50, 51, 100, 101, 130]
+    }
+
     "deck_cards":[
         {
             "imageSrc":"images/cart-open-img-1.jpg",

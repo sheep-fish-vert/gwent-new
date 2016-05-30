@@ -829,6 +829,8 @@ var interval_update = 5000;
                     method:'POST',
                     success:function(data){
 
+                        console.log(data);
+
                         if(typeof data == 'object'){
                             var buyingEnergyData = data;
                         }else{
@@ -929,48 +931,100 @@ var interval_update = 5000;
 
                             /* /in what we market (cards or effer) */
 
-                            $.ajax({
-                                url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
-                                data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
-                                success:function(data){
+                            if(effects){
 
-                                    if(typeof data == 'object'){
-                                        var marketData = data;
-                                    }else{
-                                        var marketData = JSON.parse(data);
-                                    }
+                                /* if we in effects market change rase */
 
-                                    /* removing cards from market */
+                                    $.ajax({
+                                        url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                                        data:{action:'market_effects_by_fraction', fraction:marketFractionValue},
+                                        success:function(data){
 
-                                        $('.market-card-wrap').remove();
+                                            if(typeof data == 'object'){
+                                                var marketData = data;
+                                            }else{
+                                                var marketData = JSON.parse(data);
+                                            }
 
-                                    /* /removing cards from market */
+                                            /* removing market_effect items */
 
-                                    /* removing market_effect items */
+                                                $('.main-table tr').remove();
 
-                                        $('.main-table tr').remove();
+                                            /* /removing market_effect items */
 
-                                    /* /removing market_effect items */
+                                            var marketDataLength = 0;
 
-                                    var marketDataLength = 0;
+                                            marketDataLength = marketData.effects.length;
 
-                                    if(!effects){
-                                        marketDataLength = marketData.cards.length;
-                                    }else{
-                                        marketDataLength = marketData.effects.length;
-                                    }
+                                            var marketDataLogo = marketData.logo;
 
-                                    var marketDataLogo = marketData.logo;
+                                            if(marketDataLogo != 'none'){
+                                                $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
+                                            }else{
+                                               $('.market-selection .select-rase-img').removeClass('active');
+                                            }
 
-                                    if(marketDataLogo != 'none'){
-                                        $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
-                                    }else{
-                                       $('.market-selection .select-rase-img').removeClass('active');
-                                    }
+                                            var mainTable = $('.main-table');
 
-                                    if(effects == false){
+                                            mainTable.append('<tr><th class="no-border"></th><th></th><th>Название</th><th>Описание</th><th>затраты энергии</th><th colspan="2"><table><tr><th colspan="2">Цена</th></tr><tr><th>Золото</th><th>Серебро</th></tr></table></th><th>Статус</th><th>Дата  окончания</th></tr>');
 
-                                        /* if we in cards market change rase */
+                                            marketData.effects.forEach(function(item, index){
+
+                                                var unactive = '';
+                                                var canBuy = 'canot-buy';
+
+                                                if(!item.status == "false" || !item.status){
+                                                    unactive = "disabled";
+                                                    canBuy = '';
+                                                }
+
+                                                mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus '+canBuy+'" data-count='+item.buy_value+' data-effect-id='+item.effect_id+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap"><div class="market-status '+unactive+'"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
+
+                                                if(index == (marketDataLength - 1)){
+
+                                                    $('.loading').removeClass('loading');
+
+                                                }
+
+                                            });
+
+                                        }
+                                    });
+
+                                /* /if we in effects market change rase */
+
+                            }else{
+
+                                /* if we in cards market change rase */
+
+                                    $.ajax({
+                                        url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                                        data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
+                                        success:function(data){
+
+                                            if(typeof data == 'object'){
+                                                var marketData = data;
+                                            }else{
+                                                var marketData = JSON.parse(data);
+                                            }
+
+                                            /* removing cards from market */
+
+                                                $('.market-card-wrap').remove();
+
+                                            /* /removing cards from market */
+
+                                            var marketDataLength = 0;
+
+                                            marketDataLength = marketData.cards.length;
+
+                                            var marketDataLogo = marketData.logo;
+
+                                            if(marketDataLogo != 'none'){
+                                                $('.market-selection .select-rase-img').addClass('active').find('img').attr('src', marketDataLogo);
+                                            }else{
+                                               $('.market-selection .select-rase-img').removeClass('active');
+                                            }
 
                                             marketData.cards.forEach(function(item, index){
 
@@ -1032,42 +1086,12 @@ var interval_update = 5000;
 
                                             });
 
-                                        /* /if we in cards market change rase */
+                                        }
+                                    });
 
-                                    }else{
+                                /* /if we in cards market change rase */
 
-                                        /* if we in effects market change rase */
-
-                                            var mainTable = $('.main-table');
-
-                                            mainTable.append('<tr><th class="no-border"></th><th></th><th>Название</th><th>Описание</th><th>затраты энергии</th><th colspan="2"><table><tr><th colspan="2">Цена</th></tr><tr><th>Золото</th><th>Серебро</th></tr></table></th><th>Статус</th><th>Дата  окончания</th></tr>');
-
-                                            marketData.effects.forEach(function(item, index){
-
-                                                var unactive = '';
-                                                var canBuy = 'canot-buy';
-
-                                                if(!item.status == "false" || !item.status){
-                                                    unactive = "disabled";
-                                                    canBuy = '';
-                                                }
-
-                                                mainTable.append('<tr><td class="effect-buy no-border"><a href="#" class="button-plus '+canBuy+'" data-count='+item.buy_value+' data-effect-id='+item.effect_id+'></a></td><td class="effect-img"><img src='+item.img+' alt="" /></td><td class="effect-title">'+item.title+'</td><td class="effect-descript">'+item.descript+'</td><td class="energy-effect">'+item.energy_cost+'</td><td class="gold-tableCell">'+item.gold_cost+'</td><td class="silver-tableCell">'+item.silver_cost+'</td><td class="market-status-wrap"><div class="market-status '+unactive+'"><span></span></div></td><td class="effect-date">'+item.ending_date+'</td></tr>');
-
-                                                if(index == (marketDataLength - 1)){
-
-                                                    $('.loading').removeClass('loading');
-
-                                                }
-
-                                            });
-
-                                        /* /if we in effects market change rase */
-
-                                    }
-
-                                }
-                            });
+                            }
 
                         }
 

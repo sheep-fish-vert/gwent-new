@@ -1,3 +1,10 @@
 {
-    "deck_logo":"images/logo-monsters.png"
+    "deck_logo":"images/logo-monsters.png",
+
+    "centerColumnVal":{
+        "warrior":18,
+        "special":16,
+        "lider":15,
+        "leaguePoints":[50, 51, 100, 101, 130]
+    }
 }
