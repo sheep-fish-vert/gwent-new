@@ -52,10 +52,6 @@ function ratingPage(){
         var api = null;
 
         function initScroll(){ // init scroll in table
-            scrollElem.bind('jsp-initialised',function(event, isScrollable){
-                    console.info('123');
-                }
-            );
             scrollElem.jScrollPane({
             contentWidth: '0px',
             showArrows: true,
@@ -75,7 +71,9 @@ function ratingPage(){
         initScroll();
 
         function destroyScroll(){ // destroy scroll in table
-            api.destroy();
+            if( scrollElem.is('.jspScrollable') ) {
+                api.destroy();
+            }
         }
 
 
@@ -87,22 +85,46 @@ function ratingPage(){
             // $('.rating-table-main').addClass('hide');
             // $('.rating-page .preloader').addClass('active');
 
-            console.log('liga ' , liga);
+
             var ratingData;
             $.ajax({
-                url:'js/json/rating_lig.json', //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
-                data:{action:'rating_lig', name_lig:liga},
-                method:'POST',
-                success:function(data){
-                    console.log('start ajax');
-                    if(typeof data == 'object'){
-                        ratingData = data;
-                    }else{
-                        ratingData = JSON.parse(data);
-                    }
-
-                    console.log(ratingData);
+                url:'js/json/rating_lig.json',
+                data:{ action:'rating_lig', name_lig:liga},
+                method: 'POST'
+            }).done(function(data) {
+                console.log( "success" );
+                if(typeof data == 'object'){
+                    ratingData = data;
+                }else{
+                    ratingData = JSON.parse(data);
                 }
+
+                destroyScroll();//destoy scroll
+                $('.rating-table-main-wrap .item-wrap .row').remove();//clear .row
+
+                $('.rating-table-wrap .rating-table-main-wrap .item').attr('data-item', liga);//change the dat-attr
+                var rows = '';
+                var current = '';
+                $.each(ratingData.liga_holder, function(index, item) {
+                     /* iterate through object */
+                     if( typeof item.user != 'undefined'){
+                        current = 'current';
+                     }else{
+                        current = '';
+                     }
+                     rows += "<div class='row "+current+"'><div class='number'>"+item.number+"</div><div class='players'>"+item.players+"</div><div class='battle_number'>"+item.battle_number+"</div><div class='percent_of_wins'>"+item.percent_of_wins+"</div><div class='overall_rating'>"+item.overall_rating+"</div></div>";
+                });
+                console.log('rows'+rows);
+                $('.rating-table-main-wrap .item-wrap').append(rows);
+
+
+
+                //  Проблема - тут не инициализуеться скролл -  я хз
+                //$('.rating-table-main .item.active .item-wrap').jScrollPane();
+
+            })
+            .fail(function() {
+                console.log( "error" );
             });
 
         });
