@@ -1,0 +1,57 @@
+{
+
+    "deck_logo":"images/logo-forest-masters.png",
+
+    "deck_cards":[
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"knights",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-knights.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cards_count":1,
+            "cardId":1
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "lider":"yellow",
+            "cardFraction":"knights",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-knights.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cards_count":1,
+            "cardId":2
+        },
+        {
+            "imageSrc":"images/cart-open-img-1.jpg",
+            "cardFraction":"knights",
+            "cardPower": 8,
+            "cardRole":"bow",
+            "cardAbilities":[
+                "hand",
+                "wind",
+                "heal"
+            ],
+            "cardName":"Инокентий Бест",
+            "cardRace":"images/logo-knights.png",
+            "cardDescription":"Признай свои ошибки и похорони их как следует. Иначе они придут за тобой.",
+            "cards_count":1,
+            "cardId":3
+        }
+    ]
+}
