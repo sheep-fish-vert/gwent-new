@@ -21,9 +21,10 @@ ________________________________________________________________________________
 
     - Покупка серебра (поиск по функции validateSilverBuying)
 
-        data:{action:'exchange_gold_to_silver', formData:formSur}
+        data:{action:'exchange_gold_to_silver', formData:goldCountExchange}
 
-            где: formSur - данные формы (количество золота за серебро)
+            где: goldCountExchange - данные формы (количество золота за серебро).
+
 
         получаю:
 

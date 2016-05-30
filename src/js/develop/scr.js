@@ -233,8 +233,9 @@ function cardOpenFancybox(){
 
             	$('.cart-open').html(itemHtml).find('.card-popup').removeClass('card-popup'); //reaquired to remove
 
-                var cardRice = $('.cart-open .content-card-item-main').data('race');
-                $('.cart-open').addClass(cardRice);
+                var cardRace = $('.cart-open .content-card-item-main').attr('data-race');
+
+                $('.cart-open').addClass(cardRace);
 
             	$('.cart-open .block-text-describe-wrap').jScrollPane({
 			        contentWidth: '0px',
@@ -388,7 +389,238 @@ function cardMoving(){
 
 // /artem help (card moving to prevent field)
 
+/* sortable cards on deck */
 
+    function sortableScripts(){
+
+        /* sortable ui */
+
+        $("#sortableOne").sortable({
+            forcePlaceholderSize: true,
+            receive: function (event, ui){
+
+                sortableAjax($(ui.item).attr("card-id"), 'add');
+
+            },
+            stop: function (event, ui){}
+        });
+
+        $("#sortableTwo").sortable({
+            forcePlaceholderSize: true,
+            receive: function (event, ui){
+
+                sortableAjax($(ui.item).attr("card-id"), 'remove');
+
+            },
+            stop: function (event, ui){}
+        });
+
+        /* /sortable ui */
+
+        var deckOfCards = {}; //object with cards in main deck
+
+        /* sortable ajax */
+
+            function sortableAjax(cardId, operation){
+
+                if(operation == "add"){
+                    if(cardId in deckOfCards){
+                        deckOfCards[cardId] = deckOfCards[cardId] + 1;
+                    }else{
+                        deckOfCards[cardId] = 1;
+                    }
+                }else if (operation == "remove"){
+                    if(deckOfCards[cardId] == 1){
+                        delete deckOfCards[cardId];
+                    }else{
+                        deckOfCards[cardId] = deckOfCards[cardId] - 1;
+                    }
+                }
+
+                $.ajax({
+                    url:'js/json/login_false.json', //ajaxurl
+                    data:{action:'deck_sortable', cardForGame:deckOfCards},
+                    method:'POST',
+                    success:function(data){
+
+
+
+                    }
+                });
+
+                console.log(deckOfCards);
+
+            }
+
+        /* /sortable ajax */
+
+        /* change deck race ajax */
+
+            function deckChangeRace(raceValue){
+
+                if($('.content-card-field').length){
+
+                    $('.content-card-wrap-main').addClass('loading');
+
+                    setTimeout(function(){
+
+                        $.ajax({
+                            url:'js/json/deck_card_'+raceValue+'.json',  // ajaxurl
+                            data:{action:'load_deck_cards',deckRace:raceValue},
+                            method:'POST',
+                            success:function(data){
+
+                                deckOfCards = {}; // reset deck of cards
+
+                                if(typeof data == 'object'){
+                                    var deckRaceChangeData = data;
+                                }else{
+                                    var deckRaceChangeData = JSON.parse(data);
+                                }
+
+                                $('.connected-sortable li').remove();
+
+                                var leftDone = false, rightDone = false;
+
+                                $('.content-card-center-img-wrap img').attr('src', deckRaceChangeData.deck_logo);
+
+                                /* deck cards load left */
+
+                                    if(typeof deckRaceChangeData.deck_cards != 'undefined'){
+
+                                        var cardsLengthLeft = deckRaceChangeData.deck_cards.length;
+
+                                        deckRaceChangeData.deck_cards.forEach(function(item, index){
+
+                                            /* adding items to deckOfCards object */
+
+                                                if(item.cardId in deckOfCards){
+                                                    deckOfCards[item.cardId] = deckOfCards[item.cardId] + 1;
+                                                }else{
+                                                    deckOfCards[item.cardId] = 1;
+                                                }
+
+                                            /* /adding items to deckOfCards object */
+
+                                            var liderLeft = '';
+                                            if(typeof item.lider != 'undefined'){
+                                                liderLeft = item.lider;
+                                            }
+
+                                            var abilitiesRowLeft = '';
+                                            item.cardAbilities.forEach(function(itemTwoLeft, indexTwoLeft){
+                                                abilitiesRowLeft = abilitiesRowLeft + '<span class="' + itemTwoLeft + '"></span>';
+                                            });
+
+                                            var cardRaceImgLeft = '<img src='+$('.user img').attr('src')+' alt="" />';
+                                            if(item.cardRace != 'none'){
+                                                cardRaceImgLeft = '<img src='+item.cardRace+' alt="" />';
+                                            }
+
+                                            $('#sortableOne').prepend('<li class="content-card-item ui-sortable-handle" card-id='+item.cardId+'><div class="deck-card-popup-wrap"><div class="content-card-item-main card-popup '+liderLeft+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role">'+item.cardRole+'</div><div class="card-game-status-wrap">'+abilitiesRowLeft+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgLeft+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
+
+
+                                            if(index == (cardsLengthLeft-1)){
+                                                leftDone = true;
+                                                if(leftDone && rightDone){
+                                                    setTimeout(function(){
+                                                        $('.content-card-wrap-main').removeClass('loading');
+                                                    },300);
+                                                }
+                                            }
+
+                                        });
+
+                                    }else{
+                                        leftDone = true;
+                                        if(leftDone && rightDone){
+                                            setTimeout(function(){
+                                                $('.content-card-wrap-main').removeClass('loading');
+                                            },300);
+                                        }
+                                    }
+
+                                /* /deck cards load left */
+
+                                /* deck cards load right */
+
+                                    if(typeof deckRaceChangeData.available_cards != 'undefined'){
+
+                                        var cardsLengthRight = deckRaceChangeData.available_cards.length;
+
+                                        deckRaceChangeData.available_cards.forEach(function(item, index){
+
+                                            var liderRight = '';
+                                            if(typeof item.lider != 'undefined'){
+                                                liderRight = item.lider;
+                                            }
+
+                                            var abilitiesRowRight = '';
+                                            item.cardAbilities.forEach(function(itemTwoRight, indexTwoRight){
+                                                abilitiesRowRight = abilitiesRowRight + '<span class="' + itemTwoRight + '"></span>';
+                                            });
+
+                                            var cardRaceImgRight = '<img src='+$('.user img').attr('src')+' alt="" />';
+                                            if(item.cardRace != 'none'){
+                                                cardRaceImgRight = '<img src='+item.cardRace+' alt="" />';
+                                            }
+
+                                            $('#sortableTwo').prepend('<li class="content-card-item ui-sortable-handle" card-id='+item.cardId+'><div class="content-card-item-main card-popup '+liderRight+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role">'+item.cardRole+'</div><div class="card-game-status-wrap">'+abilitiesRowRight+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgRight+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
+
+                                            if(index == (cardsLengthRight-1)){
+                                                rightDone = true;
+                                                if(leftDone && rightDone){
+                                                    setTimeout(function(){
+                                                        $('.content-card-wrap-main').removeClass('loading');
+                                                    },300);
+                                                }
+                                            }
+
+                                        });
+
+                                    }else{
+                                        rightDone = true;
+                                        if(leftDone && rightDone){
+                                            setTimeout(function(){
+                                                $('.content-card-wrap-main').removeClass('loading');
+                                            },300);
+                                        }
+                                    }
+
+                                /* /deck cards load right */
+
+                                /* if user don't have cards of this race */
+
+                                    if(typeof deckRaceChangeData.deck_cards == 'undefined' && typeof deckRaceChangeData.available_cards == 'undefined'){
+                                        setTimeout(function(){
+                                            $('.content-card-wrap-main').removeClass('loading');
+                                        }, 300);
+                                    }
+
+                                /* /if user don't have cards of this race */
+
+                            }
+                        });
+
+                    }, 300);
+
+                }
+
+            }
+
+        /* /change deck race ajax */
+
+        deckChangeRace($('.content-card-select-wrap select').val());
+
+        $('.content-card-select-wrap select').change(function(){
+
+            deckChangeRace($('.content-card-select-wrap select').val());
+
+        });
+
+    }
+
+/* /sortable cards on deck */
 
 
 /* DOCUMENT READY  */
@@ -410,6 +642,8 @@ $(document).ready(function() {
     buyMorePopup();
 
     inputNumber('.num-only');
+
+    sortableScripts();
 
 });
 

@@ -47,7 +47,7 @@ function validate(form, options) {
                 if (typeof (setings.submitFunction) === 'function') {
                     setings.submitFunction(form);
                 } else {
-                    $form.submit();
+                    $form[0].submit();
                 }
             }
         });
@@ -731,7 +731,14 @@ var interval_update = 5000;
             autoSize:true,
             fitToView:true,
             padding:0,
-            wrapCSS:'fancybox-buy-more'
+            wrapCSS:'fancybox-buy-more',
+            beforeLoad:function(){
+                if($('.buy-popup').is('#buy-silver')){
+
+                    buyingSilver($('.buy-silver-form input'));
+
+                }
+            }
         });
 
         // callback on gold buying submit
@@ -745,15 +752,9 @@ var interval_update = 5000;
                     url:ajaxurl, //'js/json/buy_gold_page_path.json'
                     data:{action:'buy_gold', formData:formSur},
                     method:'POST',
-                    success:function(data){
+                    success:function(){
 
-                        if(typeof data == 'object'){
-                            var goldHrefData = data;
-                        }else{
-                            var goldHrefData = JSON.parse(data);
-                        }
-
-                        window.location.pathname = goldHrefData.path;
+                        window.location.pathname = 'buy_gold.html';
 
                     }
                 })
@@ -773,11 +774,11 @@ var interval_update = 5000;
             function validateSilverBuying(form){
 
                 var thisForm = $(form);
-                var formSur = thisForm.serialize();
+                var goldCountExchange = thisForm.find('input[name="buy_silver"]').val();
 
                 $.ajax({
                     url: ajaxurl, //exchange_silver_error.json //js/json/exchange_silver_error.json
-                    data:{action:'exchange_gold_to_silver', formData:formSur},
+                    data:{action:'exchange_gold_to_silver', formData:goldCountExchange},
                     method:'POST',
                     success:function(data){
 
@@ -787,14 +788,16 @@ var interval_update = 5000;
                             var buyingSilverData = JSON.parse(data);
                         }
 
-                        if(data.change == 0){
+                        console.log(buyingSilverData);
+
+                        if(buyingSilverData.change == 0){
 
                             popupCalling('exchange_error_gold', "exchange-error-wrap", thisForm);
 
-                        }else if(data.change == 1){
+                        }else if(buyingSilverData.change == 1){
 
-                            $('.header-box .resurses .gold').text(data.gold_count);
-                            $('.header-box .resurses .silver').text(data.silver_count);
+                            $('.header-box .resurses .gold').text(buyingSilverData.gold_count);
+                            $('.header-box .resurses .silver').text(buyingSilverData.silver_count);
 
                             $.fancybox.close();
 
@@ -838,8 +841,8 @@ var interval_update = 5000;
 
                         }else if(buyingEnergyData.change == 1){
 
-                            $('.header-box .lighting').text(data.energy);
-                            $('.header-box .'+type).text(data[type]);
+                            $('.header-box .lighting').text(buyingEnergyData.energy);
+                            $('.header-box .'+type).text(buyingEnergyData[type]);
 
                             $.fancybox.close();
 
@@ -887,7 +890,7 @@ var interval_update = 5000;
 
             var inputVal = parseInt(item.val());
             var textBlockRadion = item.parents('.form-row').find('.exchange-value');
-            var countBlockCoof = textBlockRadion.data('exchange-koof');
+            var countBlockCoof = textBlockRadion.attr('data-exchange-koof');
 
             var silverCount = inputVal * countBlockCoof;
 
@@ -1618,6 +1621,12 @@ $(document).ready(function () {
     marketScripts();
 
     userRace();
+
+});
+
+$(window).load(function(){
+
+
 
 });
 

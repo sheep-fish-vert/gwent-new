@@ -24,8 +24,6 @@ function draggableCards() {
 
 $(window).load(function () {
 
-
-
     initScrollpane();
     draggableCards();
     underDragCardFix();
@@ -465,6 +463,7 @@ $(document).ready(function () {
 
     });
     */
+    /*
     $("#sortableOne").sortable({
         forcePlaceholderSize: true,
         receive: function (event, ui) {
@@ -507,6 +506,7 @@ $(document).ready(function () {
         },
         stop: function (event, ui) { }
     });
+    */
 
     /*$('.market-card-item-buy').click(function () {
         fancyScriptforBye('#call_success');
