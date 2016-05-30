@@ -40,14 +40,86 @@ function marketSelection(){
             $('.selection-rase .jq-selectbox__dropdown').show();
             setTimeout(function(){
                 $('.selection-rase .jq-selectbox').addClass('opened');
-            },200)
+            },200);
         });
     }
 }
 
+/*rating page*/
+function ratingPage(){
+    if( $('.rating-page').length ) {
+        var scrollElem = $('.rating-table-main .item.active .item-wrap');
+        var api = null;
+
+        function initScroll(){ // init scroll in table
+            scrollElem.bind('jsp-initialised',function(event, isScrollable){
+                    console.info('123');
+                }
+            );
+            scrollElem.jScrollPane({
+            contentWidth: '0px',
+            showArrows: true,
+            //autoReinitialise: true
+            });
+            api = scrollElem.data('jsp');
+
+            if ( $('.rating-table-main-wrap .row.current').length > 0){ // add position user to => center
+                var top = $('.rating-table-main-wrap .row.current').position().top;
+                var containerHeight = $('.jspContainer').outerHeight();
+
+                api.scrollBy(0,top-containerHeight/2);
+                return false;
+            }
+
+        }
+        initScroll();
+
+        function destroyScroll(){ // destroy scroll in table
+            api.destroy();
+        }
+
+
+        $(document).on('click', '.rating-table-title-tab .item', function(event) {
+            event.preventDefault();
+            var liga = parseInt($(this).data('item'));
+
+            // $('.rating-table-title-tab .item').removeClass('active');
+            // $('.rating-table-main').addClass('hide');
+            // $('.rating-page .preloader').addClass('active');
+
+            console.log('liga ' , liga);
+            var ratingData;
+            $.ajax({
+                url:'js/json/rating_lig.json', //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                data:{action:'rating_lig', name_lig:liga},
+                method:'POST',
+                success:function(data){
+                    console.log('start ajax');
+                    if(typeof data == 'object'){
+                        ratingData = data;
+                    }else{
+                        ratingData = JSON.parse(data);
+                    }
+
+                    console.log(ratingData);
+                }
+            });
+
+        });
+
+    }
+
+}
+/*/rating page*/
+
+
+
+
+
+
 
 $(document).ready(function(){
-
+    ratingPage();
     settingsInputFile();
     marketSelection();
     contentCardSelect();
