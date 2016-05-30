@@ -2,6 +2,13 @@
 
     "deck_logo":"images/logo-forest-masters.png",
 
+    "centerColumnVal":{
+        "warrior":26,
+        "special":22,
+        "lider":8,
+        "leaguePoints":[50, 51, 100, 101, 130]
+    },
+
     "deck_cards":[
         {
             "imageSrc":"images/cart-open-img-1.jpg",

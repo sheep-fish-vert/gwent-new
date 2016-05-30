@@ -392,12 +392,23 @@ $(window).load(function () {
                     userOnline = res.onlineUsers;
                     userEmail = res.userEmail;
                     userSilverCoof = res.silverCoof;
+                    userEnergyCount = res.energyCount;
 
                     $('.user-name').html(userName);
                     $('.user-image img').attr('src', userAvatar);
                     $('.people-box .people').html(userOnline);
                     $('.buy-silver-form .exchange-value').attr('data-exchange-koof', userSilverCoof);
 
+                    $('.exchange-row').each(function(index){
+
+                        $(this).find('.exchange-row-left .exchange-value-energy').text(userEnergyCount[index].energyValue);
+
+                        $(this).find('.exchange-row-right .row-top .exchange-row-value').text(userEnergyCount[index].goldCount);
+                        $(this).find('.exchange-row-right .row-bottom .excahnge-row-value').text(userEnergyCount[index].silverCount);
+
+                        $(this).find('.exchange-row-right .exchange-button-main').attr('data-count', userEnergyCount[index].energyValue);
+
+                    });
 
                     $('.header-box .convert-resurses .gold').html(res.gold);
                     $('.header-box .convert-resurses .silver').html(res.silver);
