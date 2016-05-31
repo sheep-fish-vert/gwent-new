@@ -57,7 +57,7 @@ function ratingPage(){
             showArrows: true,
             //autoReinitialise: true
             });
-            api = scrollElem.data('jsp');
+            api = $('.rating-table-main .item.active .item-wrap').data('jsp');
 
             if ( $('.rating-table-main-wrap .row.current').length > 0){ // add position user to => center
                 var top = $('.rating-table-main-wrap .row.current').position().top;
@@ -71,7 +71,7 @@ function ratingPage(){
         initScroll();
 
         function destroyScroll(){ // destroy scroll in table
-            if( scrollElem.is('.jspScrollable') ) {
+            if( $('.rating-table-main .item.active .item-wrap').is('.jspScrollable') ) {
                 api.destroy();
             }
         }
@@ -80,10 +80,10 @@ function ratingPage(){
         $(document).on('click', '.rating-table-title-tab .item', function(event) {
             event.preventDefault();
             var liga = parseInt($(this).data('item'));
-
-            // $('.rating-table-title-tab .item').removeClass('active');
-            // $('.rating-table-main').addClass('hide');
-            // $('.rating-page .preloader').addClass('active');
+            var that = $(this);
+            $('.rating-table-title-tab .item').removeClass('active');
+            $('.rating-table-main').addClass('hide');
+            $('.rating-page .preloader').addClass('active');
 
 
             var ratingData;
@@ -92,7 +92,6 @@ function ratingPage(){
                 data:{ action:'rating_lig', name_lig:liga},
                 method: 'POST'
             }).done(function(data) {
-                console.log( "success" );
                 if(typeof data == 'object'){
                     ratingData = data;
                 }else{
@@ -114,17 +113,21 @@ function ratingPage(){
                      }
                      rows += "<div class='row "+current+"'><div class='number'>"+item.number+"</div><div class='players'>"+item.players+"</div><div class='battle_number'>"+item.battle_number+"</div><div class='percent_of_wins'>"+item.percent_of_wins+"</div><div class='overall_rating'>"+item.overall_rating+"</div></div>";
                 });
-                console.log('rows'+rows);
-                $('.rating-table-main-wrap .item-wrap').append(rows);
+
+                $('.rating-table-main-wrap .item-wrap').append(rows);//  apend new row in our table-div
 
 
+                $('.rating-table-main .item.active .item-wrap').jScrollPane().data().jsp; // reinint jscrollpane
+                api = $('.rating-table-main .item.active .item-wrap').data('jsp');
 
-                //  Проблема - тут не инициализуеться скролл -  я хз
-                //$('.rating-table-main .item.active .item-wrap').jScrollPane();
-
+                that.addClass('active');
+                $('.rating-table-main').removeClass('hide');
+                $('.rating-page .preloader').removeClass('active');
             })
             .fail(function() {
-                console.log( "error" );
+                alert('Ошибка загрузки данных');
+                $('.rating-table-main').removeClass('hide');
+                $('.rating-page .preloader').removeClass('active');
             });
 
         });

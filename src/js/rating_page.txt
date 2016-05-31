@@ -1,0 +1,29 @@
+Загрузка таблички с рейтингом аяксом на странице rating.html
+
+    - Запрос на смену табов с инфой рейтинга ( поиск ф-ции: " function ratingPage() " )
+
+     data:{ action:'rating_lig', name_lig:liga},
+
+        где liga - число лиг ( например 5 )
+
+получаю json вида ( rating_lig.json ) :
+
+{
+    "liga_holder":[
+        {
+            "number":1,                    <- номер игрока
+            "players":"Николас Пыдфигуру", <- назв игрока
+            "battle_number":"18 000",      <- Кол-во боев
+            "percent_of_wins":"70%",       <- % побед
+            "overall_rating":"2 233"       <- общий ретинг
+        },
+        .....
+        {
+            "number":100,
+            "players":"Николас Пыдфигуру",
+            "battle_number":"18 000",
+            "percent_of_wins":"70%",
+            "overall_rating":"2 233"
+        }
+    ]
+}
