@@ -1028,9 +1028,16 @@ var interval_update = 5000;
 
                                             marketData.cards.forEach(function(item, index){
 
+                                                console.log(item);
+
                                                 var lider = '';
                                                 if(typeof item.lider != 'undefined'){
                                                     lider = item.lider;
+                                                }
+
+                                                var special = '';
+                                                if(typeof item.special != 'undefined'){
+                                                    special = 'special';
                                                 }
 
                                                 var abilitiesRow = '';
@@ -1046,12 +1053,12 @@ var interval_update = 5000;
                                                     cardPriceText = cardPriceText + '<span class="card-gold-price"><img src="images/header_logo_gold.png" alt=""><span class="card-price-value">'+item.cardPrice.gold+'</span></span>';
                                                 }
 
-                                                var cardRaceImg = '<img src='+$('.user img').attr('src')+' alt="" />';
+                                                var cardRaceImg = '';
                                                 if(item.cardRace != 'none'){
                                                     cardRaceImg = '<img src='+item.cardRace+' alt="" />';
                                                 }
 
-                                                $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+lider+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRow+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImg+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
+                                                $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+lider+' '+special+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRow+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImg+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
 
                                                 /* card name one height */
 
@@ -1072,7 +1079,7 @@ var interval_update = 5000;
 
                                                                 /* remove class loading if all items added & their title height calced */
 
-                                                                $('.market-page').removeClass('loading');
+                                                                    $('.market-page').removeClass('loading');
 
                                                                 /* /remove class loading if all items added & their title height calced */
                                                             }

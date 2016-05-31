@@ -459,11 +459,47 @@ function cardMoving(){
 
             function deckCenterColumnSumValues(){
 
+                var cardsLength = $('#sortableOne li').length;
+                var lidersLength = $('#sortableOne .yellow').length;
+                var specialLength = $('#sortableOne .special').length;
 
+                var cardsPower = 0;
+
+                $('#sortableOne .label-power-card-wrap').each(function(){
+                    cardsPower+=parseInt($(this).find('span').text());
+                });
+
+                $('.deck-card-sum, .deck-warriors .current-value').text(cardsLength);
+                $('.deck-liders .current-value').text(lidersLength);
+                $('.deck-special .current-value').text(specialLength);
+                $('.deck-cards-power').text(cardsPower);
+
+                leagueDeck();
 
             }
 
         /* /center column values */
+
+        /* league deck */
+
+            function leagueDeck(){
+
+                var deckPower = parseInt($('.deck-cards-power').text());
+                var playerLeague = leaguePoints.length+1;
+                $('.deck-league').text(playerLeague);
+
+                leaguePoints.forEach(function(leagueValue, leagueIndex){
+                    if(deckPower > leagueValue){
+                        playerLeague-=(leagueIndex+1);
+                        $('.deck-league').text(playerLeague);
+                        return false;
+                    }
+
+                });
+
+            }
+
+        /* /league deck */
 
         /* change deck race ajax */
 
@@ -527,22 +563,30 @@ function cardMoving(){
                                                 liderLeft = item.lider;
                                             }
 
+                                            var specialLeft = '';
+                                            if(typeof item.special != 'undefined'){
+                                                specialLeft = 'special';
+                                            }
+
                                             var abilitiesRowLeft = '';
                                             item.cardAbilities.forEach(function(itemTwoLeft, indexTwoLeft){
                                                 abilitiesRowLeft = abilitiesRowLeft + '<span class="' + itemTwoLeft + '"></span>';
                                             });
 
-                                            var cardRaceImgLeft = '<img src='+$('.user img').attr('src')+' alt="" />';
+                                            var cardRaceImgLeft = '';
                                             if(item.cardRace != 'none'){
                                                 cardRaceImgLeft = '<img src='+item.cardRace+' alt="" />';
                                             }
 
-                                            $('#sortableOne').prepend('<li class="content-card-item ui-sortable-handle" card-id='+item.cardId+'><div class="deck-card-popup-wrap"><div class="content-card-item-main card-popup '+liderLeft+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRowLeft+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgLeft+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
+                                            $('#sortableOne').prepend('<li class="content-card-item ui-sortable-handle" card-id='+item.cardId+'><div class="deck-card-popup-wrap"><div class="content-card-item-main card-popup '+liderLeft+' '+specialLeft+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRowLeft+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgLeft+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
 
 
                                             if(index == (cardsLengthLeft-1)){
                                                 leftDone = true;
                                                 if(leftDone && rightDone){
+
+                                                    deckCenterColumnSumValues();
+
                                                     setTimeout(function(){
                                                         $('.content-card-wrap-main').removeClass('loading');
                                                     },300);
@@ -554,6 +598,9 @@ function cardMoving(){
                                     }else{
                                         leftDone = true;
                                         if(leftDone && rightDone){
+
+                                            deckCenterColumnSumValues();
+
                                             setTimeout(function(){
                                                 $('.content-card-wrap-main').removeClass('loading');
                                             },300);
@@ -590,9 +637,13 @@ function cardMoving(){
                                             if(index == (cardsLengthRight-1)){
                                                 rightDone = true;
                                                 if(leftDone && rightDone){
+
+                                                    deckCenterColumnSumValues();
+
                                                     setTimeout(function(){
                                                         $('.content-card-wrap-main').removeClass('loading');
                                                     },300);
+
                                                 }
                                             }
 
@@ -601,9 +652,13 @@ function cardMoving(){
                                     }else{
                                         rightDone = true;
                                         if(leftDone && rightDone){
+
+                                            deckCenterColumnSumValues();
+
                                             setTimeout(function(){
                                                 $('.content-card-wrap-main').removeClass('loading');
                                             },300);
+
                                         }
                                     }
 
@@ -637,6 +692,43 @@ function cardMoving(){
             deckChangeRace($('.content-card-select-wrap select').val());
 
         });
+
+        /* deck filter */
+
+            function deckFilter(){
+
+                $(document).on('change', '.content-card-center-checkbox input', function(){
+                    if($('.content-card-center-checkbox input:checked').length == 0){
+                        $('.content-card-item').removeClass('hide filter-show');
+                    }else{
+                        $('.content-card-item').addClass('hide');
+                        var toogleType = $(this).attr('data-card-type');
+                        if($(this).is(':checked')){
+                            if(toogleType == 'special'){
+                                $('.content-card-item-main.special').parents('.content-card-item').addClass('filter-show');
+                            }else if(toogleType == 'neutral'){
+                                console.log('s');
+                                $('.content-card-item-main.neutral').parents('.content-card-item').addClass('filter-show');
+                            }else{
+                                $('.content-card-item-main:not(.special, .neutral)').parents('.content-card-item').addClass('filter-show');
+                            }
+                        }else{
+                            if(toogleType == 'special'){
+                                $('.content-card-item-main.special').parents('.content-card-item').removeClass('filter-show');
+                            }else if(toogleType == 'neutral'){
+                                $('.content-card-item-main.neutral').parents('.content-card-item').removeClass('filter-show');
+                            }else{
+                                $('.content-card-item-main:not(.special, .neutral)').parents('.content-card-item').removeClass('filter-show');
+                            }
+                        }
+                    }
+                });
+
+            }
+
+            deckFilter();
+
+        /* /deck filter */
 
     }
 
