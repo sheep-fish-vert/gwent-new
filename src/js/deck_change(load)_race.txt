@@ -33,9 +33,9 @@
                                     "cardPower": 8, - сила карты
                                     "cardRole":"bow", - роль карты (имя класа)
                                     "cardAbilities":[ - способности карты (имена класов спана)
-                                        "hand",
-                                        "wind",
-                                        "heal"
+                                        "ability_1",
+                			"ability_2",
+                			"ability_3"
                                     ],
                                     "cardName":"Инокентий Бест", - тайтл карты
                                     "cardRace":"images/logo-knights.png", - лого карты при описании (нет лого - нет свойства)

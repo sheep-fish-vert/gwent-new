@@ -16,9 +16,9 @@
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
-                "hand",
-                "wind",
-                "heal"
+                "ability_1",
+                "ability_2",
+                "ability_3"
             ],
             "cardName":"Инокентий Бест",
             "cardRace":"images/logo-highlanders.png",
@@ -36,9 +36,9 @@
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
-                "hand",
-                "wind",
-                "heal"
+                "ability_1",
+                "ability_2",
+                "ability_3"
             ],
             "cardName":"Инокентий Бест",
             "cardRace":"images/logo-highlanders.png",
@@ -53,9 +53,9 @@
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
-                "hand",
-                "wind",
-                "heal"
+                "ability_1",
+                "ability_2",
+                "ability_3"
             ],
             "cardName":"Инокентий Бест",
             "cardRace":"images/logo-highlanders.png",
@@ -69,9 +69,9 @@
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
-                "hand",
-                "wind",
-                "heal"
+                "ability_1",
+                "ability_2",
+                "ability_3"
             ],
             "cardName":"Инокентий Бест",
             "cardRace":"images/logo-highlanders.png",
@@ -86,9 +86,9 @@
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
-                "hand",
-                "wind",
-                "heal"
+                "ability_1",
+                "ability_2",
+                "ability_3"
             ],
             "cardName":"Инокентий Бест",
             "cardRace":"images/logo-highlanders.png",
@@ -103,9 +103,9 @@
             "cardPower": 8,
             "cardRole":"bow",
             "cardAbilities":[
-                "hand",
-                "wind",
-                "heal"
+                "ability_1",
+                "ability_2",
+                "ability_3"
             ],
             "cardName":"Инокентий Бест",
             "cardRace":"images/logo-highlanders.png",
