@@ -15,7 +15,7 @@
 
                 cards->
                     {
-                        "logo":"images/logo-highlanders.png", - путь к пути лого расы для списка
+                        "logo":"images/logo-highlanders.png", - путь к лого расы для списка
                         "cards":[
                             {
                                 "imageSrc":"images/cart-open-img-1.jpg", - картинка карты

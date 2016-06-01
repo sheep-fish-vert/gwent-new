@@ -936,7 +936,7 @@ var interval_update = 5000;
                                 /* if we in effects market change rase */
 
                                     $.ajax({
-                                        url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                                        url:ajaxurl, //'js/json/market_'+marketFractionValue+'.json' //'js/json/market_'+marketFractionValue+'_effects.json'
                                         data:{action:'market_effects_by_fraction', fraction:marketFractionValue},
                                         success:function(data){
 
@@ -998,7 +998,7 @@ var interval_update = 5000;
                                 /* if we in cards market change rase */
 
                                     $.ajax({
-                                        url:ajaxurl, //js/json/market_'+marketFractionValue+'.json //'js/json/market_'+marketFractionValue+'_effects.json'
+                                        url:ajaxurl, // 'js/json/market_'+marketFractionValue+'.json' //'js/json/market_'+marketFractionValue+'_effects.json'
                                         data:{action:'market_cards_by_fraction', fraction:marketFractionValue},
                                         success:function(data){
 
@@ -1514,7 +1514,7 @@ var interval_update = 5000;
             var valueHolder = $('.buy-gold-page-item-counter input').val();
 
             $.ajax({
-                url:'js/json/buyGoldAjax_succes.json',  // ajaxurl  // js/json/buyGoldAjax_error.json
+                url:ajaxurl,  // 'js/json/buyGoldAjax_succes.json'  // js/json/buyGoldAjax_error.json
                 data:{action:'buyGoldAjax', goldValueBuying:valueHolder},
                 method:'POST',
                 success:function(data){

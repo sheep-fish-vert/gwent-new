@@ -45,7 +45,7 @@
     .content-top-wrap{
         .dragon-image{
             .dragon-middle-wrap{float: right;width: 82%;position: relative;}
-            .dragon-middle{ position: absolute;top: -119px;left: 50%;transform: translateX(-50%);
+            .dragon-middle{ position: absolute;top: -119px;left: 50%;transform: translateX(-50%);pointer-events:none;
                 img{max-width: inherit;}
             }
         }
