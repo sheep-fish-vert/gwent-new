@@ -1653,7 +1653,7 @@ var interval_update = 5000;
                 /* /center column change value */
 
                 $.ajax({
-                    url:'js/json/login_false.json', // ajaxurl
+                    url:ajaxurl, // js/json/login_false.json
                     data:{action:'deck_sortable', cardForGame:deckOfCards},
                     method:'POST',
                     success:function(){
@@ -1730,7 +1730,7 @@ var interval_update = 5000;
                     setTimeout(function(){
 
                         $.ajax({
-                            url:'js/json/deck_card_'+raceValue+'.json',  // ajaxurl
+                            url:ajaxurl,  // 'js/json/deck_card_'+raceValue+'.json'
                             data:{action:'load_deck_cards',deckRace:raceValue},
                             method:'POST',
                             success:function(data){
