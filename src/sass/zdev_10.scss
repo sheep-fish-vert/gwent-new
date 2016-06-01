@@ -325,6 +325,15 @@
             &:before{background-color: #000;}
             .label-power-card{background-image:url(../images/cart-open-flag-neutral.png);}
         }
+        &.special{
+            .hovered-items{
+                .block-describe{
+                    .block-text-describe{
+                        .block-text-describe-main{padding-left: 10px;}
+                    }
+                }
+            }
+        }
         .hovered-items{ position: absolute; width: 100%; text-align: right; bottom: 0; transition: all 0.3s ease-out;
             .card-game-status {height: 20px; width: 100%; margin-bottom: 5px;display: table;
                 .card-game-status-wrap{display: table-cell;width: 80%;vertical-align: middle;}

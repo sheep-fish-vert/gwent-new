@@ -1028,22 +1028,10 @@ var interval_update = 5000;
 
                                             marketData.cards.forEach(function(item, index){
 
-                                                console.log(item);
-
-                                                var lider = '';
-                                                if(typeof item.lider != 'undefined'){
-                                                    lider = item.lider;
-                                                }
-
                                                 var special = '';
                                                 if(typeof item.special != 'undefined'){
                                                     special = 'special';
                                                 }
-
-                                                var abilitiesRow = '';
-                                                item.cardAbilities.forEach(function(itemTwo, indexTwo){
-                                                    abilitiesRow = abilitiesRow + '<span class="' + itemTwo + '"></span>';
-                                                });
 
                                                 var cardPriceText = '';
                                                 if(typeof item.cardPrice.silver != 'undefined'){
@@ -1053,13 +1041,30 @@ var interval_update = 5000;
                                                     cardPriceText = cardPriceText + '<span class="card-gold-price"><img src="images/header_logo_gold.png" alt=""><span class="card-price-value">'+item.cardPrice.gold+'</span></span>';
                                                 }
 
-                                                var cardRaceImg = '';
-                                                if(item.cardRace != 'none'){
-                                                    cardRaceImg = '<img src='+item.cardRace+' alt="" />';
+
+                                                if(special == ''){
+
+                                                    var cardRaceImg = '';
+                                                    if(item.cardRace != 'none'){
+                                                        cardRaceImg = '<img src='+item.cardRace+' alt="" />';
+                                                    }
+
+                                                    var abilitiesRow = '';
+                                                    item.cardAbilities.forEach(function(itemTwo, indexTwo){
+                                                        abilitiesRow = abilitiesRow + '<span class="' + itemTwo + '"></span>';
+                                                    });
+
+                                                    var lider = '';
+                                                    if(typeof item.lider != 'undefined'){
+                                                        lider = item.lider;
+                                                    }
+
+                                                    $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+lider+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRow+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImg+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
+                                                }else{
+
+                                                    $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+special+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="hovered-items"><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
+
                                                 }
-
-                                                $('.market-cards-items-wrap').prepend('<div class="market-card-wrap"><div class="market-card-main-wrap"><div class="content-card-item-main card-popup '+lider+' '+special+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRow+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImg+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-name">'+item.cardName+'</div><div class="market-card-item-price">'+cardPriceText+'</div><div class="market-card-item-buy"><a href="#" class="button-buy" data-card-id='+item.cardId+'>Купить</a></div></div>');
-
                                                 /* card name one height */
 
                                                     if(index == (marketDataLength - 1)){
@@ -1556,25 +1561,25 @@ var interval_update = 5000;
 
         /* sortable ui */
 
-        $("#sortableOne").sortable({
-            forcePlaceholderSize: true,
-            receive: function (event, ui){
+            $("#sortableOne").sortable({
+                forcePlaceholderSize: true,
+                receive: function (event, ui){
 
-                sortableAjax($(ui.item).attr("data-card-id"), 'add');
+                    sortableAjax($(ui.item).attr("data-card-id"), 'add');
 
-            },
-            stop: function (event, ui){}
-        });
+                },
+                stop: function (event, ui){}
+            });
 
-        $("#sortableTwo").sortable({
-            forcePlaceholderSize: true,
-            receive: function (event, ui){
+            $("#sortableTwo").sortable({
+                forcePlaceholderSize: true,
+                receive: function (event, ui){
 
-                sortableAjax($(ui.item).attr("data-card-id"), 'remove');
+                    sortableAjax($(ui.item).attr("data-card-id"), 'remove');
 
-            },
-            stop: function (event, ui){}
-        });
+                },
+                stop: function (event, ui){}
+            });
 
         /* /sortable ui */
 
@@ -1589,7 +1594,10 @@ var interval_update = 5000;
                 var countRight = 1;
 
                 var card = $('.content-card-item[data-card-id='+cardId+'] .content-card-item-main');
-                var cardPower = parseInt(card.eq(0).find('.label-power-card-wrap span').text());
+                var cardPower = 0;
+                if(card.find('.label-power-card-wrap').length){
+                    cardPower = parseInt(card.eq(0).find('.label-power-card-wrap span').text());
+                }
                 var deckPower = parseInt($('.deck-cards-power').text());
 
                 $('.content-card-field-wrap').parents('.content-card-wrap-main').addClass('loading');
@@ -1635,7 +1643,8 @@ var interval_update = 5000;
 
                 /* center column change value */
 
-                    $('.deck-card-sum, .deck-warriors .current-value').text($('#sortableOne li').length);
+                    $('.deck-card-sum').text($('#sortableOne li').length);
+                    $('.deck-warriors .current-value').text($('#sortableOne .content-card-item-main:not(.special)').length);
                     $('.deck-special .current-value').text($('#sortableOne .special').length);
                     $('.deck-liders .current-value').text($('#sortableOne .yellow').length);
 
@@ -1644,7 +1653,7 @@ var interval_update = 5000;
                 /* /center column change value */
 
                 $.ajax({
-                    url:ajaxurl, //js/json/login_false.json
+                    url:'js/json/login_false.json', // ajaxurl
                     data:{action:'deck_sortable', cardForGame:deckOfCards},
                     method:'POST',
                     success:function(){
@@ -1663,16 +1672,20 @@ var interval_update = 5000;
             function deckCenterColumnSumValues(){
 
                 var cardsLength = $('#sortableOne li').length;
+                var warriorLength = $('#sortableOne .content-card-item-main:not(.special)').length;
                 var lidersLength = $('#sortableOne .yellow').length;
                 var specialLength = $('#sortableOne .special').length;
 
                 var cardsPower = 0;
 
-                $('#sortableOne .label-power-card-wrap').each(function(){
-                    cardsPower+=parseInt($(this).find('span').text());
+                $('#sortableOne .content-card-item').each(function(){
+                    if($(this).find('.label-power-card-wrap').length){
+                        cardsPower+=parseInt($(this).find('.label-power-card-wrap span').text());
+                    }
                 });
 
-                $('.deck-card-sum, .deck-warriors .current-value').text(cardsLength);
+                $('.deck-card-sum').text(cardsLength);
+                $('.deck-warriors .current-value').text(warriorLength);
                 $('.deck-liders .current-value').text(lidersLength);
                 $('.deck-special .current-value').text(specialLength);
                 $('.deck-cards-power').text(cardsPower);
@@ -1689,12 +1702,14 @@ var interval_update = 5000;
 
                 var deckPower = parseInt($('.deck-cards-power').text());
                 var playerLeague = leaguePoints.length+1;
+                var currentLeague = 0;
                 $('.deck-league').text(playerLeague);
 
                 leaguePoints.forEach(function(leagueValue, leagueIndex){
+
                     if(deckPower > leagueValue){
-                        playerLeague-=(leagueIndex+1);
-                        $('.deck-league').text(playerLeague);
+                        currentLeague = playerLeague - (leagueIndex + 1);
+                        $('.deck-league').text(currentLeague);
                         return false;
                     }
 
@@ -1715,7 +1730,7 @@ var interval_update = 5000;
                     setTimeout(function(){
 
                         $.ajax({
-                            url:ajaxurl,  // js/json/deck_card_'+raceValue+'.json
+                            url:'js/json/deck_card_'+raceValue+'.json',  // ajaxurl
                             data:{action:'load_deck_cards',deckRace:raceValue},
                             method:'POST',
                             success:function(data){
@@ -1761,28 +1776,32 @@ var interval_update = 5000;
 
                                             /* /adding items to deckOfCards object */
 
-                                            var liderLeft = '';
-                                            if(typeof item.lider != 'undefined'){
-                                                liderLeft = item.lider;
-                                            }
-
                                             var specialLeft = '';
                                             if(typeof item.special != 'undefined'){
                                                 specialLeft = 'special';
                                             }
 
-                                            var abilitiesRowLeft = '';
-                                            item.cardAbilities.forEach(function(itemTwoLeft, indexTwoLeft){
-                                                abilitiesRowLeft = abilitiesRowLeft + '<span class="' + itemTwoLeft + '"></span>';
-                                            });
+                                            if(specialLeft == ''){
 
-                                            var cardRaceImgLeft = '';
-                                            if(typeof item.cardRace != 'undefined'){
-                                                cardRaceImgLeft = '<img src='+item.cardRace+' alt="" />';
+                                                var liderLeft = '';
+                                                if(typeof item.lider != 'undefined'){
+                                                    liderLeft = item.lider;
+                                                }
+
+                                                var abilitiesRowLeft = '';
+                                                item.cardAbilities.forEach(function(itemTwoLeft, indexTwoLeft){
+                                                    abilitiesRowLeft = abilitiesRowLeft + '<span class="' + itemTwoLeft + '"></span>';
+                                                });
+
+                                                var cardRaceImgLeft = '';
+                                                if(typeof item.cardRace != 'undefined'){
+                                                    cardRaceImgLeft = '<img src='+item.cardRace+' alt="" />';
+                                                }
+
+                                                $('#sortableOne').prepend('<li class="content-card-item ui-sortable-handle" data-card-id='+item.cardId+'><div class="deck-card-popup-wrap"><div class="content-card-item-main card-popup '+liderLeft+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRowLeft+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgLeft+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
+                                            }else{
+                                                $('#sortableOne').prepend('<li class="content-card-item ui-sortable-handle" data-card-id='+item.cardId+'><div class="deck-card-popup-wrap"><div class="content-card-item-main card-popup '+specialLeft+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="hovered-items"><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
                                             }
-
-                                            $('#sortableOne').prepend('<li class="content-card-item ui-sortable-handle" data-card-id='+item.cardId+'><div class="deck-card-popup-wrap"><div class="content-card-item-main card-popup '+liderLeft+' '+specialLeft+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRowLeft+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgLeft+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
-
 
                                             if(index == (cardsLengthLeft-1)){
                                                 leftDone = true;
@@ -1820,22 +1839,32 @@ var interval_update = 5000;
 
                                         deckRaceChangeData.available_cards.forEach(function(item, index){
 
-                                            var liderRight = '';
-                                            if(typeof item.lider != 'undefined'){
-                                                liderRight = item.lider;
+                                            var specialRight = '';
+                                            if(typeof item.special != 'undefined'){
+                                                specialRight = 'special';
                                             }
 
-                                            var abilitiesRowRight = '';
-                                            item.cardAbilities.forEach(function(itemTwoRight, indexTwoRight){
-                                                abilitiesRowRight = abilitiesRowRight + '<span class="' + itemTwoRight + '"></span>';
-                                            });
+                                            if(specialRight == ''){
 
-                                            var cardRaceImgRight = '<img src='+$('.user img').attr('src')+' alt="" />';
-                                            if(typeof item.cardRace != 'undefined'){
-                                                cardRaceImgRight = '<img src='+item.cardRace+' alt="" />';
+                                                var liderRight = '';
+                                                if(typeof item.lider != 'undefined'){
+                                                    liderRight = item.lider;
+                                                }
+
+                                                var abilitiesRowRight = '';
+                                                item.cardAbilities.forEach(function(itemTwoRight, indexTwoRight){
+                                                    abilitiesRowRight = abilitiesRowRight + '<span class="' + itemTwoRight + '"></span>';
+                                                });
+
+                                                var cardRaceImgRight = '<img src='+$('.user img').attr('src')+' alt="" />';
+                                                if(typeof item.cardRace != 'undefined'){
+                                                    cardRaceImgRight = '<img src='+item.cardRace+' alt="" />';
+                                                }
+
+                                                $('#sortableTwo').prepend('<li class="content-card-item ui-sortable-handle" data-card-id='+item.cardId+'><div class="content-card-item-main card-popup '+liderRight+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRowRight+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgRight+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
+                                            }else{
+                                                $('#sortableTwo').prepend('<li class="content-card-item ui-sortable-handle" data-card-id='+item.cardId+'><div class="content-card-item-main card-popup '+specialRight+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="hovered-items"><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
                                             }
-
-                                            $('#sortableTwo').prepend('<li class="content-card-item ui-sortable-handle" data-card-id='+item.cardId+'><div class="content-card-item-main card-popup '+liderRight+' '+item.cardFraction+'" style="background-image:url('+item.imageSrc+')" data-race='+item.cardFraction+'><div class="label-power-card"><span class="label-power-card-wrap"><span>'+item.cardPower+'</span></span></div><div class="hovered-items"><div class="card-game-status"><div class="card-game-status-role"><span class="'+item.cardRole+'"></span></div><div class="card-game-status-wrap">'+abilitiesRowRight+'</div></div><div class="card-name-property"><p>'+item.cardName+'</p></div><div class="block-describe"><div class="block-image-describe">'+cardRaceImgRight+'</div><div class="block-text-describe"><div class="block-text-describe-wrap"><div class="block-text-describe-main"><div class="block-text-describe-main-wrap"><p>'+item.cardDescription+'</p></div></div></div></div></div></div></div><div class="card-count">'+item.cards_count+'</div></li>');
 
                                             if(index == (cardsLengthRight-1)){
                                                 rightDone = true;
