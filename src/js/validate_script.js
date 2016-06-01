@@ -1045,7 +1045,7 @@ var interval_update = 5000;
                                                 if(special == ''){
 
                                                     var cardRaceImg = '';
-                                                    if(item.cardRace != 'none'){
+                                                    if(typeof item.cardRace != 'undefined' && item.cardRace != 'none'){
                                                         cardRaceImg = '<img src='+item.cardRace+' alt="" />';
                                                     }
 
@@ -1794,7 +1794,7 @@ var interval_update = 5000;
                                                 });
 
                                                 var cardRaceImgLeft = '';
-                                                if(typeof item.cardRace != 'undefined'){
+                                                if(typeof item.cardRace != 'undefined' && item.cardRace != 'none'){
                                                     cardRaceImgLeft = '<img src='+item.cardRace+' alt="" />';
                                                 }
 
@@ -1857,7 +1857,7 @@ var interval_update = 5000;
                                                 });
 
                                                 var cardRaceImgRight = '<img src='+$('.user img').attr('src')+' alt="" />';
-                                                if(typeof item.cardRace != 'undefined'){
+                                                if(typeof item.cardRace != 'undefined' || item.cardRace == 'none'){
                                                     cardRaceImgRight = '<img src='+item.cardRace+' alt="" />';
                                                 }
 
