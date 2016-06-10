@@ -285,6 +285,23 @@ function raseWePlay(rase) {
 
 $(document).ready(function () {
 
+    /* kostilt */
+
+        if ($('.wrap-play').length == 1){
+            setInterval(function(){
+                alert('Opponent cards is not available. Please try again search.');
+            }, 3000)     
+        }
+
+        if ($('#look-for-oponent').length == 1){
+            setTimeout(function(){
+                window.location.replace('/play.html'); 
+            }, 5000);
+        }
+        
+
+    /* kostili */
+
     $('.hovered-block .description').jScrollPane({
         showArrows: true
     });
